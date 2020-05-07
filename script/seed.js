@@ -1,7 +1,20 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Word, Room} = require('../server/db/models')
+const {User, Word, Room, Game} = require('../server/db/models')
+
+const games = [
+  {isActive: false, rounds: 2},
+  {isActive: true, rounds: 5},
+  {isActive: true, rounds: 10},
+  {isActive: true, rounds: 5},
+  {isActive: true, rounds: 1},
+  {isActive: true, rounds: 15},
+  {isActive: true, rounds: 10},
+  {isActive: true, rounds: 5},
+  {isActive: true, rounds: 10},
+  {isActive: true, rounds: 1}
+]
 
 const words = [
   {content: 'Long-necked turtle', category: 'France'},
@@ -395,6 +408,10 @@ async function seed() {
 
   for (let i = 0; i < users.length; i++) {
     await User.create(users[i])
+  }
+
+  for (let i = 0; i < games.length; i++) {
+    await Game.create(games[i])
   }
 
   console.log(`seeded ${users.length} users`)
