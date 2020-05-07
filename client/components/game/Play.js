@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import AllUsers from './AllUsers'
 
-export class Play extends Component {
+export default class Play extends Component {
   constructor() {
     super()
     this.state = {}
