@@ -4,7 +4,7 @@ const db = require('../db')
 const Word = db.define('word', {
   content: {
     type: Sequelize.STRING,
-    unique: true,
+    // unique: true,
     allowNull: false,
     validate: {
       notEmpty: true
