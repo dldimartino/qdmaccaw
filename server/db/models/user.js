@@ -3,6 +3,14 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  userName: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -15,6 +23,26 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('password')
     }
+  },
+  imageUrl: {
+    type: Sequelize.TEXT,
+    defaultValue:
+      'https://listimg.pinclipart.com/picdir/s/394-3949791_block-chamber-of-commerce-avatar-comments-profile-icon.png'
+  },
+  wins: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  gamesPlayed: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  munnyPoints: {
+    type: Sequelize.INTEGER
+  },
+  isArtist: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   salt: {
     type: Sequelize.STRING,
