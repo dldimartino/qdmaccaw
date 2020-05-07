@@ -10,7 +10,9 @@ export class Home extends Component {
     return (
       <div>
         <h1>Skribbl 2.0</h1>
-        <button type="button">Play!</button>
+        <Link to="/play">
+          <button type="button">Play!</button>
+        </Link>
         <Link to="/create">
           <button type="button">Create Private Room</button>
         </Link>
