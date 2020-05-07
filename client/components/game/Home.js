@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 export class Home extends Component {
   constructor() {
@@ -10,7 +11,9 @@ export class Home extends Component {
       <div>
         <h1>Skribbl 2.0</h1>
         <button type="button">Play!</button>
-        <button type="button">Create Private Room</button>
+        <Link to="/create">
+          <button type="button">Create Private Room</button>
+        </Link>
         <h2>About Us</h2>
         <p>
           skribbl 2.0 is a free multiplayer drawing and guessing game. One game
