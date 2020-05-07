@@ -12,7 +12,7 @@ export class AllUsers extends Component {
     return (
       <div>
         {this.props.user.map(user => {
-          return user.name
+          return null //user.name
         })}
       </div>
     )
