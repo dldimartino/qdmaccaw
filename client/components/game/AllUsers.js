@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-export class AllPlayers extends Component {
+export class AllUsers extends Component {
   constructor() {
     super()
     this.state = {}
@@ -11,8 +11,8 @@ export class AllPlayers extends Component {
   render() {
     return (
       <div>
-        {this.props.players.map(player => {
-          return player.name
+        {this.props.user.map(user => {
+          return user.name
         })}
       </div>
     )
@@ -20,13 +20,13 @@ export class AllPlayers extends Component {
 }
 
 const mapState = state => ({
-  players: state.players
+  users: state.users
 })
 
 const mapDispatch = dispatch => ({
-  getStudents: () => {
-    dispatch(getStudents())
+  getUsers: () => {
+    dispatch(getUsers())
   }
 })
 
-export default connect(mapState, mapDispatch)(AllPlayers)
+export default connect(mapState, mapDispatch)(AllUsers)

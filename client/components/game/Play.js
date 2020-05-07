@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import AllPlayers from './AllPlayers'
+import AllUsers from './AllUsers'
 
 export class Play extends Component {
   constructor() {
@@ -9,7 +9,7 @@ export class Play extends Component {
   render() {
     return (
       <div>
-        <AllPlayer />
+        <AllUsers />
       </div>
     )
   }
