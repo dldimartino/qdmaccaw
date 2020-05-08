@@ -4,7 +4,7 @@ const db = require('../server/db')
 const {User, Word, Room, Game} = require('../server/db/models')
 
 const games = [
-  {isActive: false, rounds: 2},
+  {isActive: false, rounds: 5},
   {isActive: true, rounds: 5},
   {isActive: true, rounds: 10},
   {isActive: true, rounds: 5},
