@@ -15,7 +15,7 @@ module.exports = io => {
     })
 
     socket.on('drawing', function(data) {
-      io.emit('drawing', data)
+      socket.broadcast.emit('drawing', data)
     })
   })
 }

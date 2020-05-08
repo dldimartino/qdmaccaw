@@ -4,24 +4,20 @@ import io from 'socket.io-client'
 
 export default function ReactWhiteboard() {
   const [drawing, setDrawing] = useState(null)
-  const socket = io.connect('http://localhost:8080')
+  const socket = io.connect(window.location.origin)
   const canvas = createRef()
 
-  useEffect(() => {
-    socket.on('drawing', function(data) {
-      setDrawing(canvas.current.loadSaveData(data, true))
-    })
-  })
-
   function handleChange(event) {
-    socket.emit('drawing', drawing)
-    setDrawing(event.getSaveData())
+    console.log('Sending Drawing')
+    socket.emit('drawing', event.getSaveData())
   }
 
   return (
     <div>
-      <h1>Hello</h1>
-      <CanvasDraw ref={canvas} onChange={handleChange} />
+      <h1>Draw the word!</h1>
+      <div>
+        <CanvasDraw ref={canvas} onChange={handleChange} />
+      </div>
     </div>
   )
 }
