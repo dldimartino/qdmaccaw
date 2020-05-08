@@ -1,9 +1,8 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useRef} from 'react'
 import io from 'socket.io-client'
 import CanvasDraw from 'react-canvas-draw'
 
 export default function Guesser() {
-  // const [drawing, setDrawing] = useState(null)
   const socket = io.connect(window.location.origin)
   const canvas = useRef()
 
@@ -14,7 +13,7 @@ export default function Guesser() {
   return (
     <div>
       <h1>Guess the drawing!</h1>
-      <CanvasDraw ref={canvas} />
+      <CanvasDraw ref={canvas} disabled={true} />
     </div>
   )
 }

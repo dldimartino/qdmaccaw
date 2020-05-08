@@ -1,9 +1,8 @@
-import React, {useState, useEffect, createRef} from 'react'
+import React, {createRef} from 'react'
 import CanvasDraw from 'react-canvas-draw'
 import io from 'socket.io-client'
 
 export default function ReactWhiteboard() {
-  const [drawing, setDrawing] = useState(null)
   const socket = io.connect(window.location.origin)
   const canvas = createRef()
 
