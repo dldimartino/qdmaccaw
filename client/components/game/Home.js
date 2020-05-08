@@ -10,7 +10,7 @@ export default class Home extends Component {
     return (
       <div>
         <h1>Skribbl 2.0</h1>
-        {/* <img src={require('./image/img05')} /> */}
+      
         <Link to="/play">
           <button type="button">Play!</button>
         </Link>

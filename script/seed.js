@@ -386,7 +386,7 @@ const users = [
 ]
 
 async function seed() {
-  await db.sync({force: true})
+  await db.sync({force: false})
   console.log('db synced!')
 
   // const users = await Promise.all([
