@@ -22,7 +22,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/create" component={Create} />
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route path="/Play" component={Play} />
 
         {isLoggedIn && (
