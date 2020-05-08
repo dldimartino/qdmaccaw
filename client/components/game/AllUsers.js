@@ -11,9 +11,9 @@ export class AllUsers extends Component {
   render() {
     return (
       <div>
-        {this.props.user.map(user => {
+        {/* {this.props.user.map(user => {
           return null //user.name
-        })}
+        })} */}
       </div>
     )
   }
