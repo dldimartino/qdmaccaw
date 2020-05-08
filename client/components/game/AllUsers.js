@@ -1,18 +1,26 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {fetchUsers} from '../../store/allUsers'
 
 export class AllUsers extends Component {
   constructor() {
     super()
     this.state = {}
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.fetchUsers()
+  }
 
   render() {
-    return (
+    console.log('props: ', this.props)
+    return !this.props.users ? (
       <div>
-        {this.props.user.map(user => {
-          return null //user.name
+        <h1>No Users</h1>
+      </div>
+    ) : (
+      <div>
+        {this.props.users.map(user => {
+          return user.name
         })}
       </div>
     )
@@ -24,8 +32,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  getUsers: () => {
-    dispatch(getUsers())
+  fetchUsers: () => {
+    dispatch(fetchUsers())
   }
 })
 

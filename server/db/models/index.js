@@ -1,3 +1,4 @@
+const db = require('../db')
 const User = require('./user')
 const Room = require('./room')
 const Word = require('./word')
@@ -17,6 +18,7 @@ const Game = require('./game')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
+  db,
   User,
   Room,
   Word,
