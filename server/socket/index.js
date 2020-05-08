@@ -13,7 +13,7 @@ module.exports = io => {
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`)
     })
-    // socket.on('join-drawing', drawingName => {
+    // socket.on('join-drawing', (drawingName) => {
     //   socket.join(drawingName)
     //   const drawing = getDrawing(drawingName)
     //   socket.emit('replay-drawing', drawing)
