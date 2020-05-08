@@ -13,23 +13,24 @@ export class AllUsers extends Component {
 
   render() {
     console.log('props: ', this.props)
-    return !this.props.users ? (
+    return !this.props.allUsers ? (
       <div>
         <h1>No Users</h1>
       </div>
     ) : (
       <div>
-        {this.props.users.map(user => {
-          return user.name
+        {this.props.allUsers.map(user => {
+          return <p key={user.id}>{user.name}</p>
         })}
       </div>
     )
   }
 }
 
-const mapState = state => ({
-  users: state.users
-})
+const mapState = state => {
+  console.log('state: ', state)
+  return {allUsers: state.allUsers}
+}
 
 const mapDispatch = dispatch => ({
   fetchUsers: () => {
