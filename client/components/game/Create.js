@@ -49,7 +49,9 @@ export default class Create extends Component {
             defaultValue={80}
             onChange={this.handleChange}
           />
-          <button type="button">Start Game</button>
+          <Link to="/play">
+            <button type="button">Start Game</button>
+          </Link>
         </form>
       </div>
     )

@@ -16,14 +16,7 @@ export default class Home extends Component {
         <Link to="/create">
           <button type="button">Create Private Room</button>
         </Link>
-        <h2>About Us</h2>
-        <p>
-          skribbl 2.0 is a free multiplayer drawing and guessing game. One game
-          consists of a few rounds in which every round someone has to draw
-          their chosen word and others have to guess it to gain points! The
-          person with the most points at the end of game will then be crowned as
-          the winner!
-        </p>
+
         <h2>How to Play</h2>
         <p>
           When its your turn to draw, you will have to choose a word from three
