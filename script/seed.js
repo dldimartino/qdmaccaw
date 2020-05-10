@@ -18,7 +18,7 @@ const games = [
 
 const words = [
   {content: 'tiger', category: 'animal'},
-  {content: 'Grizzly bear', category: 'animal'},
+  {content: 'grizzly bear', category: 'animal'},
   {content: 'fish', category: 'animal'},
   {content: 'turtle', category: 'animal'},
   {content: 'dog', category: 'animal'},

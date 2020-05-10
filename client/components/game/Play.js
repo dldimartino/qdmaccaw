@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
+import {fetchWord} from '../../store/word'
 import {AllPlayers} from './AllPlayers'
+import {Word} from './Word'
 
 export class Play extends Component {
   constructor() {
@@ -11,12 +13,14 @@ export class Play extends Component {
 
   componentDidMount() {
     this.props.fetchUsers()
+    this.props.fetchWord()
   }
 
   render() {
     console.log('this.props: ', this.props)
     return (
       <div>
+        <Word allWords={this.props.word} />
         <AllPlayers allUsers={this.props.allUsers} />
       </div>
     )
@@ -24,12 +28,16 @@ export class Play extends Component {
 }
 
 const mapState = state => ({
-  allUsers: state.allUsers
+  allUsers: state.allUsers,
+  word: state.word
 })
 
 const mapDispatch = dispatch => ({
   fetchUsers: () => {
     dispatch(fetchUsers())
+  },
+  fetchWord: () => {
+    dispatch(fetchWord())
   }
 })
 
