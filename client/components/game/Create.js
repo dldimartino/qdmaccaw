@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 export default class Create extends Component {
   constructor() {
@@ -49,7 +50,10 @@ export default class Create extends Component {
             defaultValue={80}
             onChange={this.handleChange}
           />
-          <button type="button">Start Game</button>
+          <br />
+          <Link to="/play">
+            <button type="button">Start Game</button>
+          </Link>
         </form>
       </div>
     )
