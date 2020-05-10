@@ -13,7 +13,6 @@ const gotUsers = users => ({
 export const fetchUsers = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/users')
-    console.log('data: ', data)
     dispatch(gotUsers(data))
   } catch (error) {
     console.error(error)
@@ -22,7 +21,6 @@ export const fetchUsers = () => async dispatch => {
 
 /* Reducer */
 export default function(state = [], action) {
-  console.log('action: ', action)
   switch (action.type) {
     case GETTING_USERS:
       return action.users

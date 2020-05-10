@@ -9,6 +9,7 @@ import {
   Home,
   Play,
   Create,
+  Room,
   ReactWhiteboard
 } from './components'
 import {me} from './store'
@@ -32,6 +33,7 @@ class Routes extends Component {
         <Route path="/create" component={Create} />
         <Route exact path="/" component={Home} />
         <Route path="/Play" component={Play} />
+        <Route path="/room" component={Room} />
         <Route path="/whiteboard" component={ReactWhiteboard} />
 
         {isLoggedIn && (
