@@ -1,17 +1,22 @@
-import React, {Component} from 'react'
+import React, {createRef} from 'react'
 import CanvasDraw from 'react-canvas-draw'
+import io from 'socket.io-client'
 
-export default class ReactWhiteboard extends Component {
-  constructor() {
-    super()
-    this.state = {}
+export default function ReactWhiteboard() {
+  const socket = io.connect(window.location.origin)
+  const canvas = createRef()
+
+  function handleChange(event) {
+    console.log('Sending Drawing')
+    socket.emit('drawing', event.getSaveData())
   }
-  render() {
-    return (
+
+  return (
+    <div>
+      <h1>Draw the word!</h1>
       <div>
-        <h1>Hello</h1>
-        <CanvasDraw />
+        <CanvasDraw ref={canvas} onChange={handleChange} />
       </div>
-    )
-  }
+    </div>
+  )
 }

@@ -9,8 +9,10 @@ import {
   Home,
   Play,
   Create,
+  Room,
   ReactWhiteboard
 } from './components'
+import Guesser from './components/guesser'
 import {me} from './store'
 
 /**
@@ -32,7 +34,9 @@ class Routes extends Component {
         <Route path="/create" component={Create} />
         <Route exact path="/" component={Home} />
         <Route path="/Play" component={Play} />
+        <Route path="/room" component={Room} />
         <Route path="/whiteboard" component={ReactWhiteboard} />
+        <Route path="/guesser" component={Guesser} />
 
         {isLoggedIn && (
           <Switch>

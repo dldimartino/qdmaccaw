@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 export default class Create extends Component {
   constructor() {
@@ -25,6 +26,10 @@ export default class Create extends Component {
   render() {
     return (
       <div>
+        <Link to="/">
+          <button type="button">Home</button>
+        </Link>
+
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Name:</label>
           <input
@@ -49,7 +54,10 @@ export default class Create extends Component {
             defaultValue={80}
             onChange={this.handleChange}
           />
-          <button type="button">Start Game</button>
+          <br />
+          <Link to="/play">
+            <button type="button">Start Game</button>
+          </Link>
         </form>
       </div>
     )
