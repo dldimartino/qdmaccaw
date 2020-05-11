@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import pwa from '../../../pwabuilder-sw'
 
 const Home = () => {
   // This is the "Offline page" service worker
