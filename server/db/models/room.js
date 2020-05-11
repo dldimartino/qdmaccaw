@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Room = db.define('room', {
-  roomCode: {
+  name: {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true,
