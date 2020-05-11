@@ -2,13 +2,13 @@ import React, {createRef} from 'react'
 import CanvasDraw from 'react-canvas-draw'
 import io from 'socket.io-client'
 
-export default function ReactWhiteboard() {
+export default function ReactWhiteboard(props) {
   const socket = io.connect(window.location.origin)
   const canvas = createRef()
 
   function handleChange(event) {
     console.log('Sending Drawing')
-    socket.emit('drawing', event.getSaveData())
+    socket.to(props.room).emit('drawing', event.getSaveData())
   }
 
   return (
