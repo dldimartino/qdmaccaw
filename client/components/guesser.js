@@ -6,7 +6,7 @@ export default function Guesser() {
   const socket = io.connect(window.location.origin)
   const canvas = useRef()
 
-  socket.on('drawing', function(data) {
+  socket.on('drawing', function (data) {
     canvas.current.loadSaveData(data, true)
   })
 
