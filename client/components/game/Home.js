@@ -1,7 +1,29 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import pwa from '../../../pwabuilder-sw'
 
 const Home = () => {
+  // This is the "Offline page" service worker
+  // Check compatibility for the browser we're running this in
+  if ('serviceWorker' in navigator) {
+    if (navigator.serviceWorker.controller) {
+      console.log(
+        '[PWA Builder] active service worker found, no need to register'
+      )
+    } else {
+      // Register the service worker
+      navigator.serviceWorker
+        .register('pwabuilder-sw.js', {
+          scope: '../../../pwabuilder-sw.js',
+        })
+        .then(function (reg) {
+          console.log(
+            '[PWA Builder] Service worker has been registered for scope: ' +
+              reg.scope
+          )
+        })
+    }
+  }
   return (
     <div>
       <h1>Skribbl 2.0</h1>
@@ -23,5 +45,3 @@ const Home = () => {
     </div>
   )
 }
-
-export default Home
