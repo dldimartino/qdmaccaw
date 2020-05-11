@@ -3,8 +3,8 @@ const Word = require('../db/models/word')
 
 router.get('/', async (req, res, next) => {
   try {
-    const allWord = await Word.findAll()
-    res.json(allWord)
+    const allWords = await Word.findAll()
+    res.json(allWords)
   } catch (error) {
     next(error)
   }

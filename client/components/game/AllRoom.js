@@ -1,9 +1,9 @@
 import React from 'react'
 
 export const AllRoom = props => {
-  return props.allRoom.length > 0 ? (
+  return props.selectedRoom.length > 0 ? (
     <div>
-      {props.allRoom.map(room => {
+      {props.selectedRoom.map(room => {
         return (
           <div key={room.id}>
             <p>{room.name}</p>
