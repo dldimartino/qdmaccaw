@@ -14,6 +14,9 @@ const Game = require('./game')
 Room.hasMany(User)
 User.belongsTo(Room)
 
+Room.hasMany(Word)
+Word.belongsTo(Room)
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'

@@ -6,8 +6,9 @@ export const Word = props => {
       {props.allWords.map(word => {
         return (
           <div key={word.id}>
-            <p>{word.content}</p>
-            <p>{word.category}</p>
+            <p>
+              Word: {word.content}, Category: {word.category}
+            </p>
           </div>
         )
       })}

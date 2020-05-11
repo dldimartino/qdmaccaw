@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {AllRoom} from './AllRoom'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {AllRoom} from './AllRoom'
 import {fetchRoom, filterRoom} from '../../store/allRoom'
 
 export class Room extends Component {
@@ -9,31 +10,25 @@ export class Room extends Component {
     this.state = {
       search: ''
     }
-    // this.handleSearch = this.handleSearch.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.filter = this.filter.bind(this)
+    this.handleKey = this.handleKey.bind(this)
   }
-
-  // handleSubmit(event) {
-  //   console.log('hi')
-  //   event.preventDefault()
-  //   const state = this.state
-  //   const newCar = {
-  //     brand: state.brand,
-  //   }
-  //   this.props.addCar(newCar)
-  //   this.props.history.push('/admin')
-  // }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
-    this.filter(event.target.value)
+    this.props.filterRoom(event.target.value)
   }
 
-  filter(value) {
-    this.props.filterRoom(value)
+  handleKey(event) {
+    console.log('selectedRoomy: ', this.props)
+    if (
+      event.key === 'Enter' &&
+      this.props.selectedRoom[0].name === event.target.value
+    ) {
+      this.props.history.push(`/play/${this.props.selectedRoom[0].id}`)
+    }
   }
 
   componentDidMount() {
@@ -41,10 +36,11 @@ export class Room extends Component {
   }
 
   render() {
-    console.log('props: ', this.props)
-
     return (
       <div>
+        <Link to="/">
+          <button type="button">Home</button>
+        </Link>
         <form>
           <label htmlFor="search">Search Room:</label>
           <input
@@ -52,6 +48,7 @@ export class Room extends Component {
             name="search"
             value={this.state.search}
             onChange={this.handleChange}
+            onKeyDown={this.handleKey}
           />
         </form>
 
@@ -61,13 +58,10 @@ export class Room extends Component {
   }
 }
 
-const mapState = state => {
-  console.log('state: ', state)
-  return {
-    allRoom: state.allRoom.allRoom,
-    selectedRoom: state.allRoom.selectedRoom
-  }
-}
+const mapState = state => ({
+  allRoom: state.allRoom.allRoom,
+  selectedRoom: state.allRoom.selectedRoom
+})
 
 const mapDispatch = dispatch => ({
   fetchRoom: () => {

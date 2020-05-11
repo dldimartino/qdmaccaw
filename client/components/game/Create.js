@@ -26,6 +26,10 @@ export default class Create extends Component {
   render() {
     return (
       <div>
+        <Link to="/">
+          <button type="button">Home</button>
+        </Link>
+
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Name:</label>
           <input

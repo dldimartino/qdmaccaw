@@ -124,12 +124,12 @@ const rooms = [
   {name: 'exterminator', isActive: true},
   {name: 'life', isActive: false},
   {name: 'explore', isActive: false},
-  {name: 'metallic', isActive: false},
+  {name: 'metallic bees', isActive: false},
   {name: 'beatz', isActive: true},
   {name: 'robots', isActive: true},
   {name: 'ganster', isActive: false},
   {name: 'bullseye', isActive: true},
-  {name: 'love', isActive: true}
+  {name: 'live love laugh', isActive: true}
 ]
 
 const users = [

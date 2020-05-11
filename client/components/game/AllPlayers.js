@@ -4,7 +4,11 @@ export const AllPlayers = props => {
   return props.allUsers.length > 0 ? (
     <div>
       {props.allUsers.map(user => {
-        return <p key={user.id}>{user.name}</p>
+        return (
+          <div key={user.id}>
+            <p>User: {user.name}</p>
+          </div>
+        )
       })}
     </div>
   ) : (
