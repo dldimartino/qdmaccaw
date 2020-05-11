@@ -1,10 +1,10 @@
-import React, {useRef} from 'react'
+import React, {createRef} from 'react'
 import io from 'socket.io-client'
 import CanvasDraw from 'react-canvas-draw'
 
 export default function Guesser() {
   const socket = io.connect(window.location.origin)
-  const canvas = useRef()
+  const canvas = createRef()
 
   socket.on('drawing', function (data) {
     canvas.current.loadSaveData(data, true)
@@ -13,7 +13,7 @@ export default function Guesser() {
   return (
     <div>
       <h1>Guess the drawing!</h1>
-      <CanvasDraw ref={canvas} disabled={true} />
+      <CanvasDraw ref={canvas} disabled={true} hideInterface={true} />
     </div>
   )
 }
