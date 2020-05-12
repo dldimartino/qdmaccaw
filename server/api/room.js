@@ -13,4 +13,14 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const {name} = req.body
+    const newRoom = await Room.create({name})
+    res.json(newRoom)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router
