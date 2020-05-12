@@ -4,7 +4,7 @@ import {Button, Col, Row, Container} from 'react-bootstrap'
 
 const Main = () => {
   return (
-    <Container>
+    <Container className="Welcome">
       <Row className="justify-content-md-center">
         <h1>DrawBit</h1>
       </Row>
