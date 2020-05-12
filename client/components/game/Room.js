@@ -51,7 +51,6 @@ export class Room extends Component {
             onKeyDown={this.handleKey}
           />
         </form>
-
         <AllRoom selectedRoom={this.props.selectedRoom} />
       </div>
     )
