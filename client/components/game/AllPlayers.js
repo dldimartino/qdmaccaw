@@ -1,12 +1,17 @@
 import React from 'react'
 
 export const AllPlayers = props => {
-  return props.allUsers.length > 0 ? (
+  return props.allUsers.length ? (
     <div>
       {props.allUsers.map(user => {
         return (
           <div key={user.id}>
-            <p>User: {user.name}</p>
+            <img src={`${user.imageUrl}`} className="avatarImg" />
+            <span>User: {user.name}</span>
+            <span>
+              Wins/Games Played: {user.wins}/{user.gamesPlayed}
+            </span>
+            <span>MunnyPoints: {user.munnyPoints}</span>
           </div>
         )
       })}
