@@ -4,6 +4,7 @@ import io from 'socket.io-client'
 
 export default function ReactWhiteboard() {
   const socket = io.connect(window.location.origin)
+  console.log('socketSOCKET!!!! io.connect(window.location.origin)', socket)
   const canvas = createRef()
 
   function handleChange(event) {

@@ -3,8 +3,8 @@ import React from 'react'
 export const Player = props => {
   return (
     <div>
-      <p>{props.user.name}</p>
-      <img />
+      <img src={props.user.imageUrl} />
+      <span>{props.user.name}</span>
     </div>
   )
 }
