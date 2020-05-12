@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Word = props => {
+export const AllWords = props => {
   return (
     <div>
       {props.allWords.map(word => {

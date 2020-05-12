@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
 import {fetchWord} from '../../store/word'
 import {AllPlayers} from './AllPlayers'
-import {Word} from './Word'
+import {AllWords} from './AllWords'
 
 export class Play extends Component {
   constructor() {
@@ -19,7 +19,7 @@ export class Play extends Component {
   render() {
     return (
       <div>
-        <Word allWords={this.props.word} />
+        <AllWords allWords={this.props.word} />
         <AllPlayers allUsers={this.props.allUsers} />
       </div>
     )

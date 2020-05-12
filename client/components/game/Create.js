@@ -15,12 +15,12 @@ export class Create extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
     this.props.newRoom({name: this.state.name})
-    this.setState({
-      name: ''
-    })
+    // this.setState({
+    //   name: ''
+    // })
   }
 
   handleChange(event) {
