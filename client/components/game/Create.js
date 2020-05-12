@@ -15,7 +15,8 @@ export class Create extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
+    //removed async from handlesubmit since there was no await inside the func
     event.preventDefault()
     this.props.newRoom({name: this.state.name})
     // this.setState({
