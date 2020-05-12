@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {newRoom} from '../../store/allRoom'
 
-export default class Create extends Component {
+export class Create extends Component {
   constructor() {
     super()
     this.state = {
-      name: '',
-      round: '',
-      timer: ''
+      name: ''
+      // round: '',
+      // timer: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -15,6 +17,10 @@ export default class Create extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    this.props.newRoom({name: this.state.name})
+    this.setState({
+      name: ''
+    })
   }
 
   handleChange(event) {
@@ -24,6 +30,10 @@ export default class Create extends Component {
   }
 
   render() {
+    this.props.allRoom.length > 0 &&
+      this.props.history.push(
+        `/play/${this.props.allRoom[this.props.allRoom.length - 1].id}`
+      )
     return (
       <div>
         <Link to="/">
@@ -39,7 +49,7 @@ export default class Create extends Component {
             onChange={this.handleChange}
           />
 
-          <label htmlFor="round">Round:</label>
+          {/* <label htmlFor="round">Round:</label>
           <input
             type="text"
             name="round"
@@ -53,13 +63,21 @@ export default class Create extends Component {
             name="timer"
             defaultValue={80}
             onChange={this.handleChange}
-          />
+          /> */}
           <br />
-          <Link to="/play">
-            <button type="button">Start Game</button>
-          </Link>
+          <button type="submit">Start Game</button>
         </form>
       </div>
     )
   }
 }
+
+const mapState = state => ({
+  allRoom: state.allRoom.allRoom
+})
+
+const mapDispatch = dispatch => ({
+  newRoom: room => dispatch(newRoom(room))
+})
+
+export default connect(mapState, mapDispatch)(Create)
