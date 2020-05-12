@@ -25,6 +25,16 @@ export const fetchRoom = () => async dispatch => {
   }
 }
 
+export const newRoom = room => async dispatch => {
+  try {
+    await axios.post('/api/room', room)
+    const {data} = await axios.get('/api/room')
+    dispatch(getRoom(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 /* Initial State */
 const initialState = {
   allRoom: [],
