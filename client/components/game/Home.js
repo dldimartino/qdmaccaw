@@ -1,33 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 
-const Home = () => {
-  // This is the "Offline page" service worker
-  // Check compatibility for the browser we're running this in
-  if ('serviceWorker' in navigator) {
-    if (navigator.serviceWorker.controller) {
-      console.log(
-        '[PWA Builder] active service worker found, no need to register'
-      )
-    } else {
-      // Register the service worker
-      navigator.serviceWorker
-        .register('pwabuilder-sw.js', {
-          scope: '../../../pwabuilder-sw.js',
-        })
-        .then(function (reg) {
-          console.log(
-            '[PWA Builder] Service worker has been registered for scope: ' +
-              reg.scope
-          )
-        })
-    }
-  }
+export const Home = () => {
   return (
     <div>
-      <h1>Skribbl 2.0</h1>
+      <h1>Drawbit</h1>
       <Link to="/room">
-        <button type="button">Join Room!</button>
+        <Button variant="success">Join Room</Button>
       </Link>
       <Link to="/create">
         <button type="button">Create Room!</button>
