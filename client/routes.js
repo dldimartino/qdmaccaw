@@ -2,16 +2,16 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import {Main} from './components/game/Main'
 import {
   Login,
   Signup,
-  // UserHome,
-  // Home,
+  UserHome,
+  Home,
   Main,
   Play,
   Create,
   Room,
+  Instruction,
   ReactWhiteboard,
 } from './components'
 import Guesser from './components/guesser'
@@ -34,7 +34,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/create" component={Create} />
-        <Route exact path="/" component={Main} />
+        <Route exact path="/" component={Home} />
         <Route path="/Play" component={Play} />
         <Route path="/room" component={Room} />
         <Route path="/whiteboard" component={ReactWhiteboard} />
@@ -46,11 +46,27 @@ class Routes extends Component {
             return null
           }}
         />
+        {/* <Route path="/create" component={Create} />
+          <Route exact path="/main" component={Main} /> */}
+        <Route exact path="/" component={Home} />
+        {/* <Route path="/Play" component={Play} />
+          <Route path="/room" component={Room} />
+          <Route path="/whiteboard" component={ReactWhiteboard} />
+          <Route path="/guesser" component={Guesser} /> */}
 
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route exact path="/" component={Main} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/create" component={Create} />
+            <Route exact path="/" component={Home} />
+            <Route path="/main" component={Main} />
+            <Route path="/Play" component={Play} />
+            <Route path="/room" component={Room} />
+            <Route path="/instruction" component={Instruction} />
+            <Route path="/whiteboard" component={ReactWhiteboard} />
+            <Route path="/guesser" component={Guesser} />
             {/* <Route path="/home" component={UserHome} /> */}
           </Switch>
         )}

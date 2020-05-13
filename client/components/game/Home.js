@@ -1,26 +1,50 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Button} from 'react-bootstrap'
+import {Button, Row, Container} from 'react-bootstrap'
 
-export const Home = () => {
+const Home = () => {
   return (
-    <div>
-      <h1>Drawbit</h1>
-      <Link to="/room">
-        <Button variant="success">Join Room</Button>
-      </Link>
-      <Link to="/create">
-        <button type="button">Create Room!</button>
-      </Link>
-
-      <h2>How to Play</h2>
-      <p>
-        When its your turn to draw, you will have to choose a word from three
-        options and visualize that word in 80 seconds, alternatively when
-        somebody else is drawing you have to type your guess into the chat to
-        gain points, be quick, the earlier you guess a word the more points you
-        get!
-      </p>
-    </div>
+    <Container className="Buttons">
+      <Row className="justify-content-md-center ">
+        <h1 className="Welcome">DrawBit</h1>
+      </Row>
+      <Row className="justify-content-md-center">
+        <Link to="/login">
+          <Button size="lg" className="shadow-lg" variant="success">
+            Login
+          </Button>
+        </Link>
+      </Row>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
+          <Link to="/signup">
+            <Button size="lg" className="shadow-lg" variant="primary">
+              Sign Up
+            </Button>
+          </Link>
+        </Row>
+      </div>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
+          <Link to="/room">
+            <Button className="shadow-lg" variant="primary">
+              Play As Guest
+            </Button>
+          </Link>
+        </Row>
+      </div>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
+          <a href="https://github.com/Metallic-Bees/Capstone">
+            <img
+              id="github_logo"
+              src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+            />
+          </a>
+        </Row>
+      </div>
+    </Container>
   )
 }
+
+export default Home

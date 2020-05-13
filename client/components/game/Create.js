@@ -7,37 +7,35 @@ export class Create extends Component {
   constructor() {
     super()
     this.state = {
-      name: ''
-      // round: '',
-      // timer: ''
+      name: '',
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault()
     this.props.newRoom({name: this.state.name})
-    // this.setState({
-    //   name: ''
-    // })
   }
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     })
   }
 
-  render() {
+  componentDidUpdate() {
     this.props.allRoom.length > 0 &&
       this.props.history.push(
         `/play/${this.props.allRoom[this.props.allRoom.length - 1].id}`
       )
+  }
+
+  render() {
     return (
       <div>
-        <Link to="/">
-          <button type="button">Home</button>
+        <Link to="/main">
+          <button type="button">Back</button>
         </Link>
 
         <form onSubmit={this.handleSubmit}>
@@ -49,35 +47,20 @@ export class Create extends Component {
             onChange={this.handleChange}
           />
 
-          {/* <label htmlFor="round">Round:</label>
-          <input
-            type="text"
-            name="round"
-            defaultValue={3}
-            onChange={this.handleChange}
-          />
-
-          <label htmlFor="timer">Timer:</label>
-          <input
-            type="text"
-            name="timer"
-            defaultValue={80}
-            onChange={this.handleChange}
-          /> */}
           <br />
-          <button type="submit">Start Game</button>
+          <button type="submit">Create</button>
         </form>
       </div>
     )
   }
 }
 
-const mapState = state => ({
-  allRoom: state.allRoom.allRoom
+const mapState = (state) => ({
+  allRoom: state.allRoom.allRoom,
 })
 
-const mapDispatch = dispatch => ({
-  newRoom: room => dispatch(newRoom(room))
+const mapDispatch = (dispatch) => ({
+  newRoom: (room) => dispatch(newRoom(room)),
 })
 
 export default connect(mapState, mapDispatch)(Create)
