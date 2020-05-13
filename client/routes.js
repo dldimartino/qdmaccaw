@@ -33,6 +33,19 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/create" component={Create} />
+        <Route exact path="/" component={Home} />
+        <Route path="/Play" component={Play} />
+        <Route path="/room" component={Room} />
+        <Route path="/whiteboard" component={ReactWhiteboard} />
+        <Route path="/guesser" component={Guesser} />
+        <Route
+          path="/github"
+          component={() => {
+            window.location.href = 'https://github.com/Metallic-Bees/Capstone'
+            return null
+          }}
+        />
         {/* <Route path="/create" component={Create} />
           <Route exact path="/main" component={Main} /> */}
         <Route exact path="/" component={Home} />
