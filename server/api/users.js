@@ -40,9 +40,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id/winner', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id, {include: {Game}})
-    user.winner = true
-    User.reload()
+    // console.log('inside route')
+    const user = await User.findByPk(1)
+    // console.log('user', user)
+    await user.update({winner: true})
+    user.reload()
     res.status(200).json(user)
   } catch (error) {
     next(error)
@@ -51,9 +53,9 @@ router.put('/:id/winner', async (req, res, next) => {
 
 router.put('/:id/loser', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id, {include: {Game}})
-    user.winner = true
-    User.reload()
+    const user = await User.findByPk(req.params.id)
+    await user.update({winner: false})
+    user.reload()
     res.status(200).json(user)
   } catch (error) {
     next(error)
