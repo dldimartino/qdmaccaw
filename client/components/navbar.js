@@ -6,9 +6,6 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <Link to="/">
-      <h1>BOILERMAKER</h1>
-    </Link>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -30,6 +27,15 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+      <iframe
+        style={{border: 0, width: 500, height: 42}}
+        src="https://bandcamp.com/EmbeddedPlayer/album=1051830778/size=small/bgcol=ffffff/linkcol=0687f5/track=2184348779/transparent=true/"
+        seamless
+      >
+        <a href="http://robuwaldorf.bandcamp.com/album/video-game-music">
+          Video Game Music by Robu Waldorf
+        </a>
+      </iframe>
     </nav>
     <hr />
   </div>
@@ -38,17 +44,17 @@ const Navbar = ({handleClick, isLoggedIn}) => (
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleClick() {
       dispatch(logout())
-    }
+    },
   }
 }
 
@@ -59,5 +65,5 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 }
