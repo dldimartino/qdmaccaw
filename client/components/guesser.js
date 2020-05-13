@@ -42,11 +42,12 @@ export default class Guesser extends Component {
       console.log('you guessed', this.state.guess)
       console.log('word was', this.state.word)
       await this.setState({guess: ''})
+      console.log(
+        `this.state.guess (your guess) has been reset to, " ${
+          this.state.guess
+        }"`
+      )
     }
-    console.log(
-      'this.state.guess (your guess) has been reset to',
-      this.state.guess
-    )
   }
 
   // const socket = io.connect(window.location.origin)
