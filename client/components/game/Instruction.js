@@ -1,22 +1,43 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export const Instruction = () => {
+const Instruction = () => {
   return (
     <div>
-      <Link to="/">
-        <button type="button">Home</button>
+      <Link to="/main">
+        <button type="button">Back</button>
       </Link>
-      <p>
-        When its your turn to draw, you will have to choose a word from three
-        options and visualize that word in 80 seconds, alternatively when
-        somebody else is drawing you have to type your guess into the chat to
-        gain points, be quick, the earlier you guess a word the more points you
-        get!
-      </p>
-      <Link to="/">
-        <button type="button">Home</button>
+
+      <h4>
+        <u>Instruction</u>
+      </h4>
+      <h5>Picturist</h5>
+      <ol>
+        <li>There's 1 Picturist a round</li>
+        <li>You will receive a word to draw</li>
+        <li>You have 30 second to draw it</li>
+      </ol>
+      <h5>Guesser</h5>
+      <ol>
+        <li>You have 30 second to guess</li>
+        <li>You only have 1 try to guess</li>
+      </ol>
+      <h5>Points</h5>
+      <ol>
+        <li>The earlier you guess, the more points you receive</li>
+        <li>Picturist will receive 1 point for each guess</li>
+        <li>Picturist will receieve 2x points if all guess</li>
+        <li>First to guess will multiply time left x3</li>
+        <li>Second to guess will multiply time left x2.5</li>
+        <li>Third to guess will multiply time left x2</li>
+        <li>Everyone else will receive points based on time</li>
+      </ol>
+
+      <Link to="/main">
+        <button type="button">Back</button>
       </Link>
     </div>
   )
 }
+
+export default Instruction

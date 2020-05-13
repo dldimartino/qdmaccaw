@@ -1,40 +1,47 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Button, Col, Row, Container} from 'react-bootstrap'
+import {connect} from 'react-redux'
+import {Button} from 'react-bootstrap'
+import {logout} from '../../store'
 
-const Main = () => {
+export const Main = (props) => {
+  const {name, handleClick} = props
   return (
-    <Container className="Buttons">
-      <Row className="justify-content-md-center">
-        <h1 className="Welcome">DrawBit</h1>
-      </Row>
-      <Row className="justify-content-md-center">
-        <Link to="/login">
-          <Button className="shadow-lg" variant="success">
-            Join Room
-          </Button>
-        </Link>
-      </Row>
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Link to="/">
-            <Button className="shadow-lg" variant="primary">
-              Continue As Guest
-            </Button>
-          </Link>
-        </Row>
-      </div>
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Link to="/signup">
-            <Button className="shadow-lg p-3" variant="primary">
-              Sign Up
-            </Button>
-          </Link>
-        </Row>
-      </div>
-    </Container>
+    <div>
+      <h1>Drawbit</h1>
+      <h3>Welcome, {name}</h3>
+
+      <Link to="/room">
+        <Button variant="success">Join Room!</Button>
+      </Link>
+
+      <Link to="/create">
+        <button type="button">Create Room!</button>
+      </Link>
+
+      <Link to="/Instruction">
+        <button type="button">How to Play!</button>
+      </Link>
+
+      <button type="button" onClick={handleClick}>
+        Logout
+      </button>
+    </div>
   )
 }
 
-export default Main
+const mapState = (state) => {
+  return {
+    name: state.user.name,
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleClick() {
+      dispatch(logout())
+    },
+  }
+}
+
+export default connect(mapState, mapDispatch)(Main)
