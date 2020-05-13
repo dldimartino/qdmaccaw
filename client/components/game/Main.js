@@ -1,20 +1,22 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 
 const Main = () => {
   return (
     <div>
-      <h1>DrawBit</h1>
-      <Link to="/login">
-        <button type="button">Login</button>
+      <h1>Drawbit</h1>
+
+      <Link to="/room">
+        <Button variant="success">Join Room!</Button>
       </Link>
-      <br />
-      <Link to="/signup">
-        <button type="button">Sign Up</button>
+
+      <Link to="/create">
+        <button type="button">Create Room!</button>
       </Link>
-      <br />
-      <Link to="/">
-        <button type="button">Continue as Guest</button>
+
+      <Link to="/Instruction">
+        <button type="button">How to Play!</button>
       </Link>
     </div>
   )

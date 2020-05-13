@@ -11,7 +11,7 @@ const Home = () => {
       <Row className="justify-content-md-center">
         <Link to="/login">
           <Button className="shadow-lg" variant="success">
-            Join Room
+            Login
           </Button>
         </Link>
       </Row>
