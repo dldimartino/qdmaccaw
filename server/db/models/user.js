@@ -28,6 +28,10 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: true,
   },
+  winner: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   imageUrl: {
     type: Sequelize.TEXT,
     defaultValue:

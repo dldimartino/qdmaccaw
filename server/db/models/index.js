@@ -17,6 +17,9 @@ User.belongsTo(Room)
 Room.hasMany(Word)
 Word.belongsTo(Room)
 
+Game.belongsToMany(User, {through: 'winner'})
+User.belongsToMany(Game, {through: 'winner'})
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
