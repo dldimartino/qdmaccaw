@@ -22,7 +22,7 @@ export class Room extends Component {
   }
 
   handleKey(event) {
-    console.log('selectedRoomy: ', this.props)
+    console.log('selectedRoom: ', this.props)
     if (
       event.key === 'Enter' &&
       this.props.selectedRoom[0].name === event.target.value

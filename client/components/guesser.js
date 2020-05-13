@@ -9,6 +9,7 @@ export default class Guesser extends Component {
     super()
 
     this.state = {
+      // user: this.props.user
       guess: '',
       word: 'test'
       // this.props.word
@@ -31,6 +32,13 @@ export default class Guesser extends Component {
     })
   }
 
+  componentDidMount() {
+    const socket = io.connect(window.location.origin)
+    socket.on('drawing', function(data) {
+      canvas.current.loadSaveData(data, true)
+    })
+  }
+
   async handleSubmit(event) {
     event.preventDefault()
     if (this.state.guess === this.state.word) {
@@ -49,11 +57,6 @@ export default class Guesser extends Component {
       )
     }
   }
-
-  // const socket = io.connect(window.location.origin)
-  // socket.on('drawing', function (data) {
-  // canvas.current.loadSaveData(data, true)
-  // }
 
   render() {
     return (
