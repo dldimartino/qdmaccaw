@@ -11,6 +11,7 @@ import {
   Play,
   Create,
   Room,
+  Instruction,
   ReactWhiteboard,
 } from './components'
 import Guesser from './components/guesser'
@@ -50,6 +51,7 @@ class Routes extends Component {
             <Route path="/main" component={Main} />
             <Route path="/Play" component={Play} />
             <Route path="/room" component={Room} />
+            <Route path="/instruction" component={Instruction} />
             <Route path="/whiteboard" component={ReactWhiteboard} />
             <Route path="/guesser" component={Guesser} />
             {/* <Route path="/home" component={UserHome} /> */}
