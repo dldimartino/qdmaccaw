@@ -24,6 +24,10 @@ const User = db.define('user', {
       return () => this.getDataValue('password')
     }
   },
+  winner: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   imageUrl: {
     type: Sequelize.TEXT,
     defaultValue:
@@ -37,7 +41,7 @@ const User = db.define('user', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
-  munnyPoints: {
+  dabloons: {
     type: Sequelize.INTEGER
   },
   isArtist: {

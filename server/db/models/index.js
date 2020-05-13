@@ -3,7 +3,6 @@ const User = require('./user')
 const Room = require('./room')
 const Word = require('./word')
 const Game = require('./game')
-const WinnerStatus = require('./winnerStatus')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -18,8 +17,8 @@ User.belongsTo(Room)
 Room.hasMany(Word)
 Word.belongsTo(Room)
 
-User.hasOne(WinnerStatus)
-WinnerStatus.belongsToMany(User)
+Game.belongsToMany(User, {through: 'winner'})
+User.belongsToMany(Game, {through: 'winner'})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,

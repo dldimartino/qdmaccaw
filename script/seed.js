@@ -413,7 +413,10 @@ async function seed() {
   for (let i = 0; i < games.length; i++) {
     await Game.create(games[i])
   }
-
+  await Game.reload()
+  console.log('GAME AT 00000000000000', Game[0])
+  await Game[0].addUser(User[0])
+  // await User[0].addGame(Game[0])
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }

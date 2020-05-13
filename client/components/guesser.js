@@ -1,6 +1,8 @@
 import React, {Component, createRef} from 'react'
 import io from 'socket.io-client'
 import CanvasDraw from 'react-canvas-draw'
+import axios from 'axios'
+const canvas = createRef()
 
 export default class Guesser extends Component {
   constructor() {
@@ -8,7 +10,8 @@ export default class Guesser extends Component {
 
     this.state = {
       guess: '',
-      word: this.props.word
+      word: 'test'
+      // this.props.word
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -16,8 +19,10 @@ export default class Guesser extends Component {
     this.markAsCorrect = this.markAsCorrect.bind(this)
   }
 
-  async markAsCorrect() {
-    //await put route to make player show as "won" on game model association
+  async markAsCorrect(userId) {
+    const {data} = await axios.put(`/api/user/${userId}/winner`)
+    console.log('a winner is found! here is the axios data', data)
+    //await put route to make player show as "winner" on user model
   }
 
   handleChange(event) {
@@ -29,12 +34,22 @@ export default class Guesser extends Component {
   async handleSubmit(event) {
     event.preventDefault()
     if (this.state.guess === this.state.word) {
-      await this.markAsCorrect()
+      console.log(this.state.guess)
+      await console.log('YOU WON!!!')
+      // await this.markAsCorrect()
+    } else {
+      console.log('GUESS AGAIN!!!')
+      console.log('you guessed', this.state.guess)
+      console.log('word was', this.state.word)
+      await this.setState({guess: ''})
     }
+    console.log(
+      'this.state.guess (your guess) has been reset to',
+      this.state.guess
+    )
   }
 
   // const socket = io.connect(window.location.origin)
-  // const canvas = createRef()
   // socket.on('drawing', function (data) {
   // canvas.current.loadSaveData(data, true)
   // }
@@ -51,8 +66,11 @@ export default class Guesser extends Component {
             value={this.state.guess}
             onChange={this.handleChange}
           />
+          <button type="submit">Submit Guess</button>
         </form>
-        {/* <CanvasDraw ref={canvas} disabled={true} hideInterface={true} /> */}
+        <br />
+        <br />
+        <CanvasDraw ref={canvas} disabled={true} hideInterface={true} />
       </div>
     )
   }
