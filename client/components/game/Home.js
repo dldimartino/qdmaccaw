@@ -1,12 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 
-const Home = () => {
+export const Home = () => {
   return (
     <div>
-      <h1>Skribbl 2.0</h1>
+      <h1>Drawbit</h1>
       <Link to="/room">
-        <button type="button">Join Room!</button>
+        <Button variant="success">Join Room</Button>
       </Link>
       <Link to="/create">
         <button type="button">Create Room!</button>
@@ -23,5 +24,3 @@ const Home = () => {
     </div>
   )
 }
-
-export default Home
