@@ -15,104 +15,101 @@ export default function ReactWhiteboard() {
   function handleChange(event) {
     socket.emit('drawing', event.getSaveData())
   }
-  console.log('SCREEN DIMENSIONS ---->', window.innerHeight, window.innerWidth)
+
+  console.log('WINDOW SCREEN', window.screen)
   return (
     <Container>
       <Row>
         <Col>
           <h1 className="drawWord">Your Word Is: _____</h1>
         </Col>
+        <div>
+          <Button
+            className="btn-dark"
+            onClick={() => setOpenPalette(!openPalette)}
+            aria-controls="collapse-palette"
+            aria-expanded={openPalette}
+          >
+            <DropletFill color={color} size={30} />
+          </Button>
+          <Collapse in={openPalette}>
+            <div id="collapse-palette">
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: '#AAB7B8'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+              />
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: 'red'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+              />
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: 'blue'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+              />
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: 'green'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+              />
+            </div>
+          </Collapse>
+          <Button className="btn-dark" onClick={() => setColor('white')}>
+            <XSquare className="icon" size={30} />
+          </Button>
+          <Button
+            className="btn-dark"
+            onClick={() => setOpenRadius(!openRadius)}
+            aria-controls="collapse-radius"
+            aria-expanded={openRadius}
+          >
+            <Brush size={30} />
+          </Button>
+          <Collapse in={openRadius}>
+            <div id="collapse-radius">
+              <Button
+                className="palette"
+                type="button"
+                onClick={() => setRadius(radius + 2)}
+              >
+                <Plus className="icon" size={30} />
+              </Button>
+              <Button
+                className="palette"
+                type="button"
+                onClick={() => setRadius(radius - 2)}
+              >
+                <Dash className="icon" size={30} />
+              </Button>
+            </div>
+          </Collapse>
+        </div>
       </Row>
       <Row className="justify-content-md-center">
-        <Col id="canvas" xs={11} sm={11} md={11} lg={11} xl={11}>
-          <CanvasDraw
-            ref={canvas}
-            onChange={handleChange}
-            hideInterface={true}
-            hideGrid={true}
-            brushColor={color}
-            brushRadius={radius}
-            canvasHeight={window.innerHeight / 1.5}
-            canvasWidth={window.innerWidth / 1.25}
-          />
-        </Col>
-        <Col xs={1} sm={1} md={1} lg={1} xl={1}>
-          <div>
-            <Button
-              className="btn-dark"
-              onClick={() => setOpenPalette(!openPalette)}
-              aria-controls="collapse-palette"
-              aria-expanded={openPalette}
-            >
-              <DropletFill color={color} size={30} />
-            </Button>
-            <Collapse in={openPalette}>
-              <div id="collapse-palette">
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: '#AAB7B8'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                />
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: 'red'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                />
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: 'blue'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                />
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: 'green'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                />
-              </div>
-            </Collapse>
-            <Button className="btn-dark" onClick={() => setColor('white')}>
-              <XSquare className="icon" size={30} />
-            </Button>
-            <Button
-              className="btn-dark"
-              onClick={() => setOpenRadius(!openRadius)}
-              aria-controls="collapse-radius"
-              aria-expanded={openRadius}
-            >
-              <Brush size={30} />
-            </Button>
-            <Collapse in={openRadius}>
-              <div id="collapse-radius">
-                <Button
-                  className="palette"
-                  type="button"
-                  onClick={() => setRadius(radius + 2)}
-                >
-                  <Plus className="icon" size={30} />
-                </Button>
-                <Button
-                  className="palette"
-                  type="button"
-                  onClick={() => setRadius(radius - 2)}
-                >
-                  <Dash className="icon" size={30} />
-                </Button>
-              </div>
-            </Collapse>
-          </div>
-        </Col>
+        <CanvasDraw
+          ref={canvas}
+          onChange={handleChange}
+          hideInterface={true}
+          hideGrid={true}
+          brushColor={color}
+          brushRadius={radius}
+          canvasHeight={window.screen.availHeight}
+          canvasWidth={window.screen.availWidth}
+        />
       </Row>
     </Container>
   )
