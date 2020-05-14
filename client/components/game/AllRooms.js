@@ -1,12 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export const AllRoom = props => {
+export const AllRooms = (props) => {
   return props.selectedRoom.length ? (
     <div>
-      {props.selectedRoom.map(room => {
+      {props.selectedRoom.map((room) => {
         return (
-          <Link to={`/play/${room.id}`} key={room.id}>
+          <Link to={`/play/${room.id}`} key={room.id} room={room}>
             <div>
               <span>{room.name}</span>
               {/* add # of players in room w/ association ternary to say "full" if no empty spaces left*/}
@@ -17,7 +17,7 @@ export const AllRoom = props => {
     </div>
   ) : (
     <div>
-      <h1>There No Room Available!</h1>
+      <h1>There Is No Room Available!</h1>
     </div>
   )
 }
