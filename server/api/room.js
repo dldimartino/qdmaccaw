@@ -41,9 +41,8 @@ router.put('/:playerId/:roomId', async (req, res, next) => {
     const player = await User.findByPk(req.params.playerId)
     console.log('player: ', player)
     const room = await Room.findByPk(req.params.roomId)
-    console.log('room: ', room)
-    await room.setChild(player)
-    res.status(200)
+    const updatedUser = await player.update({name, address})
+    res.status(201).json(updatedUser)
     // if (joinedPlayer) {
     //   res.status(200).json(joinedPlayer)
     // } else {

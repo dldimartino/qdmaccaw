@@ -19,7 +19,7 @@ export class Play extends Component {
   render() {
     return (
       <div>
-        <AllWords allWords={this.props.word} />
+        {/* <AllWords allWords={this.props.word} /> */}
         <AllPlayers allUsers={this.props.allUsers} />
       </div>
     )
