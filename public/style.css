@@ -63,6 +63,35 @@ body {
   }
 }
 
+#canvas {
+  width: 100%;
+  height: auto;
+}
+
+.drawWord {
+  margin: 10px 10px;
+  font-family: 'Bungee';
+  font-size: 50px;
+  text-align: center;
+}
+
+.palette {
+  height: 50px;
+  width: 60px;
+  position: relative;
+}
+
+.btn-dark {
+  margin: 10px 10px;
+  height: 50px;
+  width: 60px;
+}
+
+.icon {
+  font-size: 30px;
+  text-align: center;
+}
+
 #github_logo {
   height: 50px;
   width: 50px;
