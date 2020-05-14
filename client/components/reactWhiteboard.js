@@ -2,7 +2,7 @@ import React, {useState, createRef} from 'react'
 import CanvasDraw from 'react-canvas-draw'
 import io from 'socket.io-client'
 import {Col, Row, Container, Button, Collapse} from 'react-bootstrap'
-import {DropletFill} from 'react-bootstrap-icons'
+import {DropletFill, XSquare} from 'react-bootstrap-icons'
 
 export default function ReactWhiteboard() {
   const [color, setColor] = useState('#AAB7B8')
@@ -16,33 +16,37 @@ export default function ReactWhiteboard() {
   }
 
   return (
-    <Container className="whiteboard">
-      <Row className="justify-content-md-center">
-        <h1 className="draw-word">Draw the word!</h1>
+    <Container>
+      <Row>
+        <Col>
+          <h1 className="drawWord">Your Word Is: _____</h1>
+        </Col>
       </Row>
-      <Row id="canvas" className="justify-content-mid-center">
-        <CanvasDraw
-          ref={canvas}
-          onChange={handleChange}
-          hideInterface={true}
-          hideGrid={true}
-          brushColor={color}
-          brushRadius={radius}
-          canvasHeight={window.innerHeight / 1.5}
-          canvasWidth={window.innerWidth}
-        />
-        <div>
-          <Button
-            className="btn-dark"
-            onClick={() => setOpen(!open)}
-            aria-controls="collapse-buttons"
-            aria-expanded={open}
-          >
-            <DropletFill color={color} size={40} />
-          </Button>
-          <Collapse in={open}>
-            <div id="collapse-buttons">
-              <Row>
+      <Row className="justify-content-md-center">
+        <Col id="canvas" md={11}>
+          <CanvasDraw
+            ref={canvas}
+            onChange={handleChange}
+            hideInterface={true}
+            hideGrid={true}
+            brushColor={color}
+            brushRadius={radius}
+            canvasHeight={window.innerHeight / 1.5}
+            canvasWidth={window.innerWidth / 1.25}
+          />
+        </Col>
+        <Col md={1}>
+          <div>
+            <Button
+              className="btn-dark"
+              onClick={() => setOpen(!open)}
+              aria-controls="collapse-buttons"
+              aria-expanded={open}
+            >
+              <DropletFill color={color} size={40} />
+            </Button>
+            <Collapse in={open}>
+              <div id="collapse-buttons">
                 <Button
                   className="palette"
                   type="button"
@@ -51,8 +55,6 @@ export default function ReactWhiteboard() {
                     setColor(event.target.style.backgroundColor)
                   }
                 />
-              </Row>
-              <Row>
                 <Button
                   className="palette"
                   type="button"
@@ -61,8 +63,6 @@ export default function ReactWhiteboard() {
                     setColor(event.target.style.backgroundColor)
                   }
                 />
-              </Row>
-              <Row>
                 <Button
                   className="palette"
                   type="button"
@@ -71,8 +71,6 @@ export default function ReactWhiteboard() {
                     setColor(event.target.style.backgroundColor)
                   }
                 />
-              </Row>
-              <Row>
                 <Button
                   className="palette"
                   type="button"
@@ -81,10 +79,13 @@ export default function ReactWhiteboard() {
                     setColor(event.target.style.backgroundColor)
                   }
                 />
-              </Row>
-            </div>
-          </Collapse>
-        </div>
+              </div>
+            </Collapse>
+            <Button className="btn-dark">
+              <XSquare onClick={() => setColor('white')} />
+            </Button>
+          </div>
+        </Col>
       </Row>
     </Container>
   )

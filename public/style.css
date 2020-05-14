@@ -36,22 +36,6 @@ form div {
   font-family: 'Righteous';
 }
 
-.whiteboard {
-  height: 100%;
-  width: 100%;
-  margin: 20px 20px;
-  font-family: 'Luckiest Guy';
-}
-
-.draw-word {
-  font-size: 80px;
-}
-
-.palette {
-  height: 54px;
-  width: 60px;
-}
-
 body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -68,4 +52,33 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+#canvas {
+  width: 100%;
+  height: auto;
+}
+
+.drawWord {
+  margin: 10px 10px;
+  font-family: 'Bungee';
+  font-size: 50px;
+  text-align: center;
+}
+
+.palette {
+  height: 50px;
+  width: 60px;
+  position: relative;
+}
+
+.btn-dark {
+  margin: 10px 10px;
+  height: 50px;
+  width: 60px;
+}
+
+.icon {
+  font-size: 30px;
+  text-align: center;
 }
