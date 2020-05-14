@@ -17,8 +17,8 @@ router.get('/', async (req, res, next) => {
         'wins',
         'gamesPlayed',
         'munnyPoints',
-        'isArtist'
-      ]
+        'isArtist',
+      ],
     })
     res.json(players)
   } catch (error) {
@@ -46,7 +46,7 @@ router.put('/:playerId/setAsPlayer/:roundId', async (req, res, next) => {
     const player = await User.findByPk(req.params.playerId)
     const round = await Round.findByPk(req.params.roundId)
     const playerOfRound = await round.addChild(player, {
-      through: 'playersOfRound'
+      through: 'playersOfRound',
     })
     if (playerOfRound) {
       res.status(200).json(playerOfRound)
@@ -63,7 +63,7 @@ router.put('/:playerId/setAsRoundWinner/:roundId', async (req, res, next) => {
     const player = await User.findByPk(req.params.playerId)
     const round = await Round.findByPk(req.params.roundId)
     const winnerOfRound = await round.addChild(player, {
-      through: 'winnersOfRound'
+      through: 'winnersOfRound',
     })
     if (winnerOfRound) {
       let wins = player.wins

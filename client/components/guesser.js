@@ -2,36 +2,49 @@ import React, {Component, createRef} from 'react'
 import io from 'socket.io-client'
 import CanvasDraw from 'react-canvas-draw'
 import {Col, Row, Container} from 'react-bootstrap'
-import axios from 'axios'
 import {updateWinner} from '../store/allUsers'
-import {findRandomWord} from '../store/word'
 import {connect} from 'react-redux'
 const canvas = createRef()
 
 class Guesser extends Component {
   constructor() {
     super()
-
     this.state = {
       playerId: 1,
       guess: '',
-      gameWord: ''
+      gameWord: [],
+      rounds: 10,
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
+  }
+  // wordsForGame = (rounds, wordArry) => {
+  //   let words = []
+  //   while (words.length < rounds) {
+  //     let word = wordArry[Math.floor(Math.random() * (100 - 1)) + 1].content
+  //     if (!words.includes(word)) {
+  //       words.push(word)
+  //     }
+  //   }
+  //   console.log(words)
+  // }
+
+  handleOnClick(rounds, wordArray) {
+    this.setState({gameWord: []})
+    while (this.state.gameWord.length < rounds) {
+      let word = wordArray[Math.floor(Math.random() * (100 - 1)) + 1].content
+      if (!this.state.gameWord.includes(word)) {
+        this.state.gameWord.push(word)
+      }
+    }
+    console.log(this.state.gameWord)
   }
 
-  async componentDidMount() {
-    // console.log("PROPS ------>", this.props)
-    // const gameWord = await this.props.findRandomWord()
-    await this.props.findRandomWord()
-    // console.log("gameWord --------->>>>>>>> ", gameWord)
-    // this.setState({word: gameWord})
-    await this.setState({gameWord: this.props.word})
-    // console.log("THIS.STATE.WORD --------->>>>>>>> ", this.state.word)
+  componentDidMount() {
     const socket = io.connect(window.location.origin)
-    socket.on('drawing', function(data) {
+    socket.on('drawing', function (data) {
       canvas.current.loadSaveData(data, true)
     })
   }
@@ -44,14 +57,13 @@ class Guesser extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     })
   }
 
   async handleSubmit(event) {
     event.preventDefault()
-
-    if (this.state.guess === this.state.gameWord) {
+    if (this.state.gameWord.includes(this.state.guess)) {
       await this.props.updateWinner(this.state.playerId)
       console.log(this.state.guess)
       await console.log('YOU WON!!!')
@@ -66,7 +78,8 @@ class Guesser extends Component {
   }
 
   render() {
-    console.log('state', this.state)
+    let {word} = this.props
+    console.log('STATE ====>', this.state)
     return (
       <div>
         <h1>Guess the drawing!</h1>
@@ -79,30 +92,42 @@ class Guesser extends Component {
             onChange={this.handleChange}
           />
           <button type="submit">Submit Guess</button>
+          <button
+            type="button"
+            onClick={() => this.handleOnClick(this.state.rounds, word)}
+          >
+            {' '}
+            Generate Word{' '}
+          </button>
         </form>
         <br />
         <br />
         <Container className="whiteboard">
-      <Row className="justify-content-md-center">
-        <h1 className="draw-word">Guess the drawing!</h1>
-      </Row>
-      <Row id="canvas" className="justify-content-md-center">
-       <CanvasDraw ref={canvas} disabled={true} hideInterface={true} hideGrid={true}
-          canvasHeight={window.innerHeight / 1.5} canvasWidth={window.innerWidth} />
-      </Row>
-    </Container>      
-    </div>
+          <Row className="justify-content-md-center">
+            <h1 className="draw-word">Guess the drawing!</h1>
+          </Row>
+          <Row id="canvas" className="justify-content-md-center">
+            <CanvasDraw
+              ref={canvas}
+              disabled={true}
+              hideInterface={true}
+              hideGrid={true}
+              canvasHeight={window.innerHeight / 1.5}
+              canvasWidth={window.innerWidth}
+            />
+          </Row>
+        </Container>
+      </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  word: state.word
+const mapStateToProps = (state) => ({
+  word: state.word,
 })
 
-const mapDispatchToProps = dispatch => ({
-  updateWinner: playerId => dispatch(updateWinner(playerId)),
-  findRandomWord: () => dispatch(findRandomWord())
+const mapDispatchToProps = (dispatch) => ({
+  updateWinner: (playerId) => dispatch(updateWinner(playerId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Guesser)

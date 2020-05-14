@@ -35,6 +35,15 @@ const Home = () => {
       </div>
       <div className="mt-5">
         <Row className="justify-content-md-center">
+          <Link to="/guesser">
+            <Button className="shadow-lg" variant="primary">
+              Guess
+            </Button>
+          </Link>
+        </Row>
+      </div>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
           <a href="https://github.com/Metallic-Bees/Capstone">
             <img
               id="github_logo"
