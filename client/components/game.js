@@ -1,10 +1,6 @@
-import React, {Component, createRef} from 'react'
-import io from 'socket.io-client'
-import CanvasDraw from 'react-canvas-draw'
-import {Col, Row, Container} from 'react-bootstrap'
-import {updateWinner} from '../store/allUsers'
+import React, {Component} from 'react'
+import {Redirect} from 'react-router'
 import {connect} from 'react-redux'
-const canvas = createRef()
 
 class Game extends Component {
   constructor() {
@@ -12,16 +8,16 @@ class Game extends Component {
     this.state = {}
   }
 
-  componentDidMount() {
-    if (this.props.user) {
-      console.log('TRUE')
-    } else {
-      console.log('FALSE')
-    }
-  }
-
   render() {
-    return <div> loading </div>
+    return (
+      <div>
+        {this.props.user.isArtist ? (
+          <Redirect to="/whiteboard" />
+        ) : (
+          <Redirect to="/guesser" />
+        )}
+      </div>
+    )
   }
 }
 
@@ -29,6 +25,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 })
 
-const mapDispatchToProps = (dispatch) => ({})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Game)
+export default connect(mapStateToProps)(Game)

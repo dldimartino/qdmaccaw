@@ -64,8 +64,9 @@ body {
 }
 
 #canvas {
+  padding: 10px 10px 10px 10px;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .drawWord {

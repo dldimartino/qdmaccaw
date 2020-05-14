@@ -24,7 +24,7 @@ export default function ReactWhiteboard() {
         </Col>
       </Row>
       <Row className="justify-content-md-center">
-        <Col id="canvas" md={11}>
+        <Col id="canvas" xs={11} sm={11} md={11} lg={11} xl={11}>
           <CanvasDraw
             ref={canvas}
             onChange={handleChange}
@@ -33,10 +33,10 @@ export default function ReactWhiteboard() {
             brushColor={color}
             brushRadius={radius}
             canvasHeight={window.innerHeight / 1.5}
-            canvasWidth={window.innerWidth / 1.5}
+            canvasWidth={window.innerWidth / 1.25}
           />
         </Col>
-        <Col md={1}>
+        <Col xs={1} sm={1} md={1} lg={1} xl={1}>
           <div>
             <Button
               className="btn-dark"
