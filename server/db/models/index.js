@@ -3,6 +3,7 @@ const User = require('./user')
 const Room = require('./room')
 const Word = require('./word')
 const Game = require('./game')
+const Round = require('./round')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -14,11 +15,14 @@ const Game = require('./game')
 Room.hasMany(User)
 User.belongsTo(Room)
 
-Room.hasMany(Word)
-Word.belongsTo(Room)
+Game.hasMany(Round)
+Round.belongsTo(Game)
 
-Game.belongsToMany(User, {through: 'winner'})
-User.belongsToMany(Game, {through: 'winner'})
+Round.belongsToMany(User, {through: 'playersInRound'})
+User.belongsToMany(Round, {through: 'playersInRound'})
+
+Round.belongsToMany(User, {through: 'winnersOfRound'})
+User.belongsToMany(Round, {through: 'winnersOfRound'})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -31,5 +35,6 @@ module.exports = {
   User,
   Room,
   Word,
-  Game
+  Game,
+  Round
 }
