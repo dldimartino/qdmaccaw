@@ -13,9 +13,10 @@ import {
   Room,
   Instruction,
   ReactWhiteboard,
+  Guesser,
 } from './components'
-import Guesser from './components/guesser'
 import {me} from './store'
+import {fetchWord} from './store/word'
 
 /**
  * COMPONENT
@@ -23,6 +24,7 @@ import {me} from './store'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.fetchWord()
   }
 
   render() {
@@ -39,13 +41,6 @@ class Routes extends Component {
         <Route path="/room" component={Room} />
         <Route path="/whiteboard" component={ReactWhiteboard} />
         <Route path="/guesser" component={Guesser} />
-        <Route
-          path="/github"
-          component={() => {
-            window.location.href = 'https://github.com/Metallic-Bees/Capstone'
-            return null
-          }}
-        />
         {/* <Route path="/create" component={Create} />
           <Route exact path="/main" component={Main} /> */}
         <Route exact path="/" component={Home} />
@@ -93,6 +88,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me())
     },
+    fetchWord: () => dispatch(fetchWord()),
   }
 }
 
