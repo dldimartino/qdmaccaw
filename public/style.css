@@ -88,9 +88,11 @@ body {
 }
 
 .icon {
-  font-size: 30px;
   text-align: center;
-  
+  height: auto;
+  width: auto;
+}
+
 #github_logo {
   height: 50px;
   width: 50px;
