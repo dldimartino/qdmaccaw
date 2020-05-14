@@ -14,6 +14,7 @@ import {
   Instruction,
   ReactWhiteboard,
   Guesser,
+  Game,
 } from './components'
 import {me} from './store'
 import {fetchWord} from './store/word'
@@ -44,6 +45,7 @@ class Routes extends Component {
         {/* <Route path="/create" component={Create} />
           <Route exact path="/main" component={Main} /> */}
         <Route exact path="/" component={Home} />
+        <Route path="/game" component={Game} />
         {/* <Route path="/Play" component={Play} />
           <Route path="/room" component={Room} />
           <Route path="/whiteboard" component={ReactWhiteboard} />
