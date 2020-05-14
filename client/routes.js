@@ -2,17 +2,17 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import {Main} from './components/game/Main'
 import {
   Login,
   Signup,
-  // UserHome,
-  // Home,
+  UserHome,
+  Home,
   Main,
   Play,
   Create,
   Room,
-  ReactWhiteboard
+  Instruction,
+  ReactWhiteboard,
 } from './components'
 import Guesser from './components/guesser'
 import {me} from './store'
@@ -34,16 +34,39 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/create" component={Create} />
-        <Route exact path="/" component={Main} />
+        <Route exact path="/" component={Home} />
         <Route path="/Play" component={Play} />
         <Route path="/room" component={Room} />
         <Route path="/whiteboard" component={ReactWhiteboard} />
         <Route path="/guesser" component={Guesser} />
+        <Route
+          path="/github"
+          component={() => {
+            window.location.href = 'https://github.com/Metallic-Bees/Capstone'
+            return null
+          }}
+        />
+        {/* <Route path="/create" component={Create} />
+          <Route exact path="/main" component={Main} /> */}
+        <Route exact path="/" component={Home} />
+        {/* <Route path="/Play" component={Play} />
+          <Route path="/room" component={Room} />
+          <Route path="/whiteboard" component={ReactWhiteboard} />
+          <Route path="/guesser" component={Guesser} /> */}
 
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route exact path="/" component={Main} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/create" component={Create} />
+            <Route exact path="/" component={Home} />
+            <Route path="/main" component={Main} />
+            <Route path="/Play" component={Play} />
+            <Route path="/room" component={Room} />
+            <Route path="/instruction" component={Instruction} />
+            <Route path="/whiteboard" component={ReactWhiteboard} />
+            <Route path="/guesser" component={Guesser} />
             {/* <Route path="/home" component={UserHome} /> */}
           </Switch>
         )}
@@ -57,19 +80,19 @@ class Routes extends Component {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me())
-    }
+    },
   }
 }
 
@@ -82,5 +105,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 }

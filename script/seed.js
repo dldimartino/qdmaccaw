@@ -119,7 +119,7 @@ const words = [
   {content: 'rome', category: 'place'},
   {content: 'tokyo', category: 'place'},
   {content: 'london', category: 'place'},
-  {content: 'las vegas', category: 'place'}
+  {content: 'las vegas', category: 'place'},
 ]
 
 const rooms = [
@@ -132,7 +132,7 @@ const rooms = [
   {name: 'robots', isActive: true},
   {name: 'ganster', isActive: false},
   {name: 'bullseye', isActive: true},
-  {name: 'live love laugh', isActive: true}
+  {name: 'live love laugh', isActive: true},
 ]
 
 const users = [
@@ -140,252 +140,277 @@ const users = [
     name: 'amaith0',
     email: 'ahalifax0@tripadvisor.com',
     password: 'W7LEXnM2Rg3I',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/231x186.png/dddddd/000000',
     wins: 56,
     gamesPlayed: 62,
     munnyPoints: 172,
-    isArtist: true
+    isArtist: true,
   },
   {
     name: 'echanson1',
     email: 'mierland1@simplemachines.org',
     password: 'COs0QtVA',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/203x124.jpg/5fa2dd/ffffff',
     wins: 29,
     gamesPlayed: 72,
     munnyPoints: 1902,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'ldiegan2',
     email: 'ahessing2@jigsy.com',
     password: '7rR2UA2bF',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/140x150.bmp/dddddd/000000',
     wins: 79,
     gamesPlayed: 73,
     munnyPoints: 1276,
-    isArtist: true
+    isArtist: true,
   },
   {
     name: 'wmcleish3',
     email: 'bshawe3@google.com.br',
     password: 'xqc1X0lR',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/117x122.jpg/dddddd/000000',
     wins: 97,
     gamesPlayed: 8,
     munnyPoints: 103,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'tpetters4',
     email: 'hpadgett4@senate.gov',
     password: 'UuQQwz2HV1XS',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/191x145.png/5fa2dd/ffffff',
     wins: 52,
     gamesPlayed: 66,
     munnyPoints: 79,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'telson5',
     email: 'bsilmon5@webmd.com',
     password: 'r1fTuCgjiW6',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/146x215.bmp/dddddd/000000',
     wins: 77,
     gamesPlayed: 1,
     munnyPoints: 1693,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'ssiddele6',
     email: 'acleveley6@youtu.be',
     password: 'LIVWyLstck',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/238x155.bmp/dddddd/000000',
     wins: 46,
     gamesPlayed: 7,
     munnyPoints: 328,
-    isArtist: true
+    isArtist: true,
   },
   {
     name: 'tarnett7',
     email: 'nquarrie7@bloomberg.com',
     password: 'sLfh36ZaVV',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/208x149.bmp/cc0000/ffffff',
     wins: 73,
     gamesPlayed: 50,
     munnyPoints: 1875,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'bbollin8',
     email: 'dchardin8@yolasite.com',
     password: 'EXTlTDyuDE',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/185x111.bmp/ff4444/ffffff',
     wins: 10,
     gamesPlayed: 44,
     munnyPoints: 456,
-    isArtist: true
+    isArtist: true,
   },
   {
     name: 'dwarboys9',
     email: 'upavlovsky9@phoca.cz',
     password: 'o2IvLS',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/108x127.bmp/ff4444/ffffff',
     wins: 53,
     gamesPlayed: 67,
     munnyPoints: 685,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'zgobela',
     email: 'lmcileena@wunderground.com',
     password: 'ldpGQ0',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/153x234.png/5fa2dd/ffffff',
     wins: 40,
     gamesPlayed: 54,
     munnyPoints: 444,
-    isArtist: true
+    isArtist: true,
   },
   {
     name: 'bwillavizeb',
     email: 'cklausewitzb@mit.edu',
     password: 'sZzW5WNXfarw',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/200x207.bmp/dddddd/000000',
     wins: 50,
     gamesPlayed: 92,
     munnyPoints: 1804,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'cbruckc',
     email: 'emcalroyc@shareasale.com',
     password: '9VN79F',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/172x145.jpg/5fa2dd/ffffff',
     wins: 74,
     gamesPlayed: 56,
     munnyPoints: 731,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'nprield',
     email: 'agildroyd@naver.com',
     password: '2KzKGRlVefv',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/114x117.jpg/cc0000/ffffff',
     wins: 50,
     gamesPlayed: 81,
     munnyPoints: 1772,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'fbodee',
     email: 'dperigoe@shutterfly.com',
     password: 'ASdQIR',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/110x128.png/dddddd/000000',
     wins: 10,
     gamesPlayed: 67,
     munnyPoints: 610,
-    isArtist: true
+    isArtist: true,
   },
   {
     name: 'pharmstonef',
     email: 'tbrislawnf@marriott.com',
     password: 'kgvi0AGjTA',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/117x221.bmp/5fa2dd/ffffff',
     wins: 57,
     gamesPlayed: 71,
     munnyPoints: 599,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'sfrondtg',
     email: 'scorkerg@squarespace.com',
     password: 'UP4Qj5',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/228x218.bmp/5fa2dd/ffffff',
     wins: 82,
     gamesPlayed: 12,
     munnyPoints: 1036,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'jnehlh',
     email: 'bwrennallh@livejournal.com',
     password: 'fcV0ag5sMU',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/132x154.bmp/cc0000/ffffff',
     wins: 36,
     gamesPlayed: 38,
     munnyPoints: 1008,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'mleflemingi',
     email: 'lbroomfieldi@devhub.com',
     password: 'heq2kybv',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/203x150.png/dddddd/000000',
     wins: 88,
     gamesPlayed: 35,
     munnyPoints: 640,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'aparletj',
     email: 'kharvattj@live.com',
     password: '9ONbkklhfOjH',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/187x131.jpg/cc0000/ffffff',
     wins: 46,
     gamesPlayed: 5,
     munnyPoints: 1508,
-    isArtist: true
+    isArtist: true,
   },
   {
     name: 'lrobbelk',
     email: 'mallnattk@tripod.com',
     password: 'ltgc7q',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/181x105.jpg/cc0000/ffffff',
     wins: 84,
     gamesPlayed: 49,
     munnyPoints: 891,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'mpolglasel',
     email: 'mtutel@mlb.com',
     password: 'f3H1T0TWx8vu',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/107x248.jpg/cc0000/ffffff',
     wins: 57,
     gamesPlayed: 55,
     munnyPoints: 1373,
-    isArtist: true
+    isArtist: true,
   },
   {
     name: 'sbutcherm',
     email: 'csimantsm@edublogs.org',
     password: 'XR1ryyf',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/189x113.bmp/5fa2dd/ffffff',
     wins: 28,
     gamesPlayed: 85,
     munnyPoints: 508,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'bhalfacreen',
     email: 'cgamelln@prlog.org',
     password: 'SSxcKIPTekjj',
+    isGuest: true,
     imageUrl: 'http://dummyimage.com/237x130.bmp/ff4444/ffffff',
     wins: 45,
     gamesPlayed: 84,
     munnyPoints: 584,
-    isArtist: false
+    isArtist: false,
   },
   {
     name: 'rshearso',
     email: 'krosenfeldo@aol.com',
     password: '2sCNL7ShBio',
+    isGuest: false,
     imageUrl: 'http://dummyimage.com/209x124.bmp/ff4444/ffffff',
     wins: 50,
     gamesPlayed: 47,
     munnyPoints: 984,
-    isArtist: true
-  }
+    isArtist: true,
+  },
 ]
 
 async function seed() {

@@ -1,6 +1,7 @@
 import React, {Component, createRef} from 'react'
 import io from 'socket.io-client'
 import CanvasDraw from 'react-canvas-draw'
+import {Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
 import {updateWinner} from '../store/allUsers'
 import {findRandomWord} from '../store/word'
@@ -81,8 +82,16 @@ class Guesser extends Component {
         </form>
         <br />
         <br />
-        <CanvasDraw ref={canvas} disabled={true} hideInterface={true} />
-      </div>
+        <Container className="whiteboard">
+      <Row className="justify-content-md-center">
+        <h1 className="draw-word">Guess the drawing!</h1>
+      </Row>
+      <Row id="canvas" className="justify-content-md-center">
+       <CanvasDraw ref={canvas} disabled={true} hideInterface={true} hideGrid={true}
+          canvasHeight={window.innerHeight / 1.5} canvasWidth={window.innerWidth} />
+      </Row>
+    </Container>      
+    </div>
     )
   }
 }
