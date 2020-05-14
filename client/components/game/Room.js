@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {AllRoom} from './AllRoom'
 import {fetchRoom, filterRoom} from '../../store/allRoom'
+import {roomAddUser} from '../../store/allUsers'
 
 export class Room extends Component {
   constructor() {
@@ -12,6 +13,7 @@ export class Room extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleKey = this.handleKey.bind(this)
+    this.addUserToRoom = this.addUserToRoom.bind(this)
   }
 
   handleChange(event) {
@@ -19,6 +21,10 @@ export class Room extends Component {
       [event.target.name]: event.target.value,
     })
     this.props.filterRoom(event.target.value)
+  }
+
+  addUserToRoom(userId, roomId) {
+    this.props.roomAddUser(userId, roomId)
   }
 
   handleKey(event) {
@@ -36,6 +42,7 @@ export class Room extends Component {
   }
 
   render() {
+    // console.log('props.name: ', this.props.name)
     return (
       <div>
         <Link to="/main">
@@ -51,7 +58,11 @@ export class Room extends Component {
             onKeyDown={this.handleKey}
           />
         </form>
-        <AllRoom selectedRoom={this.props.selectedRoom} />
+        <AllRoom
+          selectedRoom={this.props.selectedRoom}
+          addUserToRoom={this.addUserToRoom}
+          playerId={this.props.userId}
+        />
       </div>
     )
   }
@@ -60,6 +71,7 @@ export class Room extends Component {
 const mapState = (state) => ({
   allRoom: state.allRoom.allRoom,
   selectedRoom: state.allRoom.selectedRoom,
+  userId: state.user.id,
 })
 
 const mapDispatch = (dispatch) => ({
@@ -68,6 +80,9 @@ const mapDispatch = (dispatch) => ({
   },
   filterRoom: (value) => {
     dispatch(filterRoom(value))
+  },
+  roomAddUser: (userId, roomId) => {
+    dispatch(roomAddUser(userId, roomId))
   },
 })
 
