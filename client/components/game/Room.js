@@ -8,7 +8,7 @@ export class Room extends Component {
   constructor() {
     super()
     this.state = {
-      search: ''
+      search: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleKey = this.handleKey.bind(this)
@@ -16,13 +16,13 @@ export class Room extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     })
     this.props.filterRoom(event.target.value)
   }
 
   handleKey(event) {
-    console.log('selectedRoomy: ', this.props)
+    console.log('selectedRoom: ', this.props)
     if (
       event.key === 'Enter' &&
       this.props.selectedRoom[0].name === event.target.value
@@ -38,8 +38,8 @@ export class Room extends Component {
   render() {
     return (
       <div>
-        <Link to="/">
-          <button type="button">Home</button>
+        <Link to="/main">
+          <button type="button">Back</button>
         </Link>
         <form>
           <label htmlFor="search">Search Room:</label>
@@ -57,18 +57,18 @@ export class Room extends Component {
   }
 }
 
-const mapState = state => ({
+const mapState = (state) => ({
   allRoom: state.allRoom.allRoom,
-  selectedRoom: state.allRoom.selectedRoom
+  selectedRoom: state.allRoom.selectedRoom,
 })
 
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch) => ({
   fetchRoom: () => {
     dispatch(fetchRoom())
   },
-  filterRoom: value => {
+  filterRoom: (value) => {
     dispatch(filterRoom(value))
-  }
+  },
 })
 
 export default connect(mapState, mapDispatch)(Room)

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Game} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -20,7 +20,44 @@ router.get('/', async (req, res, next) => {
       ]
     })
     res.json(users)
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id, {include: {Game}})
+    if (user) {
+      res.json(user)
+    } else {
+      res.status(404).json('none found')
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:id/winner', async (req, res, next) => {
+  try {
+    // console.log('inside route')
+    const user = await User.findByPk(1)
+    // console.log('user', user)
+    await user.update({winner: true})
+    user.reload()
+    res.status(200).json(user)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:id/loser', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id)
+    await user.update({winner: false})
+    user.reload()
+    res.status(200).json(user)
+  } catch (error) {
+    next(error)
   }
 })
