@@ -13,7 +13,7 @@ class Guesser extends Component {
       playerId: 1,
       guess: '',
       gameWord: [],
-      rounds: 3,
+      rounds: 10,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -63,7 +63,6 @@ class Guesser extends Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-
     if (this.state.gameWord.includes(this.state.guess)) {
       await this.props.updateWinner(this.state.playerId)
       console.log(this.state.guess)
