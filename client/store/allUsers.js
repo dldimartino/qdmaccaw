@@ -4,7 +4,6 @@ import axios from 'axios'
 const GETTING_USERS = 'GETTING_USERS'
 const UPDATE_WINNER = 'UPDATE_WINNER'
 const UPDATE_LOSER = 'UPDATE_LOSER'
-const ADD_USER_TO_ROOM = 'ADD_USER_TO_ROOM'
 
 /* Action Creators */
 const gotUsers = (users) => ({
@@ -19,11 +18,6 @@ const addedWinner = (user) => ({
 
 const addedLoser = (user) => ({
   type: UPDATE_LOSER,
-  user,
-})
-
-export const addUserToRoom = (user) => ({
-  type: ADD_USER_TO_ROOM,
   user,
 })
 
@@ -55,16 +49,6 @@ export const updateLoser = (playerId) => async (dispatch) => {
   }
 }
 
-export const roomAddUser = (userId, roomId) => async (dispatch) => {
-  try {
-    const {data} = await axios.put(`/api/room/${userId}/${roomId}`)
-    console.log('data: ', data)
-    dispatch(addUserToRoom(data))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 /* Reducer */
 export default function (state = [], action) {
   switch (action.type) {
@@ -73,8 +57,6 @@ export default function (state = [], action) {
     case UPDATE_WINNER:
       return state
     case UPDATE_LOSER:
-      return state
-    case ADD_USER_TO_ROOM:
       return state
     default:
       return state

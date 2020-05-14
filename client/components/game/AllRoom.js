@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 export const AllRoom = (props) => {
-  const {playerId} = props
   return props.selectedRoom.length ? (
     <div>
       {props.selectedRoom.map((room) => {
@@ -10,7 +9,7 @@ export const AllRoom = (props) => {
           <Link
             to={`/play/${room.id}`}
             key={room.id}
-            onClick={() => props.addUserToRoom(playerId, room.id)}
+            onClick={() => props.addUserToRoom(room.id)}
           >
             <div>
               <span>{room.name}</span>

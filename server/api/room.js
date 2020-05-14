@@ -34,20 +34,12 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// '/play/:roomId' - path to room
-router.put('/:playerId/:roomId', async (req, res, next) => {
+router.put('/:roomId/:playerId', async (req, res, next) => {
   try {
-    console.log('hi there')
-    const player = await User.findByPk(req.params.playerId)
-    console.log('player: ', player)
     const room = await Room.findByPk(req.params.roomId)
-    const updatedUser = await player.update({name, address})
-    res.status(201).json(updatedUser)
-    // if (joinedPlayer) {
-    //   res.status(200).json(joinedPlayer)
-    // } else {
-    //   res.status(400).json('something went wrong associating room')
-    // }
+    const player = await User.findByPk(req.params.playerId)
+    const newUser = await player.setRoom(room)
+    res.status(201).json(newUser)
   } catch (error) {
     next(error)
   }
