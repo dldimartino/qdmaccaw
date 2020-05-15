@@ -3,6 +3,8 @@ import CanvasDraw from 'react-canvas-draw'
 import io from 'socket.io-client'
 import {Col, Row, Container, Button, Collapse} from 'react-bootstrap'
 import {DropletFill, XSquare, Brush, Dash, Plus} from 'react-bootstrap-icons'
+import {Icon, InlineIcon} from '@iconify/react'
+import eraserIcon from '@iconify/icons-mdi/eraser'
 
 export default function ReactWhiteboard(props) {
   const [color, setColor] = useState('#AAB7B8')
@@ -77,9 +79,6 @@ export default function ReactWhiteboard(props) {
               />
             </div>
           </Collapse>
-          <Button className="btn-dark" onClick={() => setColor('white')}>
-            <XSquare className="icon" size={30} />
-          </Button>
           <Button
             className="btn-dark"
             onClick={() => setOpenRadius(!openRadius)}
@@ -106,6 +105,12 @@ export default function ReactWhiteboard(props) {
               </Button>
             </div>
           </Collapse>
+          <Button className="btn-dark" onClick={() => setColor('white')}>
+            <InlineIcon icon={eraserIcon} height="2em" width="2em" />
+          </Button>
+          <Button className="btn-dark" onClick={() => canvas.current.clear()}>
+            <XSquare className="icon" size={30} />
+          </Button>
         </div>
       </Row>
       <Row className="justify-content-md-center">
@@ -118,6 +123,7 @@ export default function ReactWhiteboard(props) {
           brushRadius={radius}
           canvasHeight={window.screen.availHeight}
           canvasWidth={window.screen.availWidth}
+          lazyRadius={0}
         />
       </Row>
     </Container>
