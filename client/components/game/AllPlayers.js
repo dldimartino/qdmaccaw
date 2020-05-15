@@ -7,12 +7,17 @@ export const AllPlayers = (props) => {
       {props.inRoom.map((user) => {
         return (
           <div key={user.id}>
-            <img src={`${user.imageUrl}`} className="avatarImg" />
-            <span>User: {user.name}</span>
-            <span>
-              Wins/Games Played: {user.wins}/{user.gamesPlayed}
-            </span>
-            <span>MunnyPoints: {user.munnyPoints}</span>
+            <div className="userCards">
+              <img src={`${user.imageUrl}`} className="avatarImg" />
+
+              <span className="userData">
+                <span>User: {user.name}</span>
+                <span>
+                  Wins/Games Played: {user.wins}/{user.gamesPlayed}
+                </span>
+                <span>MunnyPoints: {user.munnyPoints}</span>
+              </span>
+            </div>
           </div>
         )
       })}
