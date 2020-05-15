@@ -4,7 +4,7 @@ import io from 'socket.io-client'
 import {Col, Row, Container, Button, Collapse} from 'react-bootstrap'
 import {DropletFill, XSquare, Brush, Dash, Plus} from 'react-bootstrap-icons'
 
-export default function ReactWhiteboard() {
+export default function ReactWhiteboard(props) {
   const [color, setColor] = useState('#AAB7B8')
   const [openPalette, setOpenPalette] = useState(false)
   const [openRadius, setOpenRadius] = useState(false)
@@ -16,7 +16,6 @@ export default function ReactWhiteboard() {
     socket.emit('drawing', event.getSaveData())
   }
 
-  console.log('WINDOW SCREEN', window.screen)
   return (
     <Container>
       <Row>

@@ -7,14 +7,23 @@ import {connect} from 'react-redux'
 class Game extends Component {
   constructor() {
     super()
-    this.state = {
-      room: this.props.location.room,
-    }
+    this.state = {}
+  }
+
+  componentDidMount() {
+    this.setState({room: this.props.location.room})
   }
 
   render() {
+    console.log(this.state)
     return (
-      <div>{this.props.user.isArtist ? <ReactWhiteboard /> : <Guesser />}</div>
+      <div>
+        {this.props.user.isArtist ? (
+          <ReactWhiteboard room={this.state.room} />
+        ) : (
+          <Guesser room={this.state.room} />
+        )}
+      </div>
     )
   }
 }

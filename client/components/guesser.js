@@ -79,7 +79,6 @@ class Guesser extends Component {
 
   render() {
     let {word} = this.props
-    console.log('STATE ====>', this.state)
     return (
       <div>
         <h1>Guess the drawing!</h1>
