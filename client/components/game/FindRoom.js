@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {AllRoom} from './AllRoom'
+import {AllRooms} from './AllRooms'
 import {fetchRoom, filterRoom} from '../../store/allRoom'
 
-export class Room extends Component {
+export class FindRoom extends Component {
   constructor() {
     super()
     this.state = {
@@ -51,7 +51,7 @@ export class Room extends Component {
             onKeyDown={this.handleKey}
           />
         </form>
-        <AllRoom selectedRoom={this.props.selectedRoom} />
+        <AllRooms selectedRoom={this.props.selectedRoom} />
       </div>
     )
   }
@@ -71,4 +71,4 @@ const mapDispatch = (dispatch) => ({
   },
 })
 
-export default connect(mapState, mapDispatch)(Room)
+export default connect(mapState, mapDispatch)(FindRoom)

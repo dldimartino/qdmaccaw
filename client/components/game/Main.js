@@ -11,7 +11,7 @@ export const Main = (props) => {
       <h1>Drawbit</h1>
       <h3>Welcome, {name}</h3>
 
-      <Link to="/room">
+      <Link to="/FindRoom">
         <Button variant="success">Join Room!</Button>
       </Link>
 

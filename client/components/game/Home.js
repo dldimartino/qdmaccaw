@@ -26,9 +26,18 @@ const Home = () => {
       </div>
       <div className="mt-5">
         <Row className="justify-content-md-center">
-          <Link to="/room">
+          <Link to="/game">
             <Button className="shadow-lg" variant="primary">
-              Play As Guest
+              Play
+            </Button>
+          </Link>
+        </Row>
+      </div>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
+          <Link to="/play">
+            <Button className="shadow-lg" variant="primary">
+              Play
             </Button>
           </Link>
         </Row>

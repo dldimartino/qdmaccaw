@@ -1,43 +1,54 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
 import {fetchWord} from '../../store/word'
-import {AllPlayers} from './AllPlayers'
-import {AllWords} from './AllWords'
 
 export class Play extends Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      room: {},
+    }
   }
 
   componentDidMount() {
+    console.log(this.props)
     this.props.fetchUsers()
     this.props.fetchWord()
+    this.props.rooms.allRoom.map((rooms) => {
+      if (rooms.id === +this.props.match.params.roomId) {
+        this.setState({room: rooms})
+      }
+    })
   }
 
   render() {
     return (
       <div>
-        <AllWords allWords={this.props.word} />
-        <AllPlayers allUsers={this.props.allUsers} />
+        <h1>Welcome to {this.state.room.name}</h1>
+        <Link to={{pathname: '/game', room: this.state.room}}>
+          Play a game!
+        </Link>
       </div>
     )
   }
 }
 
-const mapState = state => ({
+const mapState = (state) => ({
   allUsers: state.allUsers,
-  word: state.word
+  word: state.word,
+  rooms: state.allRoom,
+  user: state.user,
 })
 
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch) => ({
   fetchUsers: () => {
     dispatch(fetchUsers())
   },
   fetchWord: () => {
     dispatch(fetchWord())
-  }
+  },
 })
 
 export default connect(mapState, mapDispatch)(Play)

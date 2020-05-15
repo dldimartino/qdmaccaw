@@ -4,16 +4,19 @@ const db = require('../server/db')
 const {User, Word, Room, Game} = require('../server/db/models')
 
 const games = [
-  {isActive: false, rounds: 5},
-  {isActive: true, rounds: 5},
-  {isActive: true, rounds: 10},
-  {isActive: true, rounds: 5},
-  {isActive: true, rounds: 1},
-  {isActive: true, rounds: 15},
-  {isActive: true, rounds: 10},
-  {isActive: true, rounds: 5},
-  {isActive: true, rounds: 10},
-  {isActive: true, rounds: 1},
+  {isActive: true},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
+  {isActive: false},
 ]
 
 const words = [
