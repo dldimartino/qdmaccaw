@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
+import {usersInRoom} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
+import {AllPlayers} from './AllPlayers'
 
 export class Play extends Component {
   constructor() {
@@ -13,10 +15,14 @@ export class Play extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
+    const roomId = +this.props.match.params.roomId
     this.props.fetchUsers()
+    this.props.usersInRoom(roomId)
+    console.log('second')
     this.props.fetchWord()
     this.props.rooms.allRoom.map((rooms) => {
-      if (rooms.id === +this.props.match.params.roomId) {
+      if (rooms.id === roomId) {
         this.setState({room: rooms})
       }
     })
@@ -29,6 +35,7 @@ export class Play extends Component {
         <Link to={{pathname: '/game', room: this.state.room}}>
           Play a game!
         </Link>
+        <AllPlayers inRoom={this.props.inRoom} />
       </div>
     )
   }
@@ -36,6 +43,7 @@ export class Play extends Component {
 
 const mapState = (state) => ({
   allUsers: state.allUsers,
+  inRoom: state.allRoom.inRoom,
   word: state.word,
   rooms: state.allRoom,
   user: state.user,
@@ -47,6 +55,9 @@ const mapDispatch = (dispatch) => ({
   },
   fetchWord: () => {
     dispatch(fetchWord())
+  },
+  usersInRoom: (roomId) => {
+    dispatch(usersInRoom(roomId))
   },
 })
 
