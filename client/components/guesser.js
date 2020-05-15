@@ -5,6 +5,7 @@ import {Col, Row, Container} from 'react-bootstrap'
 import {updateWinner} from '../store/allUsers'
 import {connect} from 'react-redux'
 const canvas = createRef()
+const socket = io.connect(window.location.origin)
 
 class Guesser extends Component {
   constructor() {
@@ -43,10 +44,17 @@ class Guesser extends Component {
   }
 
   componentDidMount() {
-    const socket = io.connect(window.location.origin)
+    socket.emit('join_room', this.props.room.name)
+    console.log('GUESSER JOINING ROOM')
     socket.on('drawing', function (data) {
+      console.log('GUESSER DRAWING RECEIVED')
       canvas.current.loadSaveData(data, true)
     })
+  }
+
+  componentWillUnmount() {
+    console.log('GUESSER LEFT ROOM')
+    socket.emit('leave_room', this.props.room.name)
   }
 
   // async markAsCorrect(playerId) {

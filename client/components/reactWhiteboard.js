@@ -1,4 +1,4 @@
-import React, {useState, createRef} from 'react'
+import React, {useState, createRef, useEffect} from 'react'
 import CanvasDraw from 'react-canvas-draw'
 import io from 'socket.io-client'
 import {Col, Row, Container, Button, Collapse} from 'react-bootstrap'
@@ -12,8 +12,18 @@ export default function ReactWhiteboard(props) {
   const socket = io.connect(window.location.origin)
   const canvas = createRef()
 
+  useEffect(() => {
+    console.log('WHITEBOARD JOINED')
+    socket.emit('join_room', props.room.name)
+    return () => {
+      console.log('WHITEBOARD LEFT')
+      socket.emit('leave_room', props.room.name)
+    }
+  }, [])
+
   function handleChange(event) {
-    socket.emit('drawing', event.getSaveData())
+    console.log('WHITEBOARD DRAWING EMITTED')
+    socket.emit('drawing', event.getSaveData(), props.room.name)
   }
 
   return (
