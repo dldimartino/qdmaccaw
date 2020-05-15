@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {AllRooms} from './AllRoom'
+import {AllRooms} from './AllRooms'
 import {fetchRoom, filterRoom, roomAddUser} from '../../store/allRoom'
 
 export class FindRoom extends Component {
