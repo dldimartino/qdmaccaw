@@ -69,6 +69,7 @@ const mapDispatch = (dispatch) => ({
   },
   roomDeleteUser: (roomId, userId) => {
     dispatch(roomDeleteUser(roomId, userId))
+  },
   usersInRoom: (roomId) => {
     dispatch(usersInRoom(roomId))
   },
