@@ -16,7 +16,7 @@ const games = [
   {isActive: false},
   {isActive: false},
   {isActive: false},
-  {isActive: false}
+  {isActive: false},
 ]
 
 const words = [

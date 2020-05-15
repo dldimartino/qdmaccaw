@@ -26,18 +26,18 @@ export class Play extends Component {
   }
 }
 
-const mapState = state => ({
+const mapState = (state) => ({
   allUsers: state.allUsers,
-  word: state.word
+  word: state.word,
 })
 
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch) => ({
   fetchUsers: () => {
     dispatch(fetchUsers())
   },
   fetchWord: () => {
     dispatch(fetchWord())
-  }
+  },
 })
 
 export default connect(mapState, mapDispatch)(Play)

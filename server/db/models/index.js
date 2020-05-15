@@ -36,5 +36,5 @@ module.exports = {
   Room,
   Word,
   Game,
-  Round
+  Round,
 }

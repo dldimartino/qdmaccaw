@@ -13,22 +13,19 @@ export class Create extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
-    this.props.newRoom({name: this.state.name})
+    await this.props.newRoom({name: this.state.name})
+    ;(await this.props.allRoom.length) > 0 &&
+      this.props.history.push(
+        `/play/${this.props.allRoom[this.props.allRoom.length - 1].id}`
+      )
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     })
-  }
-
-  componentDidUpdate() {
-    this.props.allRoom.length > 0 &&
-      this.props.history.push(
-        `/play/${this.props.allRoom[this.props.allRoom.length - 1].id}`
-      )
   }
 
   render() {
