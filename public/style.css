@@ -98,3 +98,9 @@ body {
   height: 50px;
   width: 50px;
 }
+
+.link {
+  color: white;
+  font-size: medium;
+  font-weight: bold;
+}
