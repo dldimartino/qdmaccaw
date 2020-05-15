@@ -4,6 +4,7 @@ import CanvasDraw from 'react-canvas-draw'
 import {Col, Row, Container} from 'react-bootstrap'
 import {updateWinner} from '../store/allUsers'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 const canvas = createRef()
 const socket = io.connect(window.location.origin)
 
@@ -13,56 +14,13 @@ class Guesser extends Component {
     this.state = {
       playerId: 1,
       guess: '',
-      gameWord: '',
-      rounds: 1,
       timer: 30,
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleOnClick = this.handleOnClick.bind(this)
-    this.gameTimer = this.gameTimer.bind(this)
-  }
-  // wordsForGame = (rounds, wordArry) => {
-  //   let words = []
-  //   while (words.length < rounds) {
-  //     let word = wordArry[Math.floor(Math.random() * (100 - 1)) + 1].content
-  //     if (!words.includes(word)) {
-  //       words.push(word)
-  //     }
-  //   }
-  //   console.log(words)
-  // }
-
-  gameTimer() {
-    //add a set timeout/delay to countdown
-    let time = 30
-    let countdown = setInterval(() => {
-      if (this.state.timer <= 0) clearInterval(countdown)
-      time--
-      this.setState({
-        timer: time,
-      })
-      if (time === 0) {
-        window.alert('Round Over!')
-      }
-    }, 1000)
-  }
-
-  handleOnClick(rounds, wordArray) {
-    this.gameTimer()
-    let newWord = wordArray[Math.floor(Math.random() * (100 - 1)) + 1].content
-
-    this.setState({
-      gameWord: newWord,
-    })
-    // while (this.state.gameWord.length < rounds) {
-    //   let word = wordArray[Math.floor(Math.random() * (100 - 1)) + 1].content
-    //   if (!this.state.gameWord.includes(word)) {
-    //     this.state.gameWord.push(word)
-    //   }
-    // }
-    console.log(this.state.gameWord)
+    // this.handleOnClick = this.handleOnClick.bind(this)
+    // this.gameTimer = this.gameTimer.bind(this)
   }
 
   componentDidMount() {
@@ -93,12 +51,14 @@ class Guesser extends Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    if (this.state.gameWord === this.state.guess) {
+    if ('fullstack' === this.state.guess.toLowerCase()) {
       await this.props.updateWinner(this.state.playerId)
       console.log(this.state.guess)
       await console.log('YOU WON!!!')
+      window.alert('YOU WIN!')
     } else {
       console.log('GUESS AGAIN!!!')
+      window.alert('GUESS AGAIN!')
       console.log('you guessed', this.state.guess)
       console.log('word was', this.state.gameWord)
       await this.setState({guess: ''})
@@ -108,10 +68,11 @@ class Guesser extends Component {
   }
 
   render() {
-    let {word} = this.props
     return (
       <div>
-        <h1>Guess the drawing!</h1>
+        <Link to={`/play/${this.props.room.id}`} className="link">
+          <button type="button">Back To Lobby</button>
+        </Link>
         <h1> Timer: {this.state.timer} </h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="guess">Guess:</label>
@@ -122,13 +83,6 @@ class Guesser extends Component {
             onChange={this.handleChange}
           />
           <button type="submit">Submit Guess</button>
-          <button
-            type="button"
-            onClick={() => this.handleOnClick(this.state.rounds, word)}
-          >
-            {' '}
-            Generate Word{' '}
-          </button>
         </form>
         <br />
         <br />
