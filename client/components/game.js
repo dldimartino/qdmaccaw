@@ -5,17 +5,14 @@ import ReactWhiteboard from './reactWhiteboard'
 import {connect} from 'react-redux'
 
 class Game extends Component {
-  constructor() {
-    super()
-    this.state = {}
-  }
-
-  componentDidMount() {
-    this.setState({room: this.props.location.room})
+  constructor(props) {
+    super(props)
+    this.state = {
+      room: props.location.room,
+    }
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         {this.props.user.isArtist ? (

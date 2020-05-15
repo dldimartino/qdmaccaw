@@ -13,7 +13,6 @@ export class Play extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     this.props.fetchUsers()
     this.props.fetchWord()
     this.props.rooms.allRoom.map((rooms) => {
