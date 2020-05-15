@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
 import {usersInRoom} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
+import {roomDeleteUser} from '../../store/allRoom'
 import {AllPlayers} from './AllPlayers'
 
 export class Play extends Component {
@@ -12,6 +13,13 @@ export class Play extends Component {
     this.state = {
       room: {},
     }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    const room = this.props.match.params.roomId
+    const user = this.props.user.id
+    this.props.roomDeleteUser(room, user)
   }
 
   componentDidMount() {
@@ -31,8 +39,11 @@ export class Play extends Component {
   render() {
     return (
       <div>
+        <Link to="/FindRoom" className="link" onClick={this.handleClick}>
+          <button type="button">Back To</button>
+        </Link>
         <h1>Welcome to {this.state.room.name}</h1>
-        <Link to={{pathname: '/game', room: this.state.room}}>
+        <Link to={{pathname: '/game', room: this.state.room}} className="link">
           Play a game!
         </Link>
         <AllPlayers inRoom={this.props.inRoom} />
@@ -56,6 +67,8 @@ const mapDispatch = (dispatch) => ({
   fetchWord: () => {
     dispatch(fetchWord())
   },
+  roomDeleteUser: (roomId, userId) => {
+    dispatch(roomDeleteUser(roomId, userId))
   usersInRoom: (roomId) => {
     dispatch(usersInRoom(roomId))
   },

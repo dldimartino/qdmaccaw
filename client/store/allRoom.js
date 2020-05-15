@@ -43,7 +43,15 @@ export const newRoom = (room) => async (dispatch) => {
 
 export const roomAddUser = (roomId, playerId) => async (dispatch) => {
   try {
-    await axios.put(`/api/room/${roomId}/${playerId}`)
+    await axios.put(`/api/room/${roomId}/${playerId}/join`)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const roomDeleteUser = (roomId, playerId) => async (dispatch) => {
+  try {
+    await axios.put(`/api/room/${roomId}/${playerId}/leave`)
   } catch (error) {
     console.error(error)
   }
