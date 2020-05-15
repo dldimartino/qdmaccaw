@@ -1,13 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Button, Row, Container} from 'react-bootstrap'
+import {connect} from 'react-redux'
 
-const Home = () => {
+const Home = (props) => {
+  console.log('OUR PROPS--->', props.isLoggedIn)
+
   return (
     <Container className="Buttons">
       <Row className="justify-content-md-center ">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
+      {/* {!props.isLoggedIn ? () : ()} */}
       <Row className="justify-content-md-center">
         <Link to="/login">
           <Button size="lg" className="shadow-lg" variant="success">
@@ -26,24 +30,6 @@ const Home = () => {
       </div>
       <div className="mt-5">
         <Row className="justify-content-md-center">
-          <Link to="/game">
-            <Button className="shadow-lg" variant="primary">
-              Play
-            </Button>
-          </Link>
-        </Row>
-      </div>
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Link to="/play">
-            <Button className="shadow-lg" variant="primary">
-              Play
-            </Button>
-          </Link>
-        </Row>
-      </div>
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
           <a href="https://github.com/Metallic-Bees/Capstone">
             <img
               id="github_logo"
@@ -56,4 +42,11 @@ const Home = () => {
   )
 }
 
-export default Home
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id,
+  }
+}
+
+export default connect(mapState)(Home)

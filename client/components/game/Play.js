@@ -24,12 +24,21 @@ export class Play extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Welcome to {this.state.room.name}</h1>
         <Link to={{pathname: '/game', room: this.state.room}}>
           Play a game!
         </Link>
+
+        <ul>
+          {' '}
+          Players:{' '}
+          {this.props.allUsers.map((user) => {
+            return <li key={user.id}> {user.name} </li>
+          })}
+        </ul>
       </div>
     )
   }
