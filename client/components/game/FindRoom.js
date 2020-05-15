@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {AllRooms} from './AllRoom'
+import {AllRooms} from './AllRooms'
 import {fetchRoom, filterRoom, roomAddUser} from '../../store/allRoom'
 
 export class FindRoom extends Component {
@@ -24,6 +24,7 @@ export class FindRoom extends Component {
 
   addUserToRoom(roomId) {
     this.props.roomAddUser(roomId, this.props.userId)
+    console.log('first')
   }
 
   handleKey(event) {
@@ -32,6 +33,7 @@ export class FindRoom extends Component {
       this.props.selectedRoom[0].name === event.target.value
     ) {
       this.props.roomAddUser(this.props.selectedRoom[0].id, this.props.userId)
+      console.log('third')
       this.props.history.push(`/play/${this.props.selectedRoom[0].id}`)
     }
   }
@@ -41,7 +43,6 @@ export class FindRoom extends Component {
   }
 
   render() {
-    // console.log('props.name: ', this.props.name)
     return (
       <div>
         <Link to="/main">

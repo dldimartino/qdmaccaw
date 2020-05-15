@@ -34,6 +34,17 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.get('/:roomId', async (req, res, next) => {
+  try {
+    const players = await User.findAll({
+      where: {roomId: req.params.roomId},
+    })
+    res.json(players)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/:roomId/:playerId', async (req, res, next) => {
   try {
     const room = await Room.findByPk(req.params.roomId)
