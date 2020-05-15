@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
-import {usersInRoom} from '../../store/allRoom'
+import {usersInRoom, roomDeleteUser} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
-import {roomDeleteUser} from '../../store/allRoom'
+
 import {AllPlayers} from './AllPlayers'
 
 export class Play extends Component {
@@ -37,6 +37,7 @@ export class Play extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <Link to="/FindRoom" className="link" onClick={this.handleClick}>
@@ -69,6 +70,7 @@ const mapDispatch = (dispatch) => ({
   },
   roomDeleteUser: (roomId, userId) => {
     dispatch(roomDeleteUser(roomId, userId))
+  },
   usersInRoom: (roomId) => {
     dispatch(usersInRoom(roomId))
   },

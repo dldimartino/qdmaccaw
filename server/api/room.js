@@ -34,7 +34,6 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-
 router.get('/:roomId', async (req, res, next) => {
   try {
     const players = await User.findAll({
@@ -47,7 +46,6 @@ router.get('/:roomId', async (req, res, next) => {
 })
 
 router.put('/:roomId/:playerId/join', async (req, res, next) => {
-
   try {
     const room = await Room.findByPk(req.params.roomId)
     const player = await User.findByPk(req.params.playerId)
