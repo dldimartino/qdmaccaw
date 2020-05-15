@@ -62,9 +62,7 @@ router.put('/:playerId/setAsRoundWinner/:roundId', async (req, res, next) => {
   try {
     const player = await User.findByPk(req.params.playerId)
     const round = await Round.findByPk(req.params.roundId)
-    const winnerOfRound = await round.addChild(player, {
-      through: 'winnersOfRound',
-    })
+    const winnerOfRound = await round.addWinnersOfRound(player)
     if (winnerOfRound) {
       let wins = player.wins
       player.wins = wins + 1

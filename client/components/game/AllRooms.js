@@ -6,7 +6,12 @@ export const AllRooms = (props) => {
     <div>
       {props.selectedRoom.map((room) => {
         return (
-          <Link to={`/play/${room.id}`} key={room.id} room={room}>
+          <Link
+            to={`/play/${room.id}`}
+            key={room.id}
+            onClick={() => props.addUserToRoom(room.id)}
+            room={room}
+          >
             <div>
               <span>{room.name}</span>
               {/* add # of players in room w/ association ternary to say "full" if no empty spaces left*/}
