@@ -3,8 +3,10 @@ import CanvasDraw from 'react-canvas-draw'
 import io from 'socket.io-client'
 import {Col, Row, Container, Button, Collapse} from 'react-bootstrap'
 import {DropletFill, XSquare, Brush, Dash, Plus} from 'react-bootstrap-icons'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
-export default function ReactWhiteboard(props) {
+function ReactWhiteboard(props) {
   const [color, setColor] = useState('#AAB7B8')
   const [openPalette, setOpenPalette] = useState(false)
   const [openRadius, setOpenRadius] = useState(false)
@@ -25,12 +27,15 @@ export default function ReactWhiteboard(props) {
     console.log('WHITEBOARD DRAWING EMITTED')
     socket.emit('drawing', event.getSaveData(), props.room.name)
   }
-
+  console.log(props)
   return (
     <Container>
+      <Link to={`/play/${props.room.id}`} className="link">
+        <Button type="button">Back To Lobby</Button>
+      </Link>
       <Row>
         <Col>
-          <h1 className="drawWord">Your Word Is: _____</h1>
+          <h1 className="drawWord">Your Word Is: Fullstack</h1>
         </Col>
         <div>
           <Button
@@ -118,8 +123,15 @@ export default function ReactWhiteboard(props) {
           brushRadius={radius}
           canvasHeight={window.screen.availHeight}
           canvasWidth={window.screen.availWidth}
+          lazyRadius={0}
         />
       </Row>
     </Container>
   )
 }
+
+const mapStateToProps = (state) => ({
+  word: state.word,
+})
+
+export default connect(mapStateToProps)(ReactWhiteboard)
