@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {AllRooms} from './AllRooms'
 import {fetchRoom, filterRoom, roomAddUser} from '../../store/allRoom'
+import {Button, Row, Container} from 'react-bootstrap'
 
 export class FindRoom extends Component {
   constructor() {
@@ -44,25 +45,39 @@ export class FindRoom extends Component {
 
   render() {
     return (
-      <div>
-        <Link to="/main">
-          <button type="button">Back</button>
-        </Link>
-        <form>
-          <label htmlFor="search">Search Room:</label>
-          <input
-            type="search"
-            name="search"
-            value={this.state.search}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKey}
+      <Container className="Buttons">
+        <Row className="justify-content-md-center ">
+          <h1 className="Welcome">DrawBit</h1>
+        </Row>
+        <div className="mb-3">
+          <Row className="justify-content-md-center ">
+            <Link to="/main">
+              <Button variant="danger" size="lg" className="shadow-lg">
+                Back
+              </Button>
+            </Link>
+          </Row>
+        </div>
+        <Row className="justify-content-md-center ">
+          <form>
+            {/* <label htmlFor="search">Search Room:</label> */}
+            <input
+              type="search"
+              name="search"
+              placeholder="Search Room"
+              value={this.state.search}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKey}
+            />
+          </form>
+        </Row>
+        <Row className="justify-content-md-center ">
+          <AllRooms
+            selectedRoom={this.props.selectedRoom}
+            addUserToRoom={this.addUserToRoom}
           />
-        </form>
-        <AllRooms
-          selectedRoom={this.props.selectedRoom}
-          addUserToRoom={this.addUserToRoom}
-        />
-      </div>
+        </Row>
+      </Container>
     )
   }
 }
