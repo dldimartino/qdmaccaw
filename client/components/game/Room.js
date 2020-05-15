@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {AllRoom} from './AllRoom'
-import {fetchRoom, filterRoom} from '../../store/allRoom'
+import {fetchRoom, filterRoom, roomAddUser} from '../../store/allRoom'
 
 export class Room extends Component {
   constructor() {
@@ -12,6 +12,7 @@ export class Room extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleKey = this.handleKey.bind(this)
+    this.addUserToRoom = this.addUserToRoom.bind(this)
   }
 
   handleChange(event) {
@@ -21,12 +22,16 @@ export class Room extends Component {
     this.props.filterRoom(event.target.value)
   }
 
+  addUserToRoom(roomId) {
+    this.props.roomAddUser(roomId, this.props.userId)
+  }
+
   handleKey(event) {
-    console.log('selectedRoom: ', this.props)
     if (
       event.key === 'Enter' &&
       this.props.selectedRoom[0].name === event.target.value
     ) {
+      this.props.roomAddUser(this.props.selectedRoom[0].id, this.props.userId)
       this.props.history.push(`/play/${this.props.selectedRoom[0].id}`)
     }
   }
@@ -36,6 +41,7 @@ export class Room extends Component {
   }
 
   render() {
+    // console.log('props.name: ', this.props.name)
     return (
       <div>
         <Link to="/main">
@@ -51,7 +57,10 @@ export class Room extends Component {
             onKeyDown={this.handleKey}
           />
         </form>
-        <AllRoom selectedRoom={this.props.selectedRoom} />
+        <AllRoom
+          selectedRoom={this.props.selectedRoom}
+          addUserToRoom={this.addUserToRoom}
+        />
       </div>
     )
   }
@@ -60,6 +69,7 @@ export class Room extends Component {
 const mapState = (state) => ({
   allRoom: state.allRoom.allRoom,
   selectedRoom: state.allRoom.selectedRoom,
+  userId: state.user.id,
 })
 
 const mapDispatch = (dispatch) => ({
@@ -68,6 +78,9 @@ const mapDispatch = (dispatch) => ({
   },
   filterRoom: (value) => {
     dispatch(filterRoom(value))
+  },
+  roomAddUser: (roomId, userId) => {
+    dispatch(roomAddUser(roomId, userId))
   },
 })
 

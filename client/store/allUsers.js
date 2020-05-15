@@ -6,23 +6,23 @@ const UPDATE_WINNER = 'UPDATE_WINNER'
 const UPDATE_LOSER = 'UPDATE_LOSER'
 
 /* Action Creators */
-const gotUsers = users => ({
+const gotUsers = (users) => ({
   type: GETTING_USERS,
-  users
+  users,
 })
 
-const addedWinner = user => ({
+const addedWinner = (user) => ({
   type: UPDATE_WINNER,
-  user
+  user,
 })
 
-const addedLoser = user => ({
+const addedLoser = (user) => ({
   type: UPDATE_LOSER,
-  user
+  user,
 })
 
 /* Thunk Creators */
-export const fetchUsers = () => async dispatch => {
+export const fetchUsers = () => async (dispatch) => {
   try {
     const {data} = await axios.get('/api/users')
     dispatch(gotUsers(data))
@@ -31,7 +31,7 @@ export const fetchUsers = () => async dispatch => {
   }
 }
 
-export const updateWinner = playerId => async dispatch => {
+export const updateWinner = (playerId) => async (dispatch) => {
   try {
     const {data} = await axios.put(`/api/users/${playerId}/winner`)
     dispatch(addedWinner(data))
@@ -40,7 +40,7 @@ export const updateWinner = playerId => async dispatch => {
   }
 }
 
-export const updateLoser = playerId => async dispatch => {
+export const updateLoser = (playerId) => async (dispatch) => {
   try {
     const {data} = await axios.put(`/api/users/${playerId}/loser`)
     dispatch(addedLoser(data))
@@ -50,7 +50,7 @@ export const updateLoser = playerId => async dispatch => {
 }
 
 /* Reducer */
-export default function(state = [], action) {
+export default function (state = [], action) {
   switch (action.type) {
     case GETTING_USERS:
       return action.users

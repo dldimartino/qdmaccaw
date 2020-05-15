@@ -5,7 +5,18 @@ const User = require('../db/models/user')
 router.get('/', async (req, res, next) => {
   try {
     const allRoom = await Room.findAll({
-      include: [User]
+      include: [User],
+    })
+    res.json(allRoom)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/', async (req, res, next) => {
+  try {
+    const allRoom = await Room.findAll({
+      include: [User],
     })
     res.json(allRoom)
   } catch (error) {
@@ -18,6 +29,17 @@ router.post('/', async (req, res, next) => {
     const {name} = req.body
     const newRoom = await Room.create({name})
     res.json(newRoom)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:roomId/:playerId', async (req, res, next) => {
+  try {
+    const room = await Room.findByPk(req.params.roomId)
+    const player = await User.findByPk(req.params.playerId)
+    const newUser = await player.setRoom(room)
+    res.status(201).json(newUser)
   } catch (error) {
     next(error)
   }
