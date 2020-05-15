@@ -11,6 +11,7 @@ export const AllRooms = (props) => {
             key={room.id}
             onClick={() => props.addUserToRoom(room.id)}
             room={room}
+            className="link"
           >
             <div>
               <span>{room.name}</span>

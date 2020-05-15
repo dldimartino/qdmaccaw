@@ -1,9 +1,10 @@
 import React from 'react'
 
-export const AllPlayers = props => {
-  return props.allUsers.length ? (
+export const AllPlayers = (props) => {
+  console.log('this.props: ', props)
+  return props.inRoom.length ? (
     <div>
-      {props.allUsers.map(user => {
+      {props.inRoom.map((user) => {
         return (
           <div key={user.id}>
             <img src={`${user.imageUrl}`} className="avatarImg" />

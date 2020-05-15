@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
+import {usersInRoom, roomDeleteUser} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
+import {AllPlayers} from './AllPlayers'
 
 export class Play extends Component {
   constructor() {
@@ -10,14 +12,24 @@ export class Play extends Component {
     this.state = {
       room: {},
     }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    const room = this.props.match.params.roomId
+    const user = this.props.user.id
+    this.props.roomDeleteUser(room, user)
   }
 
   componentDidMount() {
     console.log(this.props)
+    const roomId = +this.props.match.params.roomId
     this.props.fetchUsers()
+    this.props.usersInRoom(roomId)
+    console.log('second')
     this.props.fetchWord()
     this.props.rooms.allRoom.map((rooms) => {
-      if (rooms.id === +this.props.match.params.roomId) {
+      if (rooms.id === roomId) {
         this.setState({room: rooms})
       }
     })
@@ -27,18 +39,14 @@ export class Play extends Component {
     console.log(this.props)
     return (
       <div>
+        <Link to="/FindRoom" className="link" onClick={this.handleClick}>
+          <button type="button">Back To</button>
+        </Link>
         <h1>Welcome to {this.state.room.name}</h1>
-        <Link to={{pathname: '/game', room: this.state.room}}>
+        <Link to={{pathname: '/game', room: this.state.room}} className="link">
           Play a game!
         </Link>
-
-        <ul>
-          {' '}
-          Players:{' '}
-          {this.props.allUsers.map((user) => {
-            return <li key={user.id}> {user.name} </li>
-          })}
-        </ul>
+        <AllPlayers inRoom={this.props.inRoom} />
       </div>
     )
   }
@@ -46,6 +54,7 @@ export class Play extends Component {
 
 const mapState = (state) => ({
   allUsers: state.allUsers,
+  inRoom: state.allRoom.inRoom,
   word: state.word,
   rooms: state.allRoom,
   user: state.user,
@@ -57,6 +66,12 @@ const mapDispatch = (dispatch) => ({
   },
   fetchWord: () => {
     dispatch(fetchWord())
+  },
+  roomDeleteUser: (roomId, userId) => {
+    dispatch(roomDeleteUser(roomId, userId))
+  },
+  usersInRoom: (roomId) => {
+    dispatch(usersInRoom(roomId))
   },
 })
 

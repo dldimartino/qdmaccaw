@@ -6,8 +6,18 @@ module.exports = (io) => {
       console.log(`Connection ${socket.id} has left the building`)
     })
 
-    socket.on('drawing', function (data) {
-      io.sockets.emit('drawing', data)
+    socket.on('join_room', (room) => {
+      console.log('SERVER ROOM JOINED')
+      socket.join(room)
+    })
+
+    socket.on('leave_room', (room) => {
+      socket.leave(room)
+    })
+
+    socket.on('drawing', (drawing, room) => {
+      console.log('SERVER DRAWING RECEIVED')
+      socket.to(room).emit('drawing', drawing)
     })
   })
 }
