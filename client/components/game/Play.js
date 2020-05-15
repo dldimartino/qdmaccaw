@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
 import {usersInRoom, roomDeleteUser} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
+
 import {AllPlayers} from './AllPlayers'
 
 export class Play extends Component {
