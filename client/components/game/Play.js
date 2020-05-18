@@ -28,7 +28,7 @@ export class Play extends Component {
     //add a set timeout/delay to countdown
     let time = 30
     let countdown = setInterval(() => {
-      if (this.state.timer <= 0) clearInterval(countdown)
+      if (this.state.timer === 0) clearInterval(countdown)
       time--
       console.log(time)
       this.setState({
