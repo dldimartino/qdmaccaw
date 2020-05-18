@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
 import {usersInRoom, roomDeleteUser} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
-
+import Chatroom from '../chatroom'
 import {AllPlayers} from './AllPlayers'
 
 export class Play extends Component {
@@ -24,6 +24,8 @@ export class Play extends Component {
     this.props.roomDeleteUser(room, user)
   }
 
+  //socket broadcasts 'startGame' event (Tied to 'Start Game' button?)
+  //once event is received by user, fire gameTimer() for each user
   gameTimer() {
     //add a set timeout/delay to countdown
     let time = 30
@@ -85,7 +87,8 @@ export class Play extends Component {
         {/* <button type="button" onClick={() => this.wordGenerator(1, word)}>
           Generate Word
         </button> */}
-        <AllPlayers inRoom={this.props.inRoom} />
+        {/* <AllPlayers inRoom={this.props.inRoom} /> */}
+        <Chatroom />
       </div>
     )
   }
