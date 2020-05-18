@@ -104,3 +104,19 @@ body {
   font-size: medium;
   font-weight: bold;
 }
+
+.avatarImg {
+  max-width: 150px;
+  margin-right: 20px;
+}
+
+.userData {
+  display: flex;
+  flex-direction: row;
+}
+
+.userCards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
