@@ -5,6 +5,7 @@ import {fetchUsers} from '../../store/allUsers'
 import {usersInRoom, roomDeleteUser} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
 import io from 'socket.io-client'
+import Chatroom from '../chatroom'
 const socket = io.connect(window.location.origin)
 
 import {AllPlayers} from './AllPlayers'
@@ -118,7 +119,8 @@ export class Lobby extends Component {
         ) : (
           ''
         )}
-        <AllPlayers inRoom={this.props.inRoom} />
+        {/* <AllPlayers inRoom={this.props.inRoom} /> */}
+        <Chatroom />
       </div>
     )
   }
