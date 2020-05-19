@@ -24,6 +24,7 @@ class Guesser extends Component {
   }
 
   componentDidMount() {
+    socket.emit('join_lobby', this.state.room.name, this.props.user)
     // RECEIVE DRAWING LISTENER
     socket.on('drawing', function (data) {
       console.log('GUESSER DRAWING RECEIVED')
