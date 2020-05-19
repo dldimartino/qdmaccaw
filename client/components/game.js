@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router'
-import Guesser from './guesser'
-import ReactWhiteboard from './reactWhiteboard'
+import Guesser from './Guesser'
+import Artist from './Artist'
 import {connect} from 'react-redux'
 
 class Game extends Component {
@@ -16,7 +16,7 @@ class Game extends Component {
     return (
       <div>
         {this.props.user.isArtist ? (
-          <ReactWhiteboard room={this.state.room} />
+          <Artist room={this.state.room} />
         ) : (
           <Guesser room={this.state.room} />
         )}

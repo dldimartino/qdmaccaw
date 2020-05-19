@@ -7,11 +7,11 @@ import {
   Signup,
   Home,
   Main,
-  Play,
+  Lobby,
   Create,
   FindRoom,
   Instruction,
-  ReactWhiteboard,
+  Artist,
   Guesser,
   Game,
   UserHome,
@@ -38,9 +38,9 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/create" component={Create} />
         <Route exact path="/" component={Home} />
-        <Route path="/play/:roomId" component={Play} />
+        <Route path="/lobby/:roomId" component={Lobby} />
         <Route path="/FindRoom" component={FindRoom} />
-        <Route path="/whiteboard" component={ReactWhiteboard} />
+        <Route path="/artist" component={Artist} />
         <Route path="/guesser" component={Guesser} />
         <Route path="/game" component={Game} />
         <Route path="/main" component={Main} />

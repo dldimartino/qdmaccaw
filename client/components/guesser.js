@@ -24,17 +24,11 @@ class Guesser extends Component {
   }
 
   componentDidMount() {
-    socket.emit('join_room', this.props.room.name)
-    console.log('GUESSER JOINING ROOM')
+    // RECEIVE DRAWING LISTENER
     socket.on('drawing', function (data) {
       console.log('GUESSER DRAWING RECEIVED')
       canvas.current.loadSaveData(data, true)
     })
-  }
-
-  componentWillUnmount() {
-    console.log('GUESSER LEFT ROOM')
-    socket.emit('leave_room', this.props.room.name)
   }
 
   // async markAsCorrect(playerId) {
@@ -70,7 +64,7 @@ class Guesser extends Component {
   render() {
     return (
       <div>
-        <Link to={`/play/${this.props.room.id}`} className="link">
+        <Link to={`/lobby/${this.props.room.id}`} className="link">
           <button type="button">Back To Lobby</button>
         </Link>
         <h1> Timer: {this.state.timer} </h1>
