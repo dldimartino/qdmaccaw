@@ -7,10 +7,9 @@ export const AllRooms = (props) => {
       {props.selectedRoom.map((room) => {
         return (
           <Link
-            to={`/play/${room.id}`}
+            to={{pathname: `/lobby/${room.id}`, room: room}}
             key={room.id}
             onClick={() => props.addUserToRoom(room.id)}
-            room={room}
             className="link"
           >
             <div>

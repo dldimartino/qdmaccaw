@@ -8,8 +8,7 @@ import eraserIcon from '@iconify/icons-mdi/eraser'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-
-function ReactWhiteboard(props) {
+function Artist(props) {
   const [color, setColor] = useState('#AAB7B8')
   const [openPalette, setOpenPalette] = useState(false)
   const [openRadius, setOpenRadius] = useState(false)
@@ -17,23 +16,13 @@ function ReactWhiteboard(props) {
   const socket = io.connect(window.location.origin)
   const canvas = createRef()
 
-  useEffect(() => {
-    console.log('WHITEBOARD JOINED')
-    socket.emit('join_room', props.room.name)
-    return () => {
-      console.log('WHITEBOARD LEFT')
-      socket.emit('leave_room', props.room.name)
-    }
-  }, [])
-
   function handleChange(event) {
-    console.log('WHITEBOARD DRAWING EMITTED')
     socket.emit('drawing', event.getSaveData(), props.room.name)
   }
-  console.log(props)
+
   return (
     <Container>
-      <Link to={`/play/${props.room.id}`} className="link">
+      <Link to={`/lobby/${props.room.id}`} className="link">
         <Button type="button">Back To Lobby</Button>
       </Link>
       <Row>
@@ -137,7 +126,7 @@ function ReactWhiteboard(props) {
 }
 
 const mapStateToProps = (state) => ({
-  word: state.word,
+  allWords: state.word,
 })
 
-export default connect(mapStateToProps)(ReactWhiteboard)
+export default connect(mapStateToProps)(Artist)

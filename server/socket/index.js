@@ -6,17 +6,20 @@ module.exports = (io) => {
       console.log(`Connection ${socket.id} has left the building`)
     })
 
-    socket.on('join_room', (room) => {
-      console.log('SERVER ROOM JOINED')
+    socket.on('join_lobby', (room, user) => {
       socket.join(room)
+      socket.to(room).emit('join_lobby_late', user)
     })
 
-    socket.on('leave_room', (room) => {
+    socket.on('leave_lobby', (room) => {
       socket.leave(room)
     })
 
+    socket.on('word_generate', (newWord, room) => {
+      socket.to(room).emit('send_word', newWord)
+    })
+
     socket.on('drawing', (drawing, room) => {
-      console.log('SERVER DRAWING RECEIVED')
       socket.to(room).emit('drawing', drawing)
     })
   })
