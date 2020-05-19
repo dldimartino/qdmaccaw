@@ -9,7 +9,6 @@ module.exports = (io) => {
     socket.on('join_lobby', (room, user) => {
       socket.join(room)
       socket.to(room).emit('join_lobby_late', user)
-      console.log('A user has joined the room')
     })
 
     socket.on('leave_lobby', (room) => {
@@ -30,9 +29,16 @@ module.exports = (io) => {
       socket.to(room).emit('drawing', drawing)
     })
 
+    //Chat room logic:
+    socket.on('join_chat', (message, room) => {
+      socket.join(room)
+      io.to(room).emit('chat_joined', message)
+      console.log(`You have joined chatroom`)
+    })
+
     socket.on('chat_message', (message, room) => {
-      console.log(`This is the SERVER socket message`, message, room)
-      io.emit(room).emit('send_message', message)
+      console.log(`This is the SERVER socket to ${room}`, message, room)
+      io.to(room).emit('send_message', message)
     })
   })
 }

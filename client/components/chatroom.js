@@ -18,14 +18,44 @@ export default class Chatroom extends Component {
   }
 
   componentDidMount() {
+    //joins a room
+    socket.emit(
+      'join_chat',
+      {
+        message: `${this.props.user.name} has joined the room.`,
+        name: `${this.props.user.name}`,
+        timestamp: moment().format('h:mm a'),
+      },
+      this.props.room.name
+    )
+
     //LISTENS FOR NEW MESSAGE
     socket.on('send_message', (message) => {
+      console.log('MESSAGE RECEIVED', message)
       this.setState((prevState) => {
         const {messages} = prevState
         messages.push(message)
         return messages
       })
     })
+
+    //server sends a message
+    socket.on('chat_joined', (message) => {
+      console.log('MESSAGE RECEIVED', message)
+      this.setState((prevState) => {
+        const {messages} = prevState
+        messages.push(message)
+        return messages
+      })
+    })
+
+    // LATE JOIN
+    // if (this.props.user.isArtist) {
+    //   socket.on('join_lobby_late', (user) => {
+    //     console.log('USER', user)
+    //     socket.emit('word_generate', this.state.gameWord, this.state.room.name)
+    //   })
+    // }
   }
 
   handleChange(event) {
