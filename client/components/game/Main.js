@@ -1,32 +1,63 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Button} from 'react-bootstrap'
+import {Button, Row, Container} from 'react-bootstrap'
 import {logout} from '../../store'
 
 export const Main = (props) => {
   const {name, handleClick} = props
   return (
-    <div>
-      <h1>Drawbit</h1>
-      <h3>Welcome, {name}</h3>
+    <Container className="Buttons">
+      <Row className="justify-content-md-center ">
+        <h1 className="Welcome">DrawBit</h1>
+      </Row>
+      <Row className="justify-content-md-center">
+        <h3>Welcome, {name}</h3>
+      </Row>
 
-      <Link to="/FindRoom">
-        <Button variant="success">Join Room!</Button>
-      </Link>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
+          <Link to="/FindRoom">
+            <Button variant="success" size="lg" className="shadow-lg">
+              Join Room!
+            </Button>
+          </Link>
+        </Row>
+      </div>
 
-      <Link to="/create">
-        <button type="button">Create Room!</button>
-      </Link>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
+          <Link to="/create">
+            <Button variant="primary" size="lg" className="shadow-lg">
+              Create Room!
+            </Button>
+          </Link>
+        </Row>
+      </div>
 
-      <Link to="/Instruction">
-        <button type="button">How to Play!</button>
-      </Link>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
+          <Link to="/Instruction">
+            <Button variant="warning" size="lg" className="shadow-lg">
+              How to Play!
+            </Button>
+          </Link>
+        </Row>
+      </div>
 
-      <button type="button" onClick={handleClick}>
-        Logout
-      </button>
-    </div>
+      <div className="mt-5">
+        <Row className="justify-content-md-center">
+          <Button
+            variant="danger"
+            size="lg"
+            className="shadow-lg"
+            onClick={handleClick}
+          >
+            Logout
+          </Button>
+        </Row>
+      </div>
+    </Container>
   )
 }
 

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Link} from 'react-router-dom'
+import {Button, Row, Container} from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -11,8 +12,10 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <h2>{displayName} Page</h2>
+    <Container className="Buttons">
+      <Row className="justify-content-md-center ">
+        <h2 className="mb-4">{displayName} Page</h2>
+      </Row>
       <form onSubmit={handleSubmit} name={name}>
         {/* <div>
           <label htmlFor="email">
@@ -20,30 +23,37 @@ const AuthForm = (props) => {
           </label>
           <input name="email" type="text" />
         </div> */}
-        <div>
-          <label htmlFor="dataName">
+
+        <Row className="justify-content-md-center ">
+          {/* <label htmlFor="dataName">
             <small>Name</small>
-          </label>
-          <input name="dataName" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
+          </label> */}
+          <input name="dataName" type="text" placeholder="Name" />
+        </Row>
+        <Row className="justify-content-md-center ">
+          {/* <label htmlFor="password">
             <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
+          </label> */}
+          <input name="password" type="password" placeholder="password" />
+        </Row>
+
+        <Row className="justify-content-md-center ">
+          <Button type="submit" variant="success">
+            {displayName}
+          </Button>
+        </Row>
         {error && error.response && <div> {error.response.data} </div>}
         <br />
-        <Link to="/">
-          <button type="button">Back</button>
-          <br />
-        </Link>
+        <Row className="justify-content-md-center ">
+          <Link to="/">
+            <Button variant="danger" size="lg" className="shadow-lg">
+              Back
+            </Button>
+          </Link>
+        </Row>
       </form>
       {/* <a href="/auth/google">{displayName} with Google</a> */}
-    </div>
+    </Container>
   )
 }
 
