@@ -2,14 +2,37 @@ import React, {Component} from 'react'
 import {Button} from 'react-bootstrap'
 
 export default class Chatroom extends Component {
-  constructor(props, context) {
-    super(props, context)
-    const {chatHistory} = props
+  constructor() {
+    super()
     this.state = {
-      chatHistory,
-      input: '',
+      message: '',
+      messages: ['test', 'jared'],
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
+
+  //Refactor with use-effect to work with socket.
+  //   useEffect(() => {
+  //     socket.emit('chat_message'), 'message')
+  //     return () => {
+  //       console.log('WHITEBOARD LEFT')
+  //       socket.emit('leave_room', props.room.name)
+  //     }
+  //   }, [])
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  }
+
+  handleSubmit(event) {
+    //socket emit goes here
+    event.preventDefault()
+    console.log('THIS IS THE EVENT', event)
+  }
+
   render() {
     return (
       <div className="chat-container">
@@ -35,36 +58,26 @@ export default class Chatroom extends Component {
             </ul>
           </div>
           <div className="chat-messages">
-            <div className="message">
-              <p className="meta">
-                Jared <span>9:12pm</span>
-              </p>
-              <p className="text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi, repudiandae.
-              </p>
-            </div>
-            <div className="message">
-              <p className="meta">
-                DanD <span>9:15pm</span>
-              </p>
-              <p className="text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi, repudiandae.
-              </p>
-            </div>
+            {this.state.messages.map((message, index) => (
+              <div className="message" key={index}>
+                <p className="meta">DanD</p>
+                <p className="text">{message}</p>
+              </div>
+            ))}
           </div>
         </main>
         <div className="chat-form-container">
-          <form id="chat-form">
+          <form id="chat-form" onSubmit={this.handleSubmit}>
             <input
-              id="msg"
+              name="message"
               type="text"
               placeholder="Enter Message"
-              required
-              autoComplete="off"
+              value={this.state.message}
+              onChange={this.handleChange}
             />
-            <Button variant="outline-success">Send</Button>{' '}
+            <Button type="submit" variant="outline-success">
+              Send
+            </Button>
           </form>
         </div>
       </div>
