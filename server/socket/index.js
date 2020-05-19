@@ -20,6 +20,12 @@ module.exports = (io) => {
       socket.to(room).emit('send_word', newWord)
     })
 
+    socket.on('start_game', (room) => {
+      console.log('SERVER STARTING GAME')
+      console.log('SERVER ROOM', room)
+      io.in(room).emit('start_game', room)
+    })
+
     socket.on('drawing', (drawing, room) => {
       socket.to(room).emit('drawing', drawing)
     })

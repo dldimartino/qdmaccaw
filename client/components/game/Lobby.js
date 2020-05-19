@@ -17,6 +17,7 @@ export class Lobby extends Component {
       room: props.location.room,
       timer: '',
       gameWord: '------',
+      starting: false,
     }
     this.handleClick = this.handleClick.bind(this)
     this.wordGenerator = this.wordGenerator.bind(this)
@@ -40,6 +41,12 @@ export class Lobby extends Component {
         socket.emit('word_generate', this.state.gameWord, this.state.room.name)
       })
     }
+
+    // LISTEN FOR GAME START
+    socket.on('start_game', (room) => {
+      console.log('RECEVING START')
+      this.setState({starting: true})
+    })
   }
 
   handleClick() {
@@ -89,7 +96,7 @@ export class Lobby extends Component {
   }
 
   startGame() {
-    return <Redirect to="/game" />
+    socket.emit('start_game', this.state.room.name)
   }
 
   render() {
@@ -99,6 +106,11 @@ export class Lobby extends Component {
         <Link to="/FindRoom" className="link" onClick={this.handleClick}>
           <button type="button">Back To Find Rooms</button>
         </Link>
+        {this.state.starting ? (
+          <Redirect to={{pathname: '/game', room: this.state.room}} />
+        ) : (
+          ''
+        )}
         <h1>Welcome to {this.state.room.name}!</h1>
         {this.props.user.isArtist ? (
           <div>
