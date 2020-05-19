@@ -9,6 +9,7 @@ module.exports = (io) => {
     socket.on('join_lobby', (room, user) => {
       socket.join(room)
       socket.to(room).emit('join_lobby_late', user)
+      console.log('A user has joined the room')
     })
 
     socket.on('leave_lobby', (room) => {
@@ -21,6 +22,11 @@ module.exports = (io) => {
 
     socket.on('drawing', (drawing, room) => {
       socket.to(room).emit('drawing', drawing)
+    })
+
+    socket.on('chat_message', (message, room) => {
+      console.log(`This is the SERVER socket message`, message, room)
+      io.emit(room).emit('send_message', message)
     })
   })
 }
