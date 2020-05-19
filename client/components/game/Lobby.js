@@ -120,7 +120,11 @@ export class Lobby extends Component {
           ''
         )}
         {/* <AllPlayers inRoom={this.props.inRoom} /> */}
-        <Chatroom />
+        <Chatroom
+          room={this.state.room}
+          user={this.props.user}
+          users={this.props.allUsers}
+        />
       </div>
     )
   }

@@ -4,11 +4,6 @@ font-family: 'Luckiest Guy', cursive;
 font-family: 'Modak', cursive;
 font-family: 'Righteous', cursive;
 font-family: 'Russo One', sans-serif; */
-
-body {
-  font-family: sans-serif;
-}
-
 a {
   text-decoration: none;
 }
@@ -49,6 +44,7 @@ body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
+  font-family: sans-serif;
 }
 
 @keyframes gradient {
@@ -124,13 +120,13 @@ body {
 /*----------- CHATROOM CSS -----------*/
 .chat-container {
   max-width: 1100px;
-  /* background: rgb(75, 75, 75); */
   margin: 30px auto;
   overflow: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .chat-header {
-  background: #0066ff;
+  background: #a8dadc;
   color: #fff;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -148,7 +144,7 @@ body {
 }
 
 .chat-sidebar {
-  background: #36454f;
+  background: #1d3557;
   color: #fff;
   padding: 20px 20px 60px;
   overflow-y: scroll;
@@ -175,20 +171,21 @@ body {
   padding: 30px;
   max-height: 500px;
   overflow-y: scroll;
-  color: black;
+  /* color: black; */
+  background-color: #f1faee;
 }
 
 .chat-messages .message {
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 5px;
-  background-color: #ffa500;
+  background-color: #e63946;
 }
 
 .chat-messages .message .meta {
   font-size: 15px;
   font-weight: bold;
-  color: black;
+  color: whitesmoke;
   opacity: 0.7;
   margin-bottom: 7px;
 }
@@ -199,7 +196,7 @@ body {
 
 .chat-form-container {
   padding: 20px 30px;
-  background-color: #0066ff;
+  background-color: #a8dadc;
 }
 
 .chat-form-container form {
