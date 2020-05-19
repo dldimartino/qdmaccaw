@@ -19,8 +19,26 @@ module.exports = (io) => {
       socket.to(room).emit('send_word', newWord)
     })
 
+    socket.on('start_game', (room) => {
+      console.log('SERVER STARTING GAME')
+      console.log('SERVER ROOM', room)
+      io.in(room).emit('start_game', room)
+    })
+
     socket.on('drawing', (drawing, room) => {
       socket.to(room).emit('drawing', drawing)
+    })
+
+    //Chat room logic:
+    socket.on('join_chat', (message, room) => {
+      socket.join(room)
+      io.to(room).emit('chat_joined', message)
+      console.log(`You have joined chatroom`)
+    })
+
+    socket.on('chat_message', (message, room) => {
+      console.log(`This is the SERVER socket to ${room}`, message, room)
+      io.to(room).emit('send_message', message)
     })
   })
 }
