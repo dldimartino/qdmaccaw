@@ -12,6 +12,7 @@ module.exports = (io) => {
     })
 
     socket.on('leave_lobby', (room) => {
+      socket.to(room).emit('left_lobby', user)
       socket.leave(room)
     })
 
