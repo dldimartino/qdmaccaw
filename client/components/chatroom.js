@@ -70,6 +70,7 @@ export default class Chatroom extends Component {
       message: '',
     })
   }
+
   render() {
     return (
       <div className="chat-container">
@@ -83,13 +84,20 @@ export default class Chatroom extends Component {
         <main className="chat-main">
           <div className="chat-sidebar">
             <h3>Current Artist:</h3>
-            <h2 id="artist-name">Jared</h2>
+            {/* {this.props.room.users.map((user) => {
+              if (user.isArtist) {
+                ;<h2 id="artist-name" key={user.id}>
+                  {user.name}
+                </h2>
+              }
+            })} */}
+
             <h3>Users:</h3>
-            {/* {this.props.users.allUsers.map((user) => ( */}
-            <ul id="users">
-              <li>Test</li>
+            <ul>
+              {this.props.room.users.map((user) => {
+                return <li key={user.id}>{user.name}</li>
+              })}
             </ul>
-            {/* ))} */}
           </div>
           <div className="chat-messages">
             {this.state.messages.map((message, index) => (

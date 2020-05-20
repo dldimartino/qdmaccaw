@@ -32,6 +32,7 @@ class Guesser extends Component {
     })
     this.gameTimer()
   }
+
   gameTimer() {
     //add a set timeout/delay to countdown
     let time = 60
