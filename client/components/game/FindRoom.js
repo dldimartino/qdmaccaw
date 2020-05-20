@@ -25,7 +25,6 @@ export class FindRoom extends Component {
 
   addUserToRoom(roomId) {
     this.props.roomAddUser(roomId, this.props.userId)
-    console.log('first')
   }
 
   handleKey(event) {

@@ -15,31 +15,37 @@ function Artist(props) {
   const [radius, setRadius] = useState(12)
   const socket = io.connect(window.location.origin)
   const canvas = createRef()
+  const [timer, setTimer] = useState(60)
 
   function handleChange(event) {
     socket.emit('drawing', event.getSaveData(), props.room.name)
   }
 
-  function gameTimer() {
-    //add a set timeout/delay to countdown
-
-    let time = 30
-    let countdown = setInterval(() => {
-      if (this.state.timer < 0) clearInterval(countdown)
+  useEffect(() => {
+    let time = 60
+    setInterval(() => {
       time--
-      console.log(time)
-      this.setState({
-        timer: time,
-      })
       if (time === 0) {
         window.alert('Round Over!')
+      } else if (time > -1) {
+        setTimer(time)
       }
     }, 1000)
-  }
-
-  useEffect(() => {
-    gameTimer()
   }, [])
+
+  // gameTimer() {
+  //   let time = 30
+  //   let countdown = setInterval(() => {
+  //     if (this.state.timer < 0) clearInterval(countdown)
+  //     time--
+  //     this.setState({
+  //       timer: time,
+  //     })
+  //     if (time === 0) {
+  //       window.alert('Round Over!')
+  //     }
+  //   }, 1000)
+  // }
 
   return (
     <Container>
@@ -48,7 +54,8 @@ function Artist(props) {
       </Link>
       <Row>
         <Col>
-          <h1 className="drawWord">Your Word Is: Fullstack</h1>
+          <h1> Timer: {timer} </h1>
+          <h1 className="drawWord">Your Word Is: {props.word}</h1>
         </Col>
         <div>
           <Button

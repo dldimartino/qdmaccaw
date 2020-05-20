@@ -3,15 +3,12 @@ import {Link} from 'react-router-dom'
 import {Button, Row, Container} from 'react-bootstrap'
 import {connect} from 'react-redux'
 
-const Home = (props) => {
-  console.log('OUR PROPS--->', props.isLoggedIn)
-
+const Home = () => {
   return (
     <Container className="Buttons">
       <Row className="justify-content-md-center ">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
-      {/* {!props.isLoggedIn ? () : ()} */}
       <Row className="justify-content-md-center">
         <Link to="/login">
           <Button size="lg" className="shadow-lg" variant="success">

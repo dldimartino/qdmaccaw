@@ -14,13 +14,13 @@ class Guesser extends Component {
     this.state = {
       playerId: 1,
       guess: '',
-      timer: 30,
+      timer: 60,
       room: props.room,
+      word: props.word,
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.handleOnClick = this.handleOnClick.bind(this)
     this.gameTimer = this.gameTimer.bind(this)
   }
 
@@ -28,19 +28,16 @@ class Guesser extends Component {
     socket.emit('join_lobby', this.state.room.name, this.props.user)
     // RECEIVE DRAWING LISTENER
     socket.on('drawing', function (data) {
-      console.log('GUESSER DRAWING RECEIVED')
       canvas.current.loadSaveData(data, true)
     })
     this.gameTimer()
   }
   gameTimer() {
     //add a set timeout/delay to countdown
-
-    let time = 30
+    let time = 60
     let countdown = setInterval(() => {
       if (this.state.timer < 0) clearInterval(countdown)
       time--
-      console.log(time)
       this.setState({
         timer: time,
       })
@@ -50,12 +47,6 @@ class Guesser extends Component {
     }, 1000)
   }
 
-  // async markAsCorrect(playerId) {
-  //   const {data} = await axios.put(`/api/user/${playerId}/winner`)
-  //   console.log('a winner is found! here is the axios data', data)
-  //   //await put route to make player show as "winner" on user model
-  // }
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -64,19 +55,12 @@ class Guesser extends Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    if ('fullstack' === this.state.guess.toLowerCase()) {
+    if (this.state.word === this.state.guess.toLowerCase()) {
       await this.props.updateWinner(this.state.playerId)
-      console.log(this.state.guess)
-      await console.log('YOU WON!!!')
       window.alert('YOU WIN!')
     } else {
-      console.log('GUESS AGAIN!!!')
       window.alert('GUESS AGAIN!')
-      console.log('you guessed', this.state.guess)
-      console.log('word was', this.state.gameWord)
       await this.setState({guess: ''})
-      console.log(`this.state.guess (your guess)
-        has been reset to, " ${this.state.guess}"`)
     }
   }
 
@@ -120,7 +104,7 @@ class Guesser extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  word: state.word,
+  allWords: state.word,
 })
 
 const mapDispatchToProps = (dispatch) => ({
