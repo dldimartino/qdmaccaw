@@ -9,12 +9,13 @@ const canvas = createRef()
 const socket = io.connect(window.location.origin)
 
 class Guesser extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       playerId: 1,
       guess: '',
       timer: 30,
+      room: props.room,
     }
 
     this.handleChange = this.handleChange.bind(this)
