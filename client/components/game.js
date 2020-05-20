@@ -9,12 +9,25 @@ class Game extends Component {
     super(props)
     this.state = {
       room: props.location.room,
+      isTimeUp: false,
       word: props.location.word,
       socket: props.location.socket,
     }
+    this.setTimesUp = this.setTimesUp.bind(this)
   }
 
+  setTimesUp() {
+    this.setState({isTimeUp: true})
+  }
+  componentDidMount() {}
+
   render() {
+    if (this.state.isTimeUp) {
+      this.props.history.push({
+        pathname: `/lobby/${this.state.room.id}`,
+        state: {lobby: this.state.room},
+      })
+    }
     return (
       <div>
         {this.props.user.isArtist ? (

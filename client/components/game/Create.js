@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
+// import {Redirect} from 'react-router'
 import {connect} from 'react-redux'
 import {Button, Row, Container} from 'react-bootstrap'
 import {newRoom} from '../../store/allRoom'
+import Axios from 'axios'
 
 export class Create extends Component {
   constructor() {
@@ -17,11 +19,20 @@ export class Create extends Component {
   async handleSubmit(event) {
     event.preventDefault()
     await this.props.newRoom({name: this.state.name})
-    ;(await this.props.allRoom.length) > 0 &&
-      this.props.history.push(
-        `/play/${this.props.allRoom[this.props.allRoom.length - 1].id}`
-      )
+    await Axios.put(`/api/users/setAsArtist/${this.props.user.id}/true`)
+    const lobbyLength = this.props.allRoom.length
+    const tgtLobby = this.props.allRoom[lobbyLength - 1]
+    const tgtlobbyId = tgtLobby.id
+    if (this.props.allRoom.length) {
+      this.props.history.push({
+        pathname: `/lobby/${tgtlobbyId}`,
+        state: {lobby: tgtLobby},
+      })
+    }
   }
+  // this.props.history.push(
+  //   `/play/${this.props.allRoom[this.props.allRoom.length - 1].id}`
+  // )
 
   handleChange(event) {
     this.setState({
@@ -69,6 +80,7 @@ export class Create extends Component {
 
 const mapState = (state) => ({
   allRoom: state.allRoom.allRoom,
+  user: state.user,
 })
 
 const mapDispatch = (dispatch) => ({

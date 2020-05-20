@@ -33,7 +33,13 @@ function Artist(props) {
 
   return (
     <Container>
-      <Link to={`/lobby/${props.room.id}`} className="link">
+      <Link
+        to={{
+          pathname: `/lobby/${props.room.id}`,
+          state: {lobby: props.room},
+        }}
+      >
+        {/* // `/lobby/${props.room.id}`} className="link"> */}
         <Button type="button">Back To Lobby</Button>
       </Link>
       <Row>
