@@ -31,7 +31,6 @@ export default class Chatroom extends Component {
 
     //LISTENS FOR NEW MESSAGE
     socket.on('send_message', (message) => {
-      console.log('MESSAGE RECEIVED', message)
       this.setState((prevState) => {
         const {messages} = prevState
         messages.push(message)
@@ -41,21 +40,12 @@ export default class Chatroom extends Component {
 
     //server sends a message
     socket.on('chat_joined', (message) => {
-      console.log('MESSAGE RECEIVED', message)
       this.setState((prevState) => {
         const {messages} = prevState
         messages.push(message)
         return messages
       })
     })
-
-    // LATE JOIN
-    // if (this.props.user.isArtist) {
-    //   socket.on('join_lobby_late', (user) => {
-    //     console.log('USER', user)
-    //     socket.emit('word_generate', this.state.gameWord, this.state.room.name)
-    //   })
-    // }
   }
 
   handleChange(event) {
@@ -81,8 +71,6 @@ export default class Chatroom extends Component {
     })
   }
   render() {
-    console.log(this.state.messages)
-    console.log(this.props)
     return (
       <div className="chat-container">
         <header className="chat-header">

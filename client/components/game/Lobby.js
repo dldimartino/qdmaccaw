@@ -15,7 +15,6 @@ export class Lobby extends Component {
     super(props)
     this.state = {
       room: props.location.room,
-      timer: '',
       gameWord: '------',
       starting: false,
     }
@@ -37,14 +36,12 @@ export class Lobby extends Component {
     // LISTEN FOR LATE LOBBY JOINING
     if (this.props.user.isArtist) {
       socket.on('join_lobby_late', (user) => {
-        console.log('USER', user)
         socket.emit('word_generate', this.state.gameWord, this.state.room.name)
       })
     }
 
     // LISTEN FOR GAME START
     socket.on('start_game', (room) => {
-      console.log('RECEVING START')
       this.setState({starting: true})
     })
   }
@@ -56,22 +53,6 @@ export class Lobby extends Component {
 
     // Leave Lobby
     socket.emit('leave_lobby', this.state.room.name)
-  }
-
-  gameTimer() {
-    //add a set timeout/delay to countdown
-    let time = 30
-    let countdown = setInterval(() => {
-      if (this.state.timer < 0) clearInterval(countdown)
-      time--
-      console.log(time)
-      this.setState({
-        timer: time,
-      })
-      if (time === 0) {
-        window.alert('Round Over!')
-      }
-    }, 1000)
   }
 
   wordGenerator() {
@@ -100,14 +81,19 @@ export class Lobby extends Component {
   }
 
   render() {
-    console.log(this.state.gameWord)
     return (
       <div>
         <Link to="/FindRoom" className="link" onClick={this.handleClick}>
           <button type="button">Back To Find Rooms</button>
         </Link>
         {this.state.starting ? (
-          <Redirect to={{pathname: '/game', room: this.state.room}} />
+          <Redirect
+            to={{
+              pathname: '/game',
+              room: this.state.room,
+              word: this.state.gameWord,
+            }}
+          />
         ) : (
           ''
         )}
@@ -132,6 +118,7 @@ export class Lobby extends Component {
           ''
         )}
         {/* <AllPlayers inRoom={this.props.inRoom} /> */}
+        <h1> Waiting for Artist to Start Game </h1>
         <Chatroom
           room={this.state.room}
           user={this.props.user}

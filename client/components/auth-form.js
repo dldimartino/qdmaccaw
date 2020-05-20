@@ -42,7 +42,11 @@ const AuthForm = (props) => {
             {displayName}
           </Button>
         </Row>
-        {error && error.response && <div> {error.response.data} </div>}
+        {error && error.response && (
+          <Row className="justify-content-md-center ">
+            {error.response.data}
+          </Row>
+        )}
         <br />
         <Row className="justify-content-md-center ">
           <Link to="/">
