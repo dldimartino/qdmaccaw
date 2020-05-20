@@ -25,7 +25,8 @@ export class Lobby extends Component {
   }
 
   componentDidMount() {
-    // Socket connect to room
+    // JOIN SOCKET LOBBY
+    console.log('USER JOINING LOBBY')
     socket.emit('join_lobby', this.state.room.name, this.props.user)
 
     // LISTEN FOR ARTIST WORD GENERATION
@@ -51,7 +52,7 @@ export class Lobby extends Component {
     const user = this.props.user.id
     this.props.roomDeleteUser(room, user)
 
-    // Leave Lobby
+    // LEAVE SOCKET LOBBY
     socket.emit('leave_lobby', this.state.room.name)
   }
 
@@ -92,6 +93,7 @@ export class Lobby extends Component {
               pathname: '/game',
               room: this.state.room,
               word: this.state.gameWord,
+              socket,
             }}
           />
         ) : (
@@ -117,7 +119,6 @@ export class Lobby extends Component {
         ) : (
           ''
         )}
-        {/* <AllPlayers inRoom={this.props.inRoom} /> */}
         <h1> Waiting for Artist to Start Game </h1>
         <Chatroom
           room={this.state.room}
