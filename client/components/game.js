@@ -10,17 +10,25 @@ class Game extends Component {
     this.state = {
       room: props.location.room,
       word: props.location.word,
+      socket: props.location.socket,
     }
   }
 
   render() {
-    console.log('WORD IN GAME COMP', this.state.word)
     return (
       <div>
         {this.props.user.isArtist ? (
-          <Artist room={this.state.room} word={this.state.word} />
+          <Artist
+            room={this.state.room}
+            word={this.state.word}
+            socket={this.state.socket}
+          />
         ) : (
-          <Guesser room={this.state.room} word={this.state.word} />
+          <Guesser
+            room={this.state.room}
+            word={this.state.word}
+            socket={this.state.socket}
+          />
         )}
       </div>
     )
