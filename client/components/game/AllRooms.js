@@ -7,14 +7,18 @@ export const AllRooms = (props) => {
       {props.selectedRoom.map((room) => {
         return (
           <Link
-            to={{pathname: `/lobby/${room.id}`, room: room}}
+            to={{
+              pathname: `/lobby/${room.id}`,
+              state: {
+                lobby: room,
+              },
+            }}
             key={room.id}
             onClick={() => props.addUserToRoom(room.id)}
             className="link"
           >
             <div>
               <span>{room.name}</span>
-              {/* add # of players in room w/ association ternary to say "full" if no empty spaces left*/}
             </div>
           </Link>
         )

@@ -33,8 +33,7 @@ export class FindRoom extends Component {
       this.props.selectedRoom[0].name === event.target.value
     ) {
       this.props.roomAddUser(this.props.selectedRoom[0].id, this.props.userId)
-      console.log('third')
-      this.props.history.push(`/play/${this.props.selectedRoom[0].id}`)
+      this.props.history.push(`/lobby/${this.props.selectedRoom[0].id}`)
     }
   }
 

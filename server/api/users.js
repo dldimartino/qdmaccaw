@@ -40,6 +40,26 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.put('/setAsArtist/:playerId/true', async (req, res, next) => {
+  try {
+    const player = await User.findByPk(req.params.playerId)
+    const updatedPlayer = await player.update({isArtist: true})
+    res.status(200).json(updatedPlayer)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/setAsArtist/:playerId/false', async (req, res, next) => {
+  try {
+    const player = await User.findByPk(req.params.playerId)
+    const updatedPlayer = await player.update({isArtist: false})
+    res.status(200).json(updatedPlayer)
+  } catch (error) {
+    next(error)
+  }
+})
+
 //add player to round (through: playersOfRound)
 router.put('/:playerId/setAsPlayer/:roundId', async (req, res, next) => {
   try {
