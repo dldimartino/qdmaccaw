@@ -17,13 +17,15 @@ class Game extends Component {
   setTimesUp() {
     this.setState({isTimeUp: true})
   }
-  componentDidMount() {
-    if (this.state.isTimeUp) {
-      return <Redirect to={`/lobby/${this.state.room.id}`} />
-    }
-  }
+  componentDidMount() {}
 
   render() {
+    if (this.state.isTimeUp) {
+      this.props.history.push({
+        pathname: `/lobby/${this.state.room.id}`,
+        state: {lobby: this.state.room},
+      })
+    }
     return (
       <div>
         {this.props.user.isArtist ? (
