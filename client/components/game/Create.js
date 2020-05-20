@@ -18,21 +18,17 @@ export class Create extends Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    await this.props.newRoom({name: this.state.name})
+    const {data} = await Axios.post('/api/room', {name: this.state.name})
+    // await this.props.newRoom({name: this.state.name})
     await Axios.put(`/api/users/setAsArtist/${this.props.user.id}/true`)
-    const lobbyLength = this.props.allRoom.length
-    const tgtLobby = this.props.allRoom[lobbyLength - 1]
-    const tgtlobbyId = tgtLobby.id
-    if (this.props.allRoom.length) {
+    console.log('DATA ------->>>>>>>>>>', data)
+    if (data) {
       this.props.history.push({
-        pathname: `/lobby/${tgtlobbyId}`,
-        state: {lobby: tgtLobby},
+        pathname: `/lobby/${data.id}`,
+        state: {lobby: data},
       })
     }
   }
-  // this.props.history.push(
-  //   `/play/${this.props.allRoom[this.props.allRoom.length - 1].id}`
-  // )
 
   handleChange(event) {
     this.setState({
