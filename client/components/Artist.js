@@ -1,24 +1,36 @@
 import React, {useState, createRef, useEffect} from 'react'
 import CanvasDraw from 'react-canvas-draw'
-import io from 'socket.io-client'
 import {Col, Row, Container, Button, Collapse} from 'react-bootstrap'
 import {DropletFill, XSquare, Brush, Dash, Plus} from 'react-bootstrap-icons'
-import {Icon, InlineIcon} from '@iconify/react'
+import {InlineIcon} from '@iconify/react'
 import eraserIcon from '@iconify/icons-mdi/eraser'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+const canvas = createRef()
 
 function Artist(props) {
   const [color, setColor] = useState('#AAB7B8')
   const [openPalette, setOpenPalette] = useState(false)
   const [openRadius, setOpenRadius] = useState(false)
   const [radius, setRadius] = useState(12)
-  const socket = io.connect(window.location.origin)
-  const canvas = createRef()
+  const [timer, setTimer] = useState(60)
 
   function handleChange(event) {
-    socket.emit('drawing', event.getSaveData(), props.room.name)
+    props.socket.emit('drawing', event.getSaveData(), props.room.name)
   }
+
+  useEffect(() => {
+    let time = 60
+    setInterval(() => {
+      time--
+      if (time === 0) {
+        window.alert('Round Over!')
+      } else if (time > -1) {
+        setTimer(time)
+      }
+    }, 1000)
+  }, [])
+
   return (
     <Container>
       <Link
@@ -32,7 +44,8 @@ function Artist(props) {
       </Link>
       <Row>
         <Col>
-          <h1 className="drawWord">Your Word Is: Fullstack</h1>
+          <h1> Timer: {timer} </h1>
+          <h1 className="drawWord">Your Word Is: {props.word}</h1>
         </Col>
         <div>
           <Button

@@ -26,7 +26,8 @@ export class Lobby extends Component {
   }
 
   componentDidMount() {
-    // Socket connect to room
+    // JOIN SOCKET LOBBY
+    console.log('USER JOINING LOBBY')
     socket.emit('join_lobby', this.state.room.name, this.props.user)
 
     // LISTEN FOR ARTIST WORD GENERATION
@@ -37,14 +38,12 @@ export class Lobby extends Component {
     // LISTEN FOR LATE LOBBY JOINING
     if (this.props.user.isArtist) {
       socket.on('join_lobby_late', (user) => {
-        console.log('USER', user)
         socket.emit('word_generate', this.state.gameWord, this.state.room.name)
       })
     }
 
     // LISTEN FOR GAME START
     socket.on('start_game', (room) => {
-      console.log('RECEVING START')
       this.setState({starting: true})
     })
   }
@@ -54,24 +53,8 @@ export class Lobby extends Component {
     const user = this.props.user.id
     this.props.roomDeleteUser(room, user)
 
-    // Leave Lobby
+    // LEAVE SOCKET LOBBY
     socket.emit('leave_lobby', this.state.room.name)
-  }
-
-  gameTimer() {
-    //add a set timeout/delay to countdown
-    let time = 30
-    let countdown = setInterval(() => {
-      if (this.state.timer < 0) clearInterval(countdown)
-      time--
-      console.log(time)
-      this.setState({
-        timer: time,
-      })
-      if (time === 0) {
-        window.alert('Round Over!')
-      }
-    }, 1000)
   }
 
   wordGenerator() {
@@ -100,14 +83,20 @@ export class Lobby extends Component {
   }
 
   render() {
-    console.log(this.state.gameWord)
     return (
       <div>
         <Link to="/FindRoom" className="link" onClick={this.handleClick}>
           <button type="button">Back To Find Rooms</button>
         </Link>
         {this.state.starting ? (
-          <Redirect to={{pathname: '/game', room: this.state.room}} />
+          <Redirect
+            to={{
+              pathname: '/game',
+              room: this.state.room,
+              word: this.state.gameWord,
+              socket,
+            }}
+          />
         ) : (
           ''
         )}
@@ -131,7 +120,7 @@ export class Lobby extends Component {
         ) : (
           ''
         )}
-        {/* <AllPlayers inRoom={this.props.inRoom} /> */}
+        <h1> Waiting for Artist to Start Game </h1>
         <Chatroom
           room={this.state.room}
           user={this.props.user}

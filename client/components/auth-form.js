@@ -44,10 +44,10 @@ const AuthForm = (props) => {
         </Row>
         {error && error.response && (
           <Row className="justify-content-md-center ">
-            {' '}
-            {error.response.data}{' '}
+            {error.response.data}
           </Row>
         )}
+        <br />
         <Row className="justify-content-md-center ">
           <Link to="/">
             <Button variant="danger" size="lg" className="shadow-lg">

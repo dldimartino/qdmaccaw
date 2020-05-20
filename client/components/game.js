@@ -10,6 +10,8 @@ class Game extends Component {
     this.state = {
       room: props.location.room,
       isTimeUp: false,
+      word: props.location.word,
+      socket: props.location.socket,
     }
     this.setTimesUp = this.setTimesUp.bind(this)
   }
@@ -29,9 +31,17 @@ class Game extends Component {
     return (
       <div>
         {this.props.user.isArtist ? (
-          <Artist room={this.state.room} setTimesUp={this.setTimesUp} />
+          <Artist
+            room={this.state.room}
+            word={this.state.word}
+            socket={this.state.socket}
+          />
         ) : (
-          <Guesser room={this.state.room} setTimesUp={this.setTimesUp} />
+          <Guesser
+            room={this.state.room}
+            word={this.state.word}
+            socket={this.state.socket}
+          />
         )}
       </div>
     )
