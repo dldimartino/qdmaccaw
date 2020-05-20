@@ -20,6 +20,27 @@ function Artist(props) {
     socket.emit('drawing', event.getSaveData(), props.room.name)
   }
 
+  function gameTimer() {
+    //add a set timeout/delay to countdown
+
+    let time = 30
+    let countdown = setInterval(() => {
+      if (this.state.timer < 0) clearInterval(countdown)
+      time--
+      console.log(time)
+      this.setState({
+        timer: time,
+      })
+      if (time === 0) {
+        window.alert('Round Over!')
+      }
+    }, 1000)
+  }
+
+  useEffect(() => {
+    gameTimer()
+  }, [])
+
   return (
     <Container>
       <Link to={`/lobby/${props.room.id}`} className="link">

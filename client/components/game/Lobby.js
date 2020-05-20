@@ -15,7 +15,6 @@ export class Lobby extends Component {
     super(props)
     this.state = {
       room: props.location.room,
-      timer: '',
       gameWord: '------',
       starting: false,
     }
@@ -56,22 +55,6 @@ export class Lobby extends Component {
 
     // Leave Lobby
     socket.emit('leave_lobby', this.state.room.name)
-  }
-
-  gameTimer() {
-    //add a set timeout/delay to countdown
-    let time = 30
-    let countdown = setInterval(() => {
-      if (this.state.timer < 0) clearInterval(countdown)
-      time--
-      console.log(time)
-      this.setState({
-        timer: time,
-      })
-      if (time === 0) {
-        window.alert('Round Over!')
-      }
-    }, 1000)
   }
 
   wordGenerator() {

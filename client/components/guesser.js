@@ -20,7 +20,7 @@ class Guesser extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     // this.handleOnClick = this.handleOnClick.bind(this)
-    // this.gameTimer = this.gameTimer.bind(this)
+    this.gameTimer = this.gameTimer.bind(this)
   }
 
   componentDidMount() {
@@ -30,6 +30,23 @@ class Guesser extends Component {
       console.log('GUESSER DRAWING RECEIVED')
       canvas.current.loadSaveData(data, true)
     })
+    this.gameTimer()
+  }
+  gameTimer() {
+    //add a set timeout/delay to countdown
+
+    let time = 30
+    let countdown = setInterval(() => {
+      if (this.state.timer < 0) clearInterval(countdown)
+      time--
+      console.log(time)
+      this.setState({
+        timer: time,
+      })
+      if (time === 0) {
+        window.alert('Round Over!')
+      }
+    }, 1000)
   }
 
   // async markAsCorrect(playerId) {
