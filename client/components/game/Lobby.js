@@ -46,6 +46,10 @@ export class Lobby extends Component {
     socket.on('start_game', (room) => {
       this.setState({starting: true})
     })
+    console.log('THIS>PROPS>USER-------->>>>>>>>>', this.props.user)
+    if (this.props.user.isArtist) {
+      this.wordGenerator()
+    }
   }
 
   handleClick() {
@@ -103,8 +107,9 @@ export class Lobby extends Component {
         <h1>Welcome to {this.state.room.name}!</h1>
         {this.props.user.isArtist ? (
           <div>
-            <h1>Hello, {this.props.user.name}</h1>
-            <h1>you are the artist this round</h1>
+            <h1>
+              Get ready {this.props.user.name}, YOU are the artist this round!
+            </h1>
             <br />
             <h1>Your word is: {this.state.gameWord} </h1>
             <button type="button" onClick={this.handlePass}>
@@ -118,9 +123,8 @@ export class Lobby extends Component {
             </button>
           </div>
         ) : (
-          ''
+          <h1>...Waiting for Artist to start the game</h1>
         )}
-        <h1> Waiting for Artist to Start Game </h1>
         <Chatroom
           room={this.state.room}
           user={this.props.user}
