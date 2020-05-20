@@ -26,6 +26,7 @@ module.exports = (io) => {
     })
 
     socket.on('drawing', (drawing, room) => {
+      console.log('EMITTING TO:', room)
       socket.to(room).emit('drawing', drawing)
     })
 

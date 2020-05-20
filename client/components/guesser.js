@@ -1,12 +1,10 @@
 import React, {Component, createRef} from 'react'
-import io from 'socket.io-client'
 import CanvasDraw from 'react-canvas-draw'
-import {Col, Row, Container} from 'react-bootstrap'
+import {Row, Container, Button} from 'react-bootstrap'
 import {updateWinner} from '../store/allUsers'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 const canvas = createRef()
-const socket = io.connect(window.location.origin)
 
 class Guesser extends Component {
   constructor(props) {
@@ -25,11 +23,12 @@ class Guesser extends Component {
   }
 
   componentDidMount() {
-    socket.emit('join_lobby', this.state.room.name, this.props.user)
     // RECEIVE DRAWING LISTENER
-    socket.on('drawing', function (data) {
+    this.props.socket.on('drawing', function (data) {
       canvas.current.loadSaveData(data, true)
     })
+
+    // START GAME TIMER
     this.gameTimer()
   }
 
@@ -69,7 +68,7 @@ class Guesser extends Component {
     return (
       <div>
         <Link to={`/lobby/${this.props.room.id}`} className="link">
-          <button type="button">Back To Lobby</button>
+          <Button type="button">Back To Lobby</Button>
         </Link>
         <h1> Timer: {this.state.timer} </h1>
         <form onSubmit={this.handleSubmit}>
@@ -86,7 +85,7 @@ class Guesser extends Component {
         <br />
         <Container className="whiteboard">
           <Row className="justify-content-md-center">
-            <h1 className="draw-word">Guess the drawing!</h1>
+            <h1 className="drawWord">Guess What Word The Artist is Drawing!</h1>
           </Row>
           <Row id="canvas" className="justify-content-md-center">
             <CanvasDraw
@@ -94,8 +93,8 @@ class Guesser extends Component {
               disabled={true}
               hideInterface={true}
               hideGrid={true}
-              canvasHeight={window.innerHeight / 1.5}
-              canvasWidth={window.innerWidth}
+              canvasHeight={window.screen.availHeight}
+              canvasWidth={window.screen.availWidth}
             />
           </Row>
         </Container>
