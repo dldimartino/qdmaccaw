@@ -42,8 +42,12 @@ const AuthForm = (props) => {
             {displayName}
           </Button>
         </Row>
-        {error && error.response && <div> {error.response.data} </div>}
-        <br />
+        {error && error.response && (
+          <Row className="justify-content-md-center ">
+            {' '}
+            {error.response.data}{' '}
+          </Row>
+        )}
         <Row className="justify-content-md-center ">
           <Link to="/">
             <Button variant="danger" size="lg" className="shadow-lg">
