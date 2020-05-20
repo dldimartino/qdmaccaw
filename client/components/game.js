@@ -22,6 +22,7 @@ class Game extends Component {
       return <Redirect to={`/lobby/${this.state.room.id}`} />
     }
   }
+
   render() {
     return (
       <div>
