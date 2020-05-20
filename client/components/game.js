@@ -9,16 +9,26 @@ class Game extends Component {
     super(props)
     this.state = {
       room: props.location.room,
+      isTimeUp: false,
     }
+    this.setTimesUp = this.setTimesUp.bind(this)
   }
 
+  setTimesUp() {
+    this.setState({isTimeUp: true})
+  }
+  componentDidMount() {
+    if (this.state.isTimeUp) {
+      return <Redirect to={`/lobby/${this.state.room.id}`} />
+    }
+  }
   render() {
     return (
       <div>
         {this.props.user.isArtist ? (
-          <Artist room={this.state.room} />
+          <Artist room={this.state.room} setTimesUp={this.setTimesUp} />
         ) : (
-          <Guesser room={this.state.room} />
+          <Guesser room={this.state.room} setTimesUp={this.setTimesUp} />
         )}
       </div>
     )

@@ -65,7 +65,13 @@ class Guesser extends Component {
   render() {
     return (
       <div>
-        <Link to={`/lobby/${this.props.room.id}`} className="link">
+        <Link
+          to={{
+            pathname: `/lobby/${this.props.room.id}`,
+            state: {lobby: this.props.room},
+          }}
+          className="link"
+        >
           <button type="button">Back To Lobby</button>
         </Link>
         <h1> Timer: {this.state.timer} </h1>
