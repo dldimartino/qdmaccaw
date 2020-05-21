@@ -34,7 +34,7 @@ const AuthForm = (props) => {
           {/* <label htmlFor="password">
             <small>Password</small>
           </label> */}
-          <input name="password" type="password" placeholder="password" />
+          <input name="password" type="password" placeholder="Password" />
         </Row>
 
         <Row className="justify-content-md-center ">

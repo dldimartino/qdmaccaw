@@ -74,6 +74,7 @@ function Artist(props) {
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
+                active
               />
               <Button
                 className="palette"
@@ -82,6 +83,7 @@ function Artist(props) {
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
+                active
               />
               <Button
                 className="palette"
@@ -90,6 +92,7 @@ function Artist(props) {
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
+                active
               />
               <Button
                 className="palette"
@@ -98,6 +101,7 @@ function Artist(props) {
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
+                active
               />
               <Button
                 className="palette"
@@ -106,6 +110,7 @@ function Artist(props) {
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
+                active
               />
             </div>
           </Collapse>

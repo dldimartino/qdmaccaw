@@ -77,7 +77,7 @@ export default class Chatroom extends Component {
         <header className="chat-header">
           <h1>
             <i>
-              <AiFillWechat /> Chat
+              <AiFillWechat /> Lobby
             </i>
           </h1>
         </header>
