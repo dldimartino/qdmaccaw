@@ -3,7 +3,6 @@ import {Button} from 'react-bootstrap'
 import io from 'socket.io-client'
 const moment = require('moment')
 import {AiFillWechat, AiOutlineSend} from 'react-icons/ai'
-
 const socket = io.connect(window.location.origin)
 
 export default class Chatroom extends Component {
@@ -84,22 +83,20 @@ export default class Chatroom extends Component {
         <main className="chat-main">
           <div className="chat-sidebar">
             <h3>Current Artist:</h3>
-            {/* {this.props.room.users.map((user) => {
+            {this.props.inRoom.map((user) => {
               if (user.isArtist) {
-                ;<h2 id="artist-name" key={user.id}>
-                  {user.name}
-                </h2>
+                return (
+                  <h2 id="artist-name" key={user.id}>
+                    {user.name}
+                  </h2>
+                )
               }
-            })} */}
+            })}
 
             <h3>Users:</h3>
             <ul>
-              {this.state.messages.map((message, index) => {
-                if (
-                  message.message === `${message.name} has joined the room.`
-                ) {
-                  return <li key={index}>{message.name}</li>
-                }
+              {this.props.inRoom.map((user) => {
+                return <li key={user.id}>{user.name}</li>
               })}
             </ul>
           </div>

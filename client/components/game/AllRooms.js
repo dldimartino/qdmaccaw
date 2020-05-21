@@ -11,7 +11,7 @@ export const AllRooms = (props) => {
         pathname: `/lobby/${room.id}`,
         state: {lobby: room},
       })
-    }, 2000)
+    }, 0)
   }
 
   return props.selectedRoom.length ? (
@@ -21,19 +21,6 @@ export const AllRooms = (props) => {
           <h4 key={room.id} onClick={() => navigator(room)}>
             {room.name}
           </h4>
-          //   {/* to={{
-          //     pathname: `/lobby/${room.id}`,
-          //     state: {
-          //       lobby: room,
-          //     },
-          //   }}
-          //   key={room.id}
-          //   onClick={() => props.addUserToRoom(room.id)}
-          //   className="link"
-          // >
-          //   <div>
-          //     <span>{room.name}</span>
-          //   </div> */}
         )
       })}
     </div>
