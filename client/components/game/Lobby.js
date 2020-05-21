@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
 import {usersInRoom, roomDeleteUser, roomAddUser} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
+import {me} from '../../store/user'
 import io from 'socket.io-client'
 import Chatroom from '../chatroom'
 import Axios from 'axios'
@@ -26,25 +27,35 @@ export class Lobby extends Component {
   }
 
   componentDidMount() {
-    console.log('ROOM -------->>>>>>>', this.state.room)
     this.props.usersInRoom(this.state.room.id)
+
     // JOIN SOCKET LOBBY
-    console.log('USER JOINING LOBBY')
     socket.emit('join_lobby', this.state.room.name, this.props.user)
+
     // LISTEN FOR ARTIST WORD GENERATION
     socket.on('send_word', (newWord) => {
       this.setState({gameWord: newWord})
     })
+
     // LISTEN FOR LATE LOBBY JOINING
     if (this.props.user.isArtist) {
       socket.on('join_lobby_late', (user) => {
         socket.emit('word_generate', this.state.gameWord, this.state.room.name)
+        this.props.usersInRoom(this.state.room.id)
+      })
+    } else {
+      socket.on('join_lobby_late', (user) => {
+        this.props.usersInRoom(this.state.room.id)
       })
     }
+
     // LISTEN FOR GAME START
     socket.on('start_game', (room) => {
       this.setState({starting: true})
     })
+
+    //LISTEN FOR BRUSH PASS
+    // socket.on('passed_brush',() )
 
     if (this.props.user.isArtist) {
       this.wordGenerator()
@@ -70,26 +81,17 @@ export class Lobby extends Component {
     socket.emit('word_generate', newWord, this.state.room.name)
   }
 
-  //guess checker
-  // does input form guess ==== socket word message?
-
-  //artist
-  //<h1> socket.message <h1>
-
-  // Only for Artist - Can pass being artist to someone else
   async handlePass() {
-    console.log('THIS>STATE>ROOM ------->>>>>>>>', this.state.room)
-    console.log('THIS>PROPS!!!! ------->>>>>', this.props)
-    console.log('THIS>PROPS>INROOM --------->>>>>>>>', this.props.inRoom)
     let randomNum =
       Math.floor(Math.random() * (this.props.inRoom.length - 1)) + 1
-    console.log('RANDOMNUM ------>>>>>>>>', randomNum)
     const nextArtist = this.props.inRoom[randomNum - 1]
-    console.log('NEXTARTIST------>>>>>>', nextArtist)
-    await Axios.put(`/api/users/setAsArtist/${this.props.user.id}/false`)
-    await Axios.put(
-      `/api/users/setAsArtist/${this.props.inRoom[randomNum - 1].id}/true`
-    )
+    const nextArtistId = nextArtist.id
+    const currentArtist = this.props.user
+    const currentArtistId = currentArtist.id
+    await Axios.put(`/api/users/setAsArtist/${currentArtistId}/false`)
+    await Axios.put(`/api/users/setAsArtist/${nextArtistId}/true`)
+
+    this.props.usersInRoom(this.state.room.id)
   }
 
   startGame() {
@@ -170,6 +172,7 @@ const mapDispatch = (dispatch) => ({
   roomAddUser: (roomId, userId) => {
     dispatch(roomAddUser(roomId, userId))
   },
+  getUser: () => dispatch(me()),
 })
 
 export default connect(mapState, mapDispatch)(Lobby)

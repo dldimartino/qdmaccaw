@@ -68,7 +68,6 @@ export const usersInRoom = (roomId) => async (dispatch) => {
   try {
     const {data} = await axios.get(`/api/room/${roomId}`)
     if (data) {
-      console.log('DATA IN THUNKKKKK ------>>>>>>>>>>>', data)
       dispatch(listOfUser(data))
     }
   } catch (error) {
