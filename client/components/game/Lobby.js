@@ -15,7 +15,6 @@ export class Lobby extends Component {
     super(props)
     this.state = {
       room: this.props.location.state.lobby,
-      timer: '',
       gameWord: '------',
       starting: false,
     }

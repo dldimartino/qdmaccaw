@@ -94,8 +94,12 @@ export default class Chatroom extends Component {
 
             <h3>Users:</h3>
             <ul>
-              {this.props.room.users.map((user) => {
-                return <li key={user.id}>{user.name}</li>
+              {this.state.messages.map((message, index) => {
+                if (
+                  message.message === `${message.name} has joined the room.`
+                ) {
+                  return <li key={index}>{message.name}</li>
+                }
               })}
             </ul>
           </div>
