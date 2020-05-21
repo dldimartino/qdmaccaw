@@ -100,6 +100,16 @@ export class Lobby extends Component {
     }
     let randomNum = getRandomIntInclusive(0, this.props.inRoom.length - 1)
     // Math.floor(Math.random() * (this.props.inRoom.length - 1)) +1
+    if (this.props.inRoom.length > 1) {
+      while (this.props.inRoom[randomNum].id === this.state.currentArtist.id) {
+        console.log('INSIDE WHILE LOOP ------->>>>>>>')
+        console.log('RANDOM NUMBER BEFORE --------->>>>>>>>', randomNum)
+        randomNum = getRandomIntInclusive(0, this.props.inRoom.length - 1)
+        console.log('RANDOM NUMBER AFTER --------->>>>>>>>', randomNum)
+      }
+    } else {
+      randomNum = 0
+    }
     const nextArtist = this.props.inRoom[randomNum]
     const nextArtistId = nextArtist.id
     const currentArtist = this.props.user
