@@ -83,7 +83,8 @@ export default class Chatroom extends Component {
         <main className="chat-main">
           <div className="chat-sidebar">
             <h3>Current Artist:</h3>
-            {this.props.inRoom.map((user) => {
+            <h3>{this.props.currentArtist.name}</h3>
+            {/* {this.props.inRoom.map((user) => {
               if (user.isArtist) {
                 return (
                   <h2 id="artist-name" key={user.id}>
@@ -91,7 +92,7 @@ export default class Chatroom extends Component {
                   </h2>
                 )
               }
-            })}
+            })} */}
 
             <h3>Users:</h3>
             <ul>

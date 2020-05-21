@@ -19,6 +19,7 @@ export class Lobby extends Component {
       room: this.props.location.state.lobby,
       gameWord: '------',
       starting: false,
+      currentArtist: {},
     }
     this.handleClick = this.handleClick.bind(this)
     this.wordGenerator = this.wordGenerator.bind(this)
@@ -39,8 +40,10 @@ export class Lobby extends Component {
 
     // LISTEN FOR LATE LOBBY JOINING
     if (this.props.user.isArtist) {
+      this.setState({currentArtist: this.props.user})
       socket.on('join_lobby_late', (user) => {
         socket.emit('word_generate', this.state.gameWord, this.state.room.name)
+        socket.emit('new_artist', this.state.room.name, this.props.user)
         this.props.usersInRoom(this.state.room.id)
       })
     } else {
@@ -54,6 +57,14 @@ export class Lobby extends Component {
       this.setState({starting: true})
     })
 
+    // LISTEN FOR UPDATED ARTIST
+    socket.on('artist_incoming', (artist) => {
+      this.setState({currentArtist: artist})
+      console.log(
+        'THIS>STATE>CURRENTARTIST ------>>>>>>',
+        this.state.currentArtist
+      )
+    })
     //LISTEN FOR BRUSH PASS
     // socket.on('passed_brush',() )
 
@@ -82,15 +93,20 @@ export class Lobby extends Component {
   }
 
   async handlePass() {
-    let randomNum =
-      Math.floor(Math.random() * (this.props.inRoom.length - 1)) + 1
-    const nextArtist = this.props.inRoom[randomNum - 1]
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min)
+      max = Math.floor(max)
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+    let randomNum = getRandomIntInclusive(0, this.props.inRoom.length - 1)
+    // Math.floor(Math.random() * (this.props.inRoom.length - 1)) +1
+    const nextArtist = this.props.inRoom[randomNum]
     const nextArtistId = nextArtist.id
     const currentArtist = this.props.user
     const currentArtistId = currentArtist.id
     await Axios.put(`/api/users/setAsArtist/${currentArtistId}/false`)
     await Axios.put(`/api/users/setAsArtist/${nextArtistId}/true`)
-
+    await socket.emit('new_artist', this.state.room.name, nextArtist)
     this.props.usersInRoom(this.state.room.id)
   }
 
@@ -117,7 +133,7 @@ export class Lobby extends Component {
           ''
         )}
         <h1>Welcome to {this.state.room.name}!</h1>
-        {this.props.user.isArtist ? (
+        {this.props.user.name === this.state.currentArtist.name ? (
           <div>
             <h1>
               Get ready {this.props.user.name}, YOU are the artist this round!
@@ -141,6 +157,7 @@ export class Lobby extends Component {
           room={this.state.room}
           user={this.props.user}
           inRoom={this.props.inRoom}
+          currentArtist={this.state.currentArtist}
         />
       </div>
     )

@@ -16,6 +16,10 @@ module.exports = (io) => {
       socket.leave(room)
     })
 
+    socket.on('new_artist', (room, nextArtist) => {
+      io.in(room).emit('artist_incoming', nextArtist)
+    })
+
     socket.on('word_generate', (newWord, room) => {
       socket.to(room).emit('send_word', newWord)
     })
