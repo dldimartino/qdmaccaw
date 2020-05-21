@@ -12,7 +12,7 @@ export const Main = (props) => {
         <h1 className="Welcome">DrawBit</h1>
       </Row>
       <Row className="justify-content-md-center">
-        <h3>Welcome, {name}</h3>
+        <h2 className="authPg">Welcome, {name}</h2>
       </Row>
 
       <div className="mt-5">

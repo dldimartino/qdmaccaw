@@ -57,6 +57,22 @@ form div {
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15); */
 }
 
+.authPg {
+  font-family: 'Modak';
+  background-image: linear-gradient(
+    to right,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 @media (max-width: 300px) {
   .Welcome {
     font-size: 70px;
