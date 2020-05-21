@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/allUsers'
-import {usersInRoom, roomDeleteUser} from '../../store/allRoom'
+import {usersInRoom, roomDeleteUser, roomAddUser} from '../../store/allRoom'
 import {fetchWord} from '../../store/word'
 import io from 'socket.io-client'
 import Chatroom from '../chatroom'
+import Axios from 'axios'
 const socket = io.connect(window.location.origin)
 
 import {AllPlayers} from './AllPlayers'
@@ -25,27 +26,26 @@ export class Lobby extends Component {
   }
 
   componentDidMount() {
+    console.log('ROOM -------->>>>>>>', this.state.room)
+    this.props.usersInRoom(this.state.room.id)
     // JOIN SOCKET LOBBY
     console.log('USER JOINING LOBBY')
     socket.emit('join_lobby', this.state.room.name, this.props.user)
-
     // LISTEN FOR ARTIST WORD GENERATION
     socket.on('send_word', (newWord) => {
       this.setState({gameWord: newWord})
     })
-
     // LISTEN FOR LATE LOBBY JOINING
     if (this.props.user.isArtist) {
       socket.on('join_lobby_late', (user) => {
         socket.emit('word_generate', this.state.gameWord, this.state.room.name)
       })
     }
-
     // LISTEN FOR GAME START
     socket.on('start_game', (room) => {
       this.setState({starting: true})
     })
-    console.log('THIS>PROPS>USER-------->>>>>>>>>', this.props.user)
+
     if (this.props.user.isArtist) {
       this.wordGenerator()
     }
@@ -77,8 +77,19 @@ export class Lobby extends Component {
   //<h1> socket.message <h1>
 
   // Only for Artist - Can pass being artist to someone else
-  handlePass() {
-    console.log(this.props.inRoom)
+  async handlePass() {
+    console.log('THIS>STATE>ROOM ------->>>>>>>>', this.state.room)
+    console.log('THIS>PROPS!!!! ------->>>>>', this.props)
+    console.log('THIS>PROPS>INROOM --------->>>>>>>>', this.props.inRoom)
+    let randomNum =
+      Math.floor(Math.random() * (this.props.inRoom.length - 1)) + 1
+    console.log('RANDOMNUM ------>>>>>>>>', randomNum)
+    const nextArtist = this.props.inRoom[randomNum - 1]
+    console.log('NEXTARTIST------>>>>>>', nextArtist)
+    await Axios.put(`/api/users/setAsArtist/${this.props.user.id}/false`)
+    await Axios.put(
+      `/api/users/setAsArtist/${this.props.inRoom[randomNum - 1].id}/true`
+    )
   }
 
   startGame() {
@@ -135,8 +146,9 @@ export class Lobby extends Component {
 }
 
 const mapState = (state) => ({
-  allUsers: state.allUsers,
+  // allUsers: state.allUsers,
   inRoom: state.allRoom.inRoom,
+  // inRoom: state.allRoom.inRoom,
   word: state.word,
   rooms: state.allRoom,
   user: state.user,
@@ -154,6 +166,9 @@ const mapDispatch = (dispatch) => ({
   },
   usersInRoom: (roomId) => {
     dispatch(usersInRoom(roomId))
+  },
+  roomAddUser: (roomId, userId) => {
+    dispatch(roomAddUser(roomId, userId))
   },
 })
 
