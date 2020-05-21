@@ -28,6 +28,11 @@ class Guesser extends Component {
       canvas.current.loadSaveData(data, true)
     })
 
+    // RECEIVE CLEAR WHITEBOARD LISTENER
+    this.props.socket.on('clear', () => {
+      canvas.current.clear()
+    })
+
     // START GAME TIMER
     this.gameTimer()
   }

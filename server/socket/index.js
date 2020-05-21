@@ -31,6 +31,10 @@ module.exports = (io) => {
       socket.to(room).emit('drawing', drawing)
     })
 
+    socket.on('clear', (room) => {
+      socket.to(room).emit('clear')
+    })
+
     //Chat room logic:
     socket.on('join_chat', (message, room) => {
       socket.join(room)

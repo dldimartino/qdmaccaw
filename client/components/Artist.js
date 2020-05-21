@@ -19,6 +19,11 @@ function Artist(props) {
     props.socket.emit('drawing', event.getSaveData(), props.room.name)
   }
 
+  function handleClear() {
+    canvas.current.clear()
+    props.socket.emit('clear', props.room.name)
+  }
+
   useEffect(() => {
     let time = 60
     setInterval(() => {
@@ -33,13 +38,7 @@ function Artist(props) {
 
   return (
     <Container>
-      <Link
-        to={{
-          pathname: `/lobby/${props.room.id}`,
-          state: {lobby: props.room},
-        }}
-      >
-        {/* // `/lobby/${props.room.id}`} className="link"> */}
+      <Link to={`/lobby/${props.room.id}`} className="link">
         <Button type="button">Back To Lobby</Button>
       </Link>
       <Row>
@@ -50,7 +49,10 @@ function Artist(props) {
         <div>
           <Button
             className="btn-dark"
-            onClick={() => setOpenPalette(!openPalette)}
+            onClick={() => {
+              setOpenPalette(!openPalette)
+              if (openRadius) setOpenRadius(!openRadius)
+            }}
             aria-controls="collapse-palette"
             aria-expanded={openPalette}
           >
@@ -94,7 +96,10 @@ function Artist(props) {
           </Collapse>
           <Button
             className="btn-dark"
-            onClick={() => setOpenRadius(!openRadius)}
+            onClick={() => {
+              setOpenRadius(!openRadius)
+              if (openPalette) setOpenPalette(!openPalette)
+            }}
             aria-controls="collapse-radius"
             aria-expanded={openRadius}
           >
@@ -121,7 +126,7 @@ function Artist(props) {
           <Button className="btn-dark" onClick={() => setColor('white')}>
             <InlineIcon icon={eraserIcon} height="2em" width="2em" />
           </Button>
-          <Button className="btn-dark" onClick={() => canvas.current.clear()}>
+          <Button className="btn-dark" onClick={handleClear}>
             <XSquare className="icon" size={30} />
           </Button>
         </div>
