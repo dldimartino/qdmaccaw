@@ -4,6 +4,7 @@ import axios from 'axios'
 const GET_ROOM = 'GET_ROOM'
 const FILTER_ROOM = 'FILTER_ROOM'
 const USER_IN_ROOM = 'USER_IN_ROOM'
+const ADD_USER = 'ADD_USER'
 
 /* Action Creators */
 const getRoom = (room) => ({
@@ -11,9 +12,14 @@ const getRoom = (room) => ({
   room,
 })
 
-const listOfUser = (user) => ({
-  type: USER_IN_ROOM,
+const addedUser = (user) => ({
+  type: ADD_USER,
   user,
+})
+
+const listOfUser = (users) => ({
+  type: USER_IN_ROOM,
+  users,
 })
 
 export const filterRoom = (value) => ({
@@ -43,7 +49,8 @@ export const newRoom = (room) => async (dispatch) => {
 
 export const roomAddUser = (roomId, playerId) => async (dispatch) => {
   try {
-    await axios.put(`/api/room/${roomId}/${playerId}/join`)
+    const {data} = await axios.put(`/api/room/${roomId}/${playerId}/join`)
+    dispatch(addedUser(data))
   } catch (error) {
     console.error(error)
   }
@@ -60,8 +67,10 @@ export const roomDeleteUser = (roomId, playerId) => async (dispatch) => {
 export const usersInRoom = (roomId) => async (dispatch) => {
   try {
     const {data} = await axios.get(`/api/room/${roomId}`)
-    console.log('data: ', data)
-    dispatch(listOfUser(data))
+    if (data) {
+      console.log('DATA IN THUNKKKKK ------>>>>>>>>>>>', data)
+      dispatch(listOfUser(data))
+    }
   } catch (error) {
     console.error(error)
   }
@@ -88,7 +97,9 @@ export default function (state = initialState, action) {
       }
     }
     case USER_IN_ROOM:
-      return {...state, inRoom: action.user}
+      return {...state, inRoom: action.users}
+    case ADD_USER:
+      return {...state, inRoom: [...state.inRoom, action.user]}
     default:
       return state
   }

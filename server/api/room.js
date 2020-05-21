@@ -39,7 +39,9 @@ router.get('/:roomId', async (req, res, next) => {
     const players = await User.findAll({
       where: {roomId: req.params.roomId},
     })
-    res.json(players)
+    if (players) {
+      res.status(200).json(players)
+    }
   } catch (error) {
     next(error)
   }
@@ -58,7 +60,7 @@ router.put('/:roomId/:playerId/join', async (req, res, next) => {
 
 router.put('/:roomId/:playerId/leave', async (req, res, next) => {
   try {
-    const room = await Room.findByPk(req.params.roomId)
+    // const room = await Room.findByPk(req.params.roomId)
     const player = await User.findByPk(req.params.playerId)
     const leftUser = await player.setRoom(null)
     res.status(201).json(leftUser)
