@@ -41,6 +41,7 @@ class Game extends Component {
             room={this.state.room}
             word={this.state.word}
             socket={this.state.socket}
+            history={this.props.history}
           />
         )}
       </div>

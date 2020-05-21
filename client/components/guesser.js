@@ -12,8 +12,7 @@ class Guesser extends Component {
     this.state = {
       playerId: 1,
       guess: '',
-      timer: 60,
-      room: props.room,
+      timer: 10,
       word: props.word,
     }
 
@@ -34,7 +33,7 @@ class Guesser extends Component {
 
   gameTimer() {
     //add a set timeout/delay to countdown
-    let time = 60
+    let time = 10
     let countdown = setInterval(() => {
       if (this.state.timer < 0) clearInterval(countdown)
       time--
@@ -42,7 +41,11 @@ class Guesser extends Component {
         timer: time,
       })
       if (time === 0) {
-        window.alert('Round Over!')
+        this.props.history.push({
+          pathname: `/lobby/${this.props.room.id}`,
+          state: {lobby: this.props.room},
+        })
+        // window.alert('Round Over!')
       }
     }, 1000)
   }
