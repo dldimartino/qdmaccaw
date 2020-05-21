@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 import io from 'socket.io-client'
 const moment = require('moment')
@@ -10,6 +11,7 @@ export default class Chatroom extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      roomName: props.roomName,
       message: '',
       messages: [],
     }
@@ -75,6 +77,8 @@ export default class Chatroom extends Component {
     return (
       <div className="chat-container">
         <header className="chat-header">
+          <h1>Welcome to {this.state.roomName}!</h1>
+          <br />
           <h1>
             <i>
               <AiFillWechat /> Lobby
@@ -116,6 +120,11 @@ export default class Chatroom extends Component {
         </main>
         <div className="chat-form-container">
           <form id="chat-form" onSubmit={this.handleSubmit}>
+            <Link to="/FindRoom" className="link" onClick={this.handleClick}>
+              <Button type="button" variant="danger" className="chat-button">
+                Leave Lobby
+              </Button>
+            </Link>
             <input
               name="message"
               type="text"
@@ -123,7 +132,7 @@ export default class Chatroom extends Component {
               value={this.state.message}
               onChange={this.handleChange}
             />
-            <Button type="submit" variant="outline-success">
+            <Button type="submit" variant="success" className="chat-button">
               Send <AiOutlineSend />
             </Button>
           </form>

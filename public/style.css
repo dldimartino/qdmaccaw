@@ -210,3 +210,7 @@ body {
   height: 40px;
   flex: 1;
 }
+
+.chat-button {
+  margin: 0px 15px;
+}

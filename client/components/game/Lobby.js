@@ -96,12 +96,16 @@ export class Lobby extends Component {
     socket.emit('start_game', this.state.room.name)
   }
 
+  properCaps(roomName) {
+    return roomName
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  }
+
   render() {
     return (
       <div>
-        <Link to="/FindRoom" className="link" onClick={this.handleClick}>
-          <button type="button">Back To Find Rooms</button>
-        </Link>
         {this.state.starting ? (
           <Redirect
             to={{
@@ -114,7 +118,6 @@ export class Lobby extends Component {
         ) : (
           ''
         )}
-        <h1>Welcome to {this.state.room.name}!</h1>
         {this.props.user.isArtist ? (
           <div>
             <h1>
@@ -139,6 +142,9 @@ export class Lobby extends Component {
           room={this.state.room}
           user={this.props.user}
           inRoom={this.props.inRoom}
+          socket={socket}
+          leaveLobby={this.handleClick}
+          roomName={() => this.properCaps(this.state.room.name)}
         />
       </div>
     )
