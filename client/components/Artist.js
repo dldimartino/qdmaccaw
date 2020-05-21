@@ -4,13 +4,14 @@ import {Col, Row, Container, Button, Collapse} from 'react-bootstrap'
 import {DropletFill, XSquare, Brush, Dash, Plus} from 'react-bootstrap-icons'
 import {InlineIcon} from '@iconify/react'
 import eraserIcon from '@iconify/icons-mdi/eraser'
+import contrastIcon from '@iconify/icons-mdi/contrast'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router'
 const canvas = createRef()
 
 function Artist(props) {
-  const [color, setColor] = useState('#AAB7B8')
+  const [color, setColor] = useState('#404040')
   const [openPalette, setOpenPalette] = useState(false)
   const [openRadius, setOpenRadius] = useState(false)
   const [radius, setRadius] = useState(12)
@@ -19,6 +20,11 @@ function Artist(props) {
 
   function handleChange(event) {
     props.socket.emit('drawing', event.getSaveData(), props.room.name)
+  }
+
+  function handleClear() {
+    canvas.current.clear()
+    props.socket.emit('clear', props.room.name)
   }
 
   useEffect(() => {
@@ -39,13 +45,7 @@ function Artist(props) {
 
   return (
     <Container>
-      <Link
-        to={{
-          pathname: `/lobby/${props.room.id}`,
-          state: {lobby: props.room},
-        }}
-      >
-        {/* // `/lobby/${props.room.id}`} className="link"> */}
+      <Link to={`/lobby/${props.room.id}`} className="link">
         <Button type="button">Back To Lobby</Button>
       </Link>
       <Row>
@@ -56,18 +56,21 @@ function Artist(props) {
         <div>
           <Button
             className="btn-dark"
-            onClick={() => setOpenPalette(!openPalette)}
+            onClick={() => {
+              setOpenPalette(!openPalette)
+              if (openRadius) setOpenRadius(!openRadius)
+            }}
             aria-controls="collapse-palette"
             aria-expanded={openPalette}
           >
-            <DropletFill color={color} size={30} />
+            <DropletFill color="#ffffff" size={30} />
           </Button>
           <Collapse in={openPalette}>
             <div id="collapse-palette">
               <Button
                 className="palette"
                 type="button"
-                style={{backgroundColor: '#AAB7B8'}}
+                style={{backgroundColor: '#404040'}}
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
@@ -75,7 +78,7 @@ function Artist(props) {
               <Button
                 className="palette"
                 type="button"
-                style={{backgroundColor: 'red'}}
+                style={{backgroundColor: '#ff3333'}}
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
@@ -83,7 +86,7 @@ function Artist(props) {
               <Button
                 className="palette"
                 type="button"
-                style={{backgroundColor: 'blue'}}
+                style={{backgroundColor: '#3366ff'}}
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
@@ -91,7 +94,15 @@ function Artist(props) {
               <Button
                 className="palette"
                 type="button"
-                style={{backgroundColor: 'green'}}
+                style={{backgroundColor: '#ffff33'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+              />
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: '#40bf40'}}
                 onClick={(event) =>
                   setColor(event.target.style.backgroundColor)
                 }
@@ -100,11 +111,14 @@ function Artist(props) {
           </Collapse>
           <Button
             className="btn-dark"
-            onClick={() => setOpenRadius(!openRadius)}
+            onClick={() => {
+              setOpenRadius(!openRadius)
+              if (openPalette) setOpenPalette(!openPalette)
+            }}
             aria-controls="collapse-radius"
             aria-expanded={openRadius}
           >
-            <Brush size={30} />
+            <InlineIcon icon={contrastIcon} height="2em" width="2em" />
           </Button>
           <Collapse in={openRadius}>
             <div id="collapse-radius">
@@ -127,7 +141,7 @@ function Artist(props) {
           <Button className="btn-dark" onClick={() => setColor('white')}>
             <InlineIcon icon={eraserIcon} height="2em" width="2em" />
           </Button>
-          <Button className="btn-dark" onClick={() => canvas.current.clear()}>
+          <Button className="btn-dark" onClick={handleClear}>
             <XSquare className="icon" size={30} />
           </Button>
         </div>

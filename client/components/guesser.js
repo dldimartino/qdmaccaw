@@ -27,6 +27,11 @@ class Guesser extends Component {
       canvas.current.loadSaveData(data, true)
     })
 
+    // RECEIVE CLEAR WHITEBOARD LISTENER
+    this.props.socket.on('clear', () => {
+      canvas.current.clear()
+    })
+
     // START GAME TIMER
     this.gameTimer()
   }
@@ -77,7 +82,7 @@ class Guesser extends Component {
           }}
           className="link"
         >
-          <button type="button">Back To Lobby</button>
+          <Button type="button">Back To Lobby</Button>
         </Link>
         <h1> Timer: {this.state.timer} </h1>
         <form onSubmit={this.handleSubmit}>
@@ -88,7 +93,7 @@ class Guesser extends Component {
             value={this.state.guess}
             onChange={this.handleChange}
           />
-          <button type="submit">Submit Guess</button>
+          <Button type="button">Submit Guess</Button>
         </form>
         <br />
         <br />
