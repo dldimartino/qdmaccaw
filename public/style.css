@@ -25,13 +25,6 @@ form div {
 .Welcome {
   font-family: 'Modak';
   font-size: 150px;
-  color: rgb(66, 245, 230);
-  /*Adds text shadow to create 3d effect. Totally optional */
-  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
-    0 5px 0 #aaa,
-    /*Remove everything after this to have 3D 
-     without shadows -->*/ 0 6px
-      1px rgba(0, 0, 0, 0.1),
   /* This adds rainbow color to the h1 */
   background-image: linear-gradient(
     to left,
