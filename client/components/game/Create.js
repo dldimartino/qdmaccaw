@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 // import {Redirect} from 'react-router'
+import {me} from '../../store/user'
 import {connect} from 'react-redux'
 import {Button, Row, Container} from 'react-bootstrap'
 import {newRoom} from '../../store/allRoom'
@@ -20,13 +21,24 @@ export class Create extends Component {
     event.preventDefault()
     const {data} = await Axios.post('/api/room', {name: this.state.name})
     // await this.props.newRoom({name: this.state.name})
-    await Axios.put(`/api/users/setAsArtist/${this.props.user.id}/true`)
+    const artistYay = await Axios.put(
+      `/api/users/setAsArtist/${this.props.user.id}/true`
+    )
+    console.log('ARTISTYAY ------->>>>>>>>>', artistYay)
     console.log('DATA ------->>>>>>>>>>', data)
-    if (data) {
-      this.props.history.push({
+
+    ////////// DanD - I added a dispatch to run the me() function to re-grab the new user from the db
+    await this.props.getUser()
+
+    const toLobby = () => {
+      return this.props.history.push({
         pathname: `/lobby/${data.id}`,
         state: {lobby: data},
       })
+    }
+    if (data) {
+      this.setState({name: 'Room Generating!'})
+      setTimeout(toLobby, 800)
     }
   }
 
@@ -81,6 +93,9 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   newRoom: (room) => dispatch(newRoom(room)),
+
+  ////// added for me() to regrab the updated user after set to artist
+  getUser: () => dispatch(me()),
 })
 
 export default connect(mapState, mapDispatch)(Create)

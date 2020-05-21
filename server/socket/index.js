@@ -11,7 +11,8 @@ module.exports = (io) => {
       socket.to(room).emit('join_lobby_late', user)
     })
 
-    socket.on('leave_lobby', (room) => {
+    socket.on('leave_lobby', (room, user) => {
+      socket.to(room).emit('left_lobby', user)
       socket.leave(room)
     })
 
