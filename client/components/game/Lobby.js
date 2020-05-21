@@ -127,9 +127,6 @@ export class Lobby extends Component {
   render() {
     return (
       <div>
-        <Link to="/FindRoom" className="link" onClick={this.handleClick}>
-          <button type="button">Back To Find Rooms</button>
-        </Link>
         {this.state.starting ? (
           <Redirect
             to={{
@@ -167,6 +164,8 @@ export class Lobby extends Component {
           room={this.state.room}
           user={this.props.user}
           inRoom={this.props.inRoom}
+          socket={socket}
+          leaveLobby={this.handleClick}
           currentArtist={this.state.currentArtist}
         />
       </div>
