@@ -4,17 +4,19 @@ import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Link} from 'react-router-dom'
 import {Button, Row, Container} from 'react-bootstrap'
+import classNames from 'classnames'
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
+  const displayPg = classNames('mb-4', 'authPg')
 
   return (
     <Container className="Buttons">
       <Row className="justify-content-md-center ">
-        <h2 className="mb-4">{displayName} Page</h2>
+        <h2 className={displayPg}>{displayName} Page</h2>
       </Row>
       <form onSubmit={handleSubmit} name={name}>
         {/* <div>
@@ -47,7 +49,6 @@ const AuthForm = (props) => {
             {error.response.data}
           </Row>
         )}
-        <br />
         <Row className="justify-content-md-center ">
           <Link to="/">
             <Button variant="danger" size="lg" className="shadow-lg">
