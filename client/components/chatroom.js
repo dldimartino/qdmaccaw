@@ -97,7 +97,7 @@ export default class Chatroom extends Component {
                 )
               }
             })} */}
-            <h3>Users:</h3>
+            <h3>Users in Lobby:</h3>
             <ul>
               {this.props.inRoom.map((user) => {
                 return <li key={user.id}>{user.name}</li>
@@ -113,18 +113,6 @@ export default class Chatroom extends Component {
                 <p className="text">{message.message}</p>
               </div>
             ))}
-          </div>
-          <div className="chat-sidebar">
-            <h3>Users in Lobby:</h3>
-            <ul>
-              {this.state.messages.map((message, index) => {
-                if (
-                  message.message === `${message.name} has joined the room.`
-                ) {
-                  return <li key={index}>{message.name}</li>
-                }
-              })}
-            </ul>
           </div>
         </main>
         <div className="chat-form-container">

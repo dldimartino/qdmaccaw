@@ -15,7 +15,7 @@ function Artist(props) {
   const [openPalette, setOpenPalette] = useState(false)
   const [openRadius, setOpenRadius] = useState(false)
   const [radius, setRadius] = useState(12)
-  const [timer, setTimer] = useState(10)
+  const [timer, setTimer] = useState(60)
   const history = useHistory()
 
   function handleChange(event) {
@@ -28,7 +28,7 @@ function Artist(props) {
   }
 
   useEffect(() => {
-    let time = 10
+    let time = 60
     setInterval(() => {
       time--
       if (time === 0) {
@@ -45,9 +45,6 @@ function Artist(props) {
 
   return (
     <Container>
-      <Link to={`/lobby/${props.room.id}`} className="link">
-        <Button type="button">Back To Lobby</Button>
-      </Link>
       <Row>
         <Col>
           <h1> Timer: {timer} </h1>

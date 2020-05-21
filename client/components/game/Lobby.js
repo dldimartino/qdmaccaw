@@ -139,12 +139,8 @@ export class Lobby extends Component {
         ) : (
           ''
         )}
-        <h1>Welcome to {this.state.room.name}!</h1>
         {this.props.user.name === this.state.currentArtist.name ? (
           <div>
-            <h1>
-              Get ready {this.props.user.name}, YOU are the artist this round!
-            </h1>
             <br />
             <h1>Your word is: {this.state.gameWord} </h1>
             <button type="button" onClick={this.handlePass}>

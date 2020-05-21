@@ -12,7 +12,7 @@ class Guesser extends Component {
     this.state = {
       playerId: 1,
       guess: '',
-      timer: 10,
+      timer: 60,
       word: props.word,
     }
 
@@ -38,7 +38,7 @@ class Guesser extends Component {
 
   gameTimer() {
     //add a set timeout/delay to countdown
-    let time = 10
+    let time = 60
     let countdown = setInterval(() => {
       if (this.state.timer < 0) clearInterval(countdown)
       time--
@@ -75,15 +75,15 @@ class Guesser extends Component {
   render() {
     return (
       <div>
-        <Link
+        {/* <Link
           to={{
             pathname: `/lobby/${this.props.room.id}`,
-            state: {lobby: this.props.room},
+            state: {lobby: this.props.room}
           }}
           className="link"
         >
           <Button type="button">Back To Lobby</Button>
-        </Link>
+        </Link> */}
         <h1> Timer: {this.state.timer} </h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="guess">Guess:</label>
