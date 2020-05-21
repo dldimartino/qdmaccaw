@@ -58,7 +58,7 @@ export class Lobby extends Component {
     this.props.roomDeleteUser(room, user)
 
     // LEAVE SOCKET LOBBY
-    socket.emit('leave_lobby', this.state.room.name)
+    socket.emit('leave_lobby', this.state.room.name, this.props.user)
   }
 
   wordGenerator() {
