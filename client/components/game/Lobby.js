@@ -96,13 +96,6 @@ export class Lobby extends Component {
     socket.emit('start_game', this.state.room.name)
   }
 
-  properCaps(roomName) {
-    return roomName
-      .split(' ')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ')
-  }
-
   render() {
     return (
       <div>
@@ -144,7 +137,6 @@ export class Lobby extends Component {
           inRoom={this.props.inRoom}
           socket={socket}
           leaveLobby={this.handleClick}
-          roomName={() => this.properCaps(this.state.room.name)}
         />
       </div>
     )

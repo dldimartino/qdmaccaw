@@ -11,7 +11,7 @@ export default class Chatroom extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      roomName: props.roomName,
+      room: props.room,
       message: '',
       messages: [],
     }
@@ -77,7 +77,7 @@ export default class Chatroom extends Component {
     return (
       <div className="chat-container">
         <header className="chat-header">
-          <h1>Welcome to {this.state.roomName}!</h1>
+          <h1>Welcome to {this.state.room.name}!</h1>
           <br />
           <h1>
             <i>
@@ -95,17 +95,6 @@ export default class Chatroom extends Component {
                 </h2>
               }
             })} */}
-
-            <h3>Users:</h3>
-            <ul>
-              {this.state.messages.map((message, index) => {
-                if (
-                  message.message === `${message.name} has joined the room.`
-                ) {
-                  return <li key={index}>{message.name}</li>
-                }
-              })}
-            </ul>
           </div>
           <div className="chat-messages">
             {this.state.messages.map((message, index) => (
@@ -116,6 +105,18 @@ export default class Chatroom extends Component {
                 <p className="text">{message.message}</p>
               </div>
             ))}
+          </div>
+          <div className="chat-sidebar">
+            <h3>Users in Lobby:</h3>
+            <ul>
+              {this.state.messages.map((message, index) => {
+                if (
+                  message.message === `${message.name} has joined the room.`
+                ) {
+                  return <li key={index}>{message.name}</li>
+                }
+              })}
+            </ul>
           </div>
         </main>
         <div className="chat-form-container">
