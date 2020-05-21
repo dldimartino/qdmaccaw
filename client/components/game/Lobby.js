@@ -15,7 +15,6 @@ export class Lobby extends Component {
     super(props)
     this.state = {
       room: this.props.location.state.lobby,
-      timer: '',
       gameWord: '------',
       starting: false,
     }
@@ -128,7 +127,7 @@ export class Lobby extends Component {
         <Chatroom
           room={this.state.room}
           user={this.props.user}
-          users={this.props.allUsers}
+          inRoom={this.props.inRoom}
         />
       </div>
     )

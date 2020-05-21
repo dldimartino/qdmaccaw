@@ -6,6 +6,7 @@ import {InlineIcon} from '@iconify/react'
 import eraserIcon from '@iconify/icons-mdi/eraser'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router'
 const canvas = createRef()
 
 function Artist(props) {
@@ -13,18 +14,23 @@ function Artist(props) {
   const [openPalette, setOpenPalette] = useState(false)
   const [openRadius, setOpenRadius] = useState(false)
   const [radius, setRadius] = useState(12)
-  const [timer, setTimer] = useState(60)
+  const [timer, setTimer] = useState(10)
+  const history = useHistory()
 
   function handleChange(event) {
     props.socket.emit('drawing', event.getSaveData(), props.room.name)
   }
 
   useEffect(() => {
-    let time = 60
+    let time = 10
     setInterval(() => {
       time--
       if (time === 0) {
-        window.alert('Round Over!')
+        // window.alert('Round Over!')
+        history.push({
+          pathname: `/lobby/${props.room.id}`,
+          state: {lobby: props.room},
+        })
       } else if (time > -1) {
         setTimer(time)
       }
