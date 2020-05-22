@@ -18,9 +18,15 @@ export const AllRooms = (props) => {
     <div>
       {props.selectedRoom.map((room) => {
         return (
-          <h4 key={room.id} onClick={() => navigator(room)}>
-            {room.name}
-          </h4>
+          <a href="#" key={room.id}>
+            <h4
+              key={room.id}
+              className="room-link"
+              onClick={() => navigator(room)}
+            >
+              {room.name}
+            </h4>
+          </a>
         )
       })}
     </div>

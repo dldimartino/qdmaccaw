@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {Button} from 'react-bootstrap'
+import {Button, Container} from 'react-bootstrap'
 import io from 'socket.io-client'
 const moment = require('moment')
 import {AiFillWechat, AiOutlineSend} from 'react-icons/ai'
@@ -87,24 +87,23 @@ export default class Chatroom extends Component {
           </header>
           <main className="chat-main">
             <div className="chat-sidebar">
-              <h2>
+              <h1>
                 Current Artist:
                 {this.props.user.isArtist
-                  ? 'YOU!'
-                  : this.props.currentArtist.name}
-              </h2>
+                  ? ' YOU!'
+                  : ' ' + this.props.currentArtist.name}
+              </h1>
+              <Button
+                type="button"
+                variant="light"
+                onClick={this.props.handlePass}
+                className="artist-button"
+              >
+                Pass The Paintbrush
+              </Button>
               {this.props.user.name === this.props.currentArtist.name ? (
-                <div className="chat-sidebar">
-                  <br />
-                  <h1>Your word is: {this.props.gameWord} </h1>
-                  <Button
-                    type="button"
-                    variant="light"
-                    onClick={this.props.handlePass}
-                    className="artist-button"
-                  >
-                    Pass The Paintbrush
-                  </Button>
+                <div>
+                  <h1>Your word is: {this.props.gameWord.toUpperCase()} </h1>
                   <Button
                     type="button"
                     variant="light"
@@ -115,12 +114,12 @@ export default class Chatroom extends Component {
                   </Button>
                 </div>
               ) : (
-                <h4>...Waiting for Artist to start the game</h4>
+                <h1>...Waiting for Artist to start the game</h1>
               )}
-              <h3>Users in Lobby:</h3>
+              <h1>Users in Lobby:</h1>
               <ul>
                 {this.props.inRoom.map((user) => {
-                  return <li key={user.id}>{user.name}</li>
+                  return <h2 key={user.id}>{user.name}</h2>
                 })}
               </ul>
             </div>
@@ -159,17 +158,19 @@ export default class Chatroom extends Component {
             </form>
           </div>
         </div>
-        {this.props.user.isArtist && (
+        {this.props.user.isArtist ? (
           <Button
             type="button"
-            className="start-game"
+            className="start-button"
             variant="success"
             onClick={this.props.startGame}
             size="lg"
             block
           >
-            Start Game!
+            <span className="start-game">S T A R T G A M E !</span>
           </Button>
+        ) : (
+          ''
         )}
       </div>
     )

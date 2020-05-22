@@ -189,9 +189,9 @@ body {
 }
 
 .chat-main {
-  background: whitesmoke;
+  background: #f1faee;
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 3fr 5fr;
 }
 
 .chat-sidebar {
@@ -202,9 +202,13 @@ body {
   font-family: 'Righteous';
 }
 
+.chat-sidebar h1 {
+  font-size: 30px;
+  padding: 5px 10px;
+}
+
 .chat-sidebar h2 {
   font-size: 20px;
-  background: rgba(0, 0, 0, 0.1);
   padding: 10px;
   margin-bottom: 20px;
 }
@@ -214,14 +218,13 @@ body {
 }
 
 .chat-sidebar ul li {
-  padding: 10px 0;
+  padding: 10px 0px;
   font-family: 'Bungee';
 }
 
 .chat-messages {
   padding: 20px 30px 0px 30px;
-  height: 500px;
-  max-height: 500px;
+  max-height: 550px;
   overflow-y: scroll;
   /* color: black; */
   background-color: #f1faee;
@@ -267,11 +270,20 @@ body {
 }
 
 .artist-button {
-  margin: 5px 10px;
+  margin: 0px 10px 50px 10px;
 }
 
-.start-game {
+.start-button {
   max-width: 1100px;
   margin: 0.5px auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.start-game {
+  font-size: 30px;
+  font-family: 'Bungee';
+}
+
+.room-link {
+  color: white;
 }
