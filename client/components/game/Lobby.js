@@ -139,30 +139,19 @@ export class Lobby extends Component {
         ) : (
           ''
         )}
-        {this.props.user.name === this.state.currentArtist.name ? (
-          <div>
-            <br />
-            <h1>Your word is: {this.state.gameWord} </h1>
-            <button type="button" onClick={this.handlePass}>
-              Pass The Paintbrush
-            </button>
-            <button type="button" onClick={this.wordGenerator}>
-              Regenerate Word
-            </button>
-            <button type="button" onClick={this.startGame}>
-              Start Game!
-            </button>
-          </div>
-        ) : (
-          <h1>...Waiting for Artist to start the game</h1>
-        )}
         <Chatroom
           room={this.state.room}
+          word={this.props.word}
           user={this.props.user}
           inRoom={this.props.inRoom}
+          gameWord={this.state.gameWord}
+          currentArtist={this.state.currentArtist}
           socket={socket}
           leaveLobby={this.handleClick}
-          currentArtist={this.state.currentArtist}
+          handlePass={this.handlePass}
+          startGame={this.startGame}
+          handleClick={this.handleClick}
+          wordGenerator={this.wordGenerator}
         />
       </div>
     )

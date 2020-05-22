@@ -171,7 +171,7 @@ body {
 /*----------- CHATROOM CSS -----------*/
 .chat-container {
   max-width: 1100px;
-  margin: 30px auto;
+  margin: 30px auto 0px auto;
   overflow: hidden;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -191,7 +191,7 @@ body {
 .chat-main {
   background: whitesmoke;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 2fr 5fr;
 }
 
 .chat-sidebar {
@@ -219,7 +219,9 @@ body {
 }
 
 .chat-messages {
-  padding: 30px;
+  padding: 20px 30px 0px 30px;
+  height: 500px;
+  max-height: 500px;
   overflow-y: scroll;
   /* color: black; */
   background-color: #f1faee;
@@ -229,7 +231,7 @@ body {
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 5px;
-  background-color: #e63946;
+  background-color: rgba(153, 151, 247, 0.75);
 }
 
 .chat-messages .message .meta {
@@ -262,4 +264,14 @@ body {
 
 .chat-button {
   margin: 0px 15px;
+}
+
+.artist-button {
+  margin: 5px 10px;
+}
+
+.start-game {
+  max-width: 1100px;
+  margin: 0.5px auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
