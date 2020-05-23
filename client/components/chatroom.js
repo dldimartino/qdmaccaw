@@ -89,7 +89,7 @@ export default class Chatroom extends Component {
             <div className="chat-sidebar">
               <h1>
                 Current Artist:
-                {this.props.user.isArtist
+                {this.props.user.name === this.props.currentArtist.name
                   ? ' YOU!'
                   : ' ' + this.props.currentArtist.name}
               </h1>
