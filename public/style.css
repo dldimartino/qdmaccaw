@@ -21,6 +21,14 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+.timer {
+  font-family: 'Russo One';
+}
+
+.roundEnd {
+  font-family: 'Bungee';
+  color: white;
+}
 
 .Welcome {
   font-family: 'Modak';
