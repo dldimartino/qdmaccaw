@@ -17,7 +17,13 @@ export default class Chatroom extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({behavior: 'smooth'})
+  }
 
+  componentDidUpdate() {
+    this.scrollToBottom()
+  }
   componentDidMount() {
     //joins a room
     socket.emit(
@@ -47,6 +53,7 @@ export default class Chatroom extends Component {
         return messages
       })
     })
+    this.scrollToBottom()
   }
 
   handleChange(event) {
@@ -144,6 +151,12 @@ export default class Chatroom extends Component {
                   <p className="text">{message.message}</p>
                 </div>
               ))}
+              <div
+                style={{float: 'left', clear: 'both'}}
+                ref={(el) => {
+                  this.messagesEnd = el
+                }}
+              />
             </div>
           </main>
           <div className="chat-form-container">
