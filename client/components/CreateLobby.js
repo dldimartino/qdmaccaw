@@ -3,7 +3,7 @@ import {Link, Redirect} from 'react-router-dom'
 // import {Redirect} from 'react-router'
 import {me} from '../store/user'
 import {connect} from 'react-redux'
-import {Button, Row, Container} from 'react-bootstrap'
+import {Button, Row, Container, Col, Form} from 'react-bootstrap'
 import {newRoom, roomAddUser} from '../store/allRoom'
 import Axios from 'axios'
 
@@ -52,33 +52,44 @@ export class CreateLobby extends Component {
         <Row className="justify-content-md-center ">
           <h1 className="Welcome">DrawBit</h1>
         </Row>
-        <div className="mb-4">
-          <Row className="justify-content-md-center ">
-            <Link to="/home">
-              <Button variant="danger" size="lg" className="shadow-lg">
-                Back
-              </Button>
-            </Link>
+
+        <form onSubmit={this.handleSubmit}>
+          <Row className="justify-content-md-center mb-4">
+            <Col xs={6} sm={5} lg={4}>
+              <Link to="/home">
+                <Button variant="danger" size="lg" className="shadow-lg" block>
+                  Back
+                </Button>
+              </Link>
+            </Col>
           </Row>
-        </div>
-        <Row className="justify-content-md-center ">
-          <form onSubmit={this.handleSubmit}>
-            {/* <label htmlFor="name">Name:</label> */}
-            <input
-              type="text"
-              name="name"
-              placeholder="Room Name"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-            <br />
-            <Row className="justify-content-md-center ">
-              <Button type="submit" className="mt-2" variant="primary">
+
+          <Row className="justify-content-md-center ">
+            <Col xs={6} sm={5} lg={4}>
+              {/* <label htmlFor="name">Name:</label> */}
+              <Form.Control
+                type="text"
+                name="name"
+                placeholder="Room Name"
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
+            </Col>
+          </Row>
+          <Row className="justify-content-md-center ">
+            <Col xs={6} sm={5} lg={4}>
+              <Button
+                type="submit"
+                className="mt-2"
+                variant="primary"
+                size="lg"
+                block
+              >
                 Create
               </Button>
-            </Row>
-          </form>
-        </Row>
+            </Col>
+          </Row>
+        </form>
       </Container>
     )
   }

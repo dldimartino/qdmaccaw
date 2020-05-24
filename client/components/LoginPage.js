@@ -2,48 +2,67 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-import {Link} from 'react-router-dom'
-import {Button, Row, Container} from 'react-bootstrap'
+// import {Link} from 'react-router-dom'
+import {Button, Row, Container, Form, Col} from 'react-bootstrap'
 import classNames from 'classnames'
 
 const LoginPage = (props) => {
   const {name, displayName, handleSubmit, error} = props
-  const displayPg = classNames('mb-4', 'authPg')
+  const displayPg = classNames('authPg')
 
   return (
     <Container className="Buttons">
-      <Row className="justify-content-center">
-        <h2 className={displayPg}>{displayName} Page</h2>
+      <Row className="justify-content-md-center">
+        <h1 className="Welcome">DrawBit</h1>
       </Row>
-      <form onSubmit={handleSubmit} name={name}>
-        <Row className="justify-content-center">
-          <input name="dataName" size="50" type="text" placeholder="Name" />
-        </Row>
-        <Row className="justify-content-center">
-          <input
-            name="password"
-            size="50"
-            type="password"
-            placeholder="Password"
-          />
+      <Row className="justify-content-md-center">
+        <h2 className={displayPg}>{displayName}</h2>
+      </Row>
+
+      <form
+        onSubmit={handleSubmit}
+        name={name}
+        className="justify-content-md-center"
+      >
+        <Row className="justify-content-md-center">
+          <Col xs={5} sm={5} lg={4}>
+            <Form.Control name="dataName" type="text" placeholder="Name" />
+          </Col>
         </Row>
 
-        <Row className="justify-content-center">
-          <Button type="submit" size="lg" variant="success">
-            {displayName}
-          </Button>
+        <Row className="justify-content-md-center">
+          <Col xs={5} sm={5} lg={4}>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Password"
+            />
+          </Col>
         </Row>
+
+        <Row className="justify-content-md-center">
+          <Col xs={5} sm={5} lg={4}>
+            <Button type="submit" size="lg" variant="success" block>
+              {displayName}
+            </Button>
+          </Col>
+        </Row>
+
         {error && error.response && (
-          <Row className="justify-content-center">{error.response.data}</Row>
+          <Row className="justify-content-md-center">{error.response.data}</Row>
         )}
-        <Row className="justify-content-center ">
-          <Link to="/">
-            <Button variant="danger" size="lg" className="shadow-lg">
+
+        <Row className="justify-content-md-center">
+          {/* <Link to="/" block> */}
+          <Col xs={5} sm={5} lg={4}>
+            <Button href="/" variant="danger" size="lg" block>
               Back
             </Button>
-          </Link>
+          </Col>
+          {/* </Link> */}
         </Row>
       </form>
+
       {/* <a href="/auth/google">{displayName} with Google</a> */}
     </Container>
   )

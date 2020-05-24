@@ -1,7 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Button, Row, Container} from 'react-bootstrap'
+import {Button, Row, Container, Col} from 'react-bootstrap'
 import {logout} from '../store'
 
 export const UserHome = (props) => {
@@ -12,49 +12,45 @@ export const UserHome = (props) => {
         <h1 className="Welcome">DrawBit</h1>
       </Row>
       <Row className="justify-content-md-center">
-        <h2 className="authPg">Welcome, {name}</h2>
+        <h2 className="welcomeUser">Welcome, {name}</h2>
       </Row>
-
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Link to="/FindRoom">
-            <Button variant="success" size="lg" className="shadow-lg">
+      <div>
+        <Row className="justify-content-md-center mt-4">
+          {/* <Link to="/findroom"> */}
+          <Col xs={6} sm={5} lg={4}>
+            <Button href="/findroom" variant="success" size="lg" block>
               Join Room!
             </Button>
-          </Link>
+          </Col>
+          {/* </Link> */}
         </Row>
-      </div>
 
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Link to="/create">
-            <Button variant="primary" size="lg" className="shadow-lg">
+        <Row className="justify-content-md-center mt-4">
+          {/* <Link to="/create"> */}
+          <Col xs={6} sm={5} lg={4}>
+            <Button href="/create" variant="primary" size="lg" block>
               Create Room!
             </Button>
-          </Link>
+          </Col>
+          {/* </Link> */}
         </Row>
-      </div>
 
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Link to="/Instruction">
-            <Button variant="warning" size="lg" className="shadow-lg">
+        <Row className="justify-content-md-center mt-4">
+          {/* <Link to="/Instruction"> */}
+          <Col xs={6} sm={5} lg={4}>
+            <Button href="/Instruction" variant="warning" size="lg" block>
               How to Play!
             </Button>
-          </Link>
+          </Col>
+          {/* </Link> */}
         </Row>
-      </div>
 
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Button
-            variant="danger"
-            size="lg"
-            className="shadow-lg"
-            onClick={handleClick}
-          >
-            Logout
-          </Button>
+        <Row className="justify-content-md-center mt-4">
+          <Col xs={6} sm={5} lg={4}>
+            <Button variant="danger" size="lg" onClick={handleClick} block>
+              Logout
+            </Button>
+          </Col>
         </Row>
       </div>
     </Container>

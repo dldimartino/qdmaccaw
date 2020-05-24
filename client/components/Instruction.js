@@ -5,6 +5,9 @@ import {Button, Row, Container} from 'react-bootstrap'
 const Instruction = () => {
   return (
     <Container className="Buttons">
+      <Row className="justify-content-md-center">
+        <h1 className="Welcome">DrawBit</h1>
+      </Row>
       <Row className="justify-content-md-center ">
         <Link to="/home">
           <Button variant="danger" size="lg" className="shadow-lg">
@@ -39,14 +42,6 @@ const Instruction = () => {
             <li>Everyone else will receive points based on time</li>
           </ol>
         </div>
-      </Row>
-
-      <Row className="justify-content-md-center ">
-        <Link to="/home">
-          <Button variant="danger" size="lg" className="shadow-lg">
-            Back
-          </Button>
-        </Link>
       </Row>
     </Container>
   )
