@@ -39,8 +39,6 @@ class Routes extends Component {
         <Route exact path="/" component={MainPage} />
         <Route path="/lobby/:roomId" component={Lobby} />
         <Route path="/FindRoom" component={FindRoom} />
-        <Route path="/artist" component={Artist} />
-        <Route path="/guesser" component={Guesser} />
         <Route path="/game" component={GameRouter} />
         <Route path="/home" component={UserHome} />
         <Route path="/instruction" component={Instruction} />
