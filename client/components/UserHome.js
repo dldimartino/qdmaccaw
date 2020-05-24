@@ -2,9 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Button, Row, Container} from 'react-bootstrap'
-import {logout} from '../../store'
+import {logout} from '../store'
 
-export const Main = (props) => {
+export const UserHome = (props) => {
   const {name, handleClick} = props
   return (
     <Container className="Buttons">
@@ -75,4 +75,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Main)
+export default connect(mapState, mapDispatch)(UserHome)

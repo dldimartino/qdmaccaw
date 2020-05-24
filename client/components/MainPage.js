@@ -1,15 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Button, Row, Container} from 'react-bootstrap'
+import {Button, Row, Container, Col} from 'react-bootstrap'
 import {connect} from 'react-redux'
 
-const Home = () => {
+const MainPage = () => {
   return (
     <Container className="Buttons">
-      <Row className="justify-content-md-center ">
+      <Row className="justify-content-center">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         <Link to="/login">
           <Button size="lg" className="shadow-lg" variant="success">
             Login
@@ -17,7 +17,7 @@ const Home = () => {
         </Link>
       </Row>
       <div className="mt-5">
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-center">
           <Link to="/signup">
             <Button size="lg" className="shadow-lg" variant="primary">
               Sign Up
@@ -26,7 +26,7 @@ const Home = () => {
         </Row>
       </div>
       <div className="mt-5">
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-center">
           <a href="https://github.com/Metallic-Bees/Capstone">
             <img
               id="github_logo"
@@ -46,4 +46,4 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(Home)
+export default connect(mapState)(MainPage)
