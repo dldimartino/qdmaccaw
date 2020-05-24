@@ -65,8 +65,6 @@ export class Lobby extends Component {
         this.state.currentArtist
       )
     })
-    //LISTEN FOR BRUSH PASS
-    // socket.on('passed_brush',() )
 
     if (this.props.user.isArtist) {
       this.wordGenerator()
@@ -93,6 +91,7 @@ export class Lobby extends Component {
   }
 
   async handlePass() {
+    console.log('CLICKED')
     function getRandomIntInclusive(min, max) {
       min = Math.ceil(min)
       max = Math.floor(max)
@@ -130,6 +129,7 @@ export class Lobby extends Component {
               pathname: '/game',
               room: this.state.room,
               word: this.state.gameWord,
+              currentArtist: this.state.currentArtist,
               socket,
             }}
           />

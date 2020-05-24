@@ -137,7 +137,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   updateWinner: (playerId) => dispatch(updateWinner(playerId)),
   notifyCorrect: () =>
-    toast.success('Guessed Correct!', {
+    toast.success('Correct!', {
       position: 'top-center',
       autoClose: 2500,
       hideProgressBar: false,

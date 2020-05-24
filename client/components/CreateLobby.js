@@ -27,7 +27,7 @@ export class CreateLobby extends Component {
 
     ////////// DanD - I added a dispatch to run the me() function to re-grab the new user from the db
     await this.props.getUser()
-
+    this.props.roomAddUser(data.id, this.props.user.id)
     const toLobby = () => {
       return this.props.history.push({
         pathname: `/lobby/${data.id}`,
@@ -94,6 +94,9 @@ const mapDispatch = (dispatch) => ({
 
   ////// added for me() to regrab the updated user after set to artist
   getUser: () => dispatch(me()),
+  roomAddUser: (roomId, userId) => {
+    dispatch(roomAddUser(roomId, userId))
+  },
 })
 
 export default connect(mapState, mapDispatch)(CreateLobby)

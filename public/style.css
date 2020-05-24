@@ -216,13 +216,13 @@ body {
 
 .chat-sidebar h1 {
   font-size: 30px;
-  padding: 5px 10px;
+  padding: 5px;
 }
 
 .chat-sidebar h2 {
   font-size: 20px;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 5px;
+  margin-bottom: 5px;
 }
 
 .chat-sidebar h3 {
@@ -279,6 +279,7 @@ body {
 
 .chat-button {
   margin: 0px 15px;
+  font-family: 'Righteous';
 }
 
 .artist-button {

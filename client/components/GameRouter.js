@@ -22,6 +22,7 @@ class GameRouter extends Component {
   componentDidMount() {}
 
   render() {
+    console.log('GAME PROPS --->', this.props)
     if (this.state.isTimeUp) {
       this.props.history.push({
         pathname: `/lobby/${this.state.room.id}`,
@@ -30,7 +31,7 @@ class GameRouter extends Component {
     }
     return (
       <div>
-        {this.props.user.isArtist ? (
+        {this.props.user.name === this.props.location.currentArtist.name ? (
           <Artist
             room={this.state.room}
             word={this.state.word}
