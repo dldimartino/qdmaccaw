@@ -6,50 +6,37 @@ import {Link} from 'react-router-dom'
 import {Button, Row, Container} from 'react-bootstrap'
 import classNames from 'classnames'
 
-/**
- * COMPONENT
- */
-const AuthForm = (props) => {
+const LoginPage = (props) => {
   const {name, displayName, handleSubmit, error} = props
   const displayPg = classNames('mb-4', 'authPg')
 
   return (
     <Container className="Buttons">
-      <Row className="justify-content-md-center ">
+      <Row className="justify-content-center">
         <h2 className={displayPg}>{displayName} Page</h2>
       </Row>
       <form onSubmit={handleSubmit} name={name}>
-        {/* <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div> */}
-
-        <Row className="justify-content-md-center ">
-          {/* <label htmlFor="dataName">
-            <small>Name</small>
-          </label> */}
-          <input name="dataName" type="text" placeholder="Name" />
+        <Row className="justify-content-center">
+          <input name="dataName" size="50" type="text" placeholder="Name" />
         </Row>
-        <Row className="justify-content-md-center ">
-          {/* <label htmlFor="password">
-            <small>Password</small>
-          </label> */}
-          <input name="password" type="password" placeholder="Password" />
+        <Row className="justify-content-center">
+          <input
+            name="password"
+            size="50"
+            type="password"
+            placeholder="Password"
+          />
         </Row>
 
-        <Row className="justify-content-md-center ">
-          <Button type="submit" variant="success">
+        <Row className="justify-content-center">
+          <Button type="submit" size="lg" variant="success">
             {displayName}
           </Button>
         </Row>
         {error && error.response && (
-          <Row className="justify-content-md-center ">
-            {error.response.data}
-          </Row>
+          <Row className="justify-content-center">{error.response.data}</Row>
         )}
-        <Row className="justify-content-md-center ">
+        <Row className="justify-content-center ">
           <Link to="/">
             <Button variant="danger" size="lg" className="shadow-lg">
               Back
@@ -98,13 +85,13 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = connect(mapLogin, mapDispatch)(LoginPage)
+export const Signup = connect(mapSignup, mapDispatch)(LoginPage)
 
 /**
  * PROP TYPES
  */
-AuthForm.propTypes = {
+LoginPage.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,

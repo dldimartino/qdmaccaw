@@ -1,7 +1,6 @@
 import React from 'react'
 
 export const AllPlayers = (props) => {
-  console.log('this.props: ', props)
   return props.inRoom.length ? (
     <div>
       {props.inRoom.map((user) => {

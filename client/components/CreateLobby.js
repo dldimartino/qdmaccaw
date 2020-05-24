@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 // import {Redirect} from 'react-router'
-import {me} from '../../store/user'
+import {me} from '../store/user'
 import {connect} from 'react-redux'
 import {Button, Row, Container} from 'react-bootstrap'
-import {newRoom} from '../../store/allRoom'
+import {newRoom} from '../store/allRoom'
 import Axios from 'axios'
 
-export class Create extends Component {
+export class CreateLobby extends Component {
   constructor() {
     super()
     this.state = {
@@ -24,8 +24,6 @@ export class Create extends Component {
     const artistYay = await Axios.put(
       `/api/users/setAsArtist/${this.props.user.id}/true`
     )
-    console.log('ARTISTYAY ------->>>>>>>>>', artistYay)
-    console.log('DATA ------->>>>>>>>>>', data)
 
     ////////// DanD - I added a dispatch to run the me() function to re-grab the new user from the db
     await this.props.getUser()
@@ -56,7 +54,7 @@ export class Create extends Component {
         </Row>
         <div className="mb-4">
           <Row className="justify-content-md-center ">
-            <Link to="/main">
+            <Link to="/home">
               <Button variant="danger" size="lg" className="shadow-lg">
                 Back
               </Button>
@@ -98,4 +96,4 @@ const mapDispatch = (dispatch) => ({
   getUser: () => dispatch(me()),
 })
 
-export default connect(mapState, mapDispatch)(Create)
+export default connect(mapState, mapDispatch)(CreateLobby)

@@ -4,7 +4,7 @@ import Guesser from './Guesser'
 import Artist from './Artist'
 import {connect} from 'react-redux'
 
-class Game extends Component {
+class GameRouter extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -53,4 +53,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 })
 
-export default connect(mapStateToProps)(Game)
+export default connect(mapStateToProps)(GameRouter)

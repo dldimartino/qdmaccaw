@@ -6,7 +6,7 @@ const Instruction = () => {
   return (
     <Container className="Buttons">
       <Row className="justify-content-md-center ">
-        <Link to="/main">
+        <Link to="/home">
           <Button variant="danger" size="lg" className="shadow-lg">
             Back
           </Button>
@@ -42,7 +42,7 @@ const Instruction = () => {
       </Row>
 
       <Row className="justify-content-md-center ">
-        <Link to="/main">
+        <Link to="/home">
           <Button variant="danger" size="lg" className="shadow-lg">
             Back
           </Button>
