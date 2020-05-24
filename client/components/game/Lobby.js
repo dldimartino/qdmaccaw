@@ -132,6 +132,7 @@ export class Lobby extends Component {
               pathname: '/game',
               room: this.state.room,
               word: this.state.gameWord,
+              currentArtist: this.state.currentArtist,
               socket,
             }}
           />
