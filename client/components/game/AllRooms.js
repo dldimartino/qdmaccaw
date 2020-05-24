@@ -1,6 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router'
+import {Row} from 'react-bootstrap'
 
 export const AllRooms = (props) => {
   const history = useHistory()
@@ -18,9 +19,9 @@ export const AllRooms = (props) => {
     <div>
       {props.selectedRoom.map((room) => {
         return (
-          <h4 key={room.id} onClick={() => navigator(room)}>
-            {room.name}
-          </h4>
+          <Row className="justify-content-md-center" key={room.id}>
+            <h4 onClick={() => navigator(room)}>{room.name}</h4>
+          </Row>
         )
       })}
     </div>

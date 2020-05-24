@@ -21,7 +21,30 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
+/******************
+welcome user with name
+*******************/
+.welcomeUser {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+/******************
+End of welcome user
+*******************/
+/******************
+login & signup sub head
+*******************/
+.authPg {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  margin: 0px 0px 1px;
+}
+/******************
+End of login & signup sub head
+*******************/
+/******************
+Drawbit header 
+*******************/
 .Welcome {
   font-family: 'Modak';
   font-size: 150px;
@@ -50,22 +73,6 @@ form div {
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15); */
 }
 
-.authPg {
-  font-family: 'Modak';
-  background-image: linear-gradient(
-    to right,
-    violet,
-    indigo,
-    blue,
-    green,
-    yellow,
-    orange,
-    red
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
 @media (max-width: 300px) {
   .Welcome {
     font-size: 70px;
@@ -86,6 +93,9 @@ form div {
     font-size: 150px;
   }
 }
+/******************
+End of Drawbit header 
+*******************/
 
 .Buttons {
   font-family: 'Righteous';

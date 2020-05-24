@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {AllRooms} from './AllRooms'
 import {fetchRoom, filterRoom, roomAddUser} from '../../store/allRoom'
-import {Button, Row, Container} from 'react-bootstrap'
+import {Button, Row, Container, Col, Form} from 'react-bootstrap'
 
 export class FindRoom extends Component {
   constructor() {
@@ -44,32 +44,42 @@ export class FindRoom extends Component {
   render() {
     return (
       <Container className="Buttons">
-        <Row className="justify-content-md-center ">
+        <Row className="justify-content-md-center">
           <h1 className="Welcome">DrawBit</h1>
         </Row>
-        <div className="mb-3">
-          <Row className="justify-content-md-center ">
-            <Link to="/main">
-              <Button variant="danger" size="lg" className="shadow-lg">
+
+        <form>
+          <Row className="justify-content-md-center mb-3">
+            <Col xs={5} sm={5} lg={4}>
+              {/* <Link to="/main"> */}
+              <Button
+                href="/main"
+                variant="danger"
+                size="lg"
+                className="shadow-lg"
+                block
+              >
                 Back
               </Button>
-            </Link>
+              {/* </Link> */}
+            </Col>
           </Row>
-        </div>
-        <Row className="justify-content-md-center ">
-          <form>
-            {/* <label htmlFor="search">Search Room:</label> */}
-            <input
-              type="search"
-              name="search"
-              placeholder="Search Room"
-              value={this.state.search}
-              onChange={this.handleChange}
-              onKeyDown={this.handleKey}
-            />
-          </form>
-        </Row>
-        <Row className="justify-content-md-center ">
+
+          <Row className="justify-content-md-center">
+            <Col xs={5} sm={5} lg={4}>
+              {/* <label htmlFor="search">Search Room:</label> */}
+              <Form.Control
+                type="search"
+                name="search"
+                placeholder="Search Room"
+                value={this.state.search}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKey}
+              />
+            </Col>
+          </Row>
+        </form>
+        <Row className="justify-content-md-center">
           <AllRooms
             selectedRoom={this.props.selectedRoom}
             addUserToRoom={this.addUserToRoom}

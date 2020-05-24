@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {Button, Row, Container} from 'react-bootstrap'
+// import {Link} from 'react-router-dom'
+import {Button, Row, Container, Col} from 'react-bootstrap'
 import {connect} from 'react-redux'
 
 const Home = () => {
@@ -9,32 +9,47 @@ const Home = () => {
       <Row className="justify-content-md-center ">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
+
       <Row className="justify-content-md-center">
-        <Link to="/login">
-          <Button size="lg" className="shadow-lg" variant="success">
+        {/* <Link to="/login"> */}
+        <Col xs={5} sm={5} lg={4}>
+          <Button
+            href="/login"
+            size="lg"
+            className="shadow-lg"
+            variant="success"
+            block
+          >
             Login
           </Button>
-        </Link>
+        </Col>
+        {/* </Link> */}
       </Row>
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Link to="/signup">
-            <Button size="lg" className="shadow-lg" variant="primary">
-              Sign Up
-            </Button>
-          </Link>
-        </Row>
-      </div>
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <a href="https://github.com/Metallic-Bees/Capstone">
-            <img
-              id="github_logo"
-              src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
-            />
-          </a>
-        </Row>
-      </div>
+
+      <Row className="justify-content-md-center mt-5">
+        {/* <Link to="/signup"> */}
+        <Col xs={5} sm={5} lg={4}>
+          <Button
+            href="signup"
+            size="lg"
+            className="shadow-lg"
+            variant="primary"
+            block
+          >
+            Sign Up
+          </Button>
+        </Col>
+        {/* </Link> */}
+      </Row>
+
+      <Row className="justify-content-md-center mt-5">
+        <a href="https://github.com/Metallic-Bees/Capstone">
+          <img
+            id="github_logo"
+            src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+          />
+        </a>
+      </Row>
     </Container>
   )
 }
