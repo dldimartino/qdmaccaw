@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 // import {Redirect} from 'react-router'
-import {me} from '../../store/user'
+import {me} from '../store/user'
 import {connect} from 'react-redux'
 import {Button, Row, Container, Col, Form} from 'react-bootstrap'
-import {newRoom} from '../../store/allRoom'
+import {newRoom, roomAddUser} from '../store/allRoom'
 import Axios from 'axios'
 
-export class Create extends Component {
+export class CreateLobby extends Component {
   constructor() {
     super()
     this.state = {
@@ -24,12 +24,10 @@ export class Create extends Component {
     const artistYay = await Axios.put(
       `/api/users/setAsArtist/${this.props.user.id}/true`
     )
-    console.log('ARTISTYAY ------->>>>>>>>>', artistYay)
-    console.log('DATA ------->>>>>>>>>>', data)
 
     ////////// DanD - I added a dispatch to run the me() function to re-grab the new user from the db
     await this.props.getUser()
-
+    this.props.roomAddUser(data.id, this.props.user.id)
     const toLobby = () => {
       return this.props.history.push({
         pathname: `/lobby/${data.id}`,
@@ -58,7 +56,7 @@ export class Create extends Component {
         <form onSubmit={this.handleSubmit}>
           <Row className="justify-content-md-center mb-4">
             <Col xs={6} sm={5} lg={4}>
-              <Link to="/main">
+              <Link to="/home">
                 <Button variant="danger" size="lg" className="shadow-lg" block>
                   Back
                 </Button>
@@ -107,6 +105,9 @@ const mapDispatch = (dispatch) => ({
 
   ////// added for me() to regrab the updated user after set to artist
   getUser: () => dispatch(me()),
+  roomAddUser: (roomId, userId) => {
+    dispatch(roomAddUser(roomId, userId))
+  },
 })
 
-export default connect(mapState, mapDispatch)(Create)
+export default connect(mapState, mapDispatch)(CreateLobby)

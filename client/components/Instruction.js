@@ -9,7 +9,7 @@ const Instruction = () => {
         <h1 className="Welcome">DrawBit</h1>
       </Row>
       <Row className="justify-content-md-center ">
-        <Link to="/main">
+        <Link to="/home">
           <Button variant="danger" size="lg" className="shadow-lg">
             Back
           </Button>

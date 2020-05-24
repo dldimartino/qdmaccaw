@@ -1,10 +1,14 @@
 import React, {Component, createRef} from 'react'
 import CanvasDraw from 'react-canvas-draw'
-import {Row, Container, Button} from 'react-bootstrap'
+import {Row, Container, Button, Spinner} from 'react-bootstrap'
 import {updateWinner} from '../store/allUsers'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 const canvas = createRef()
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 class Guesser extends Component {
   constructor(props) {
@@ -14,6 +18,7 @@ class Guesser extends Component {
       guess: '',
       timer: 60,
       word: props.word,
+      guessStatus: false,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -37,7 +42,6 @@ class Guesser extends Component {
   }
 
   gameTimer() {
-    //add a set timeout/delay to countdown
     let time = 60
     let countdown = setInterval(() => {
       if (this.state.timer < 0) clearInterval(countdown)
@@ -50,7 +54,6 @@ class Guesser extends Component {
           pathname: `/lobby/${this.props.room.id}`,
           state: {lobby: this.props.room},
         })
-        // window.alert('Round Over!')
       }
     }, 1000)
   }
@@ -61,45 +64,55 @@ class Guesser extends Component {
     })
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault()
     if (this.state.word === this.state.guess.toLowerCase()) {
-      await this.props.updateWinner(this.state.playerId)
-      window.alert('YOU WIN!')
+      this.props.notifyCorrect()
+      this.setState({guessStatus: true})
     } else {
-      window.alert('GUESS AGAIN!')
-      await this.setState({guess: ''})
+      this.props.notifyIncorrect()
     }
+    this.setState({guess: ''})
   }
 
   render() {
     return (
       <div>
-        {/* <Link
-          to={{
-            pathname: `/lobby/${this.props.room.id}`,
-            state: {lobby: this.props.room}
-          }}
-          className="link"
-        >
-          <Button type="button">Back To Lobby</Button>
-        </Link> */}
-        <h1> Timer: {this.state.timer} </h1>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="guess">Guess:</label>
-          <input
-            type="text"
-            name="guess"
-            value={this.state.guess}
-            onChange={this.handleChange}
-          />
-          <Button type="button">Submit Guess</Button>
-        </form>
-        <br />
-        <br />
         <Container className="whiteboard">
           <Row className="justify-content-md-center">
             <h1 className="drawWord">Guess What Word The Artist is Drawing!</h1>
+          </Row>
+          {this.state.guessStatus ? (
+            <Container>
+              <Row className="justify-content-md-center">
+                <h3 className="roundEnd">Good Job!</h3>
+              </Row>
+              <Row className="justify-content-md-center">
+                <h3 className="roundEnd">Waiting For Round To End...</h3>
+              </Row>
+              <Row className="justify-content-md-center">
+                <h3 className="roundEnd">
+                  <Spinner animation="border" variant="primary" />
+                </h3>
+              </Row>
+            </Container>
+          ) : (
+            <div>
+              <br />
+              <br />
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  type="text"
+                  name="guess"
+                  value={this.state.guess}
+                  onChange={this.handleChange}
+                />
+                <Button type="submit">Submit Guess</Button>
+              </form>
+            </div>
+          )}
+          <Row>
+            <h1 className="timer"> Time: {this.state.timer} </h1>
           </Row>
           <Row id="canvas" className="justify-content-md-center">
             <CanvasDraw
@@ -123,6 +136,26 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   updateWinner: (playerId) => dispatch(updateWinner(playerId)),
+  notifyCorrect: () =>
+    toast.success('Correct!', {
+      position: 'top-center',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    }),
+  notifyIncorrect: () =>
+    toast.error('Incorrect! Guess Again!', {
+      position: 'top-center',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    }),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Guesser)

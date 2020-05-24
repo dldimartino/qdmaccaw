@@ -3,10 +3,10 @@ import React from 'react'
 import {Button, Row, Container, Col} from 'react-bootstrap'
 import {connect} from 'react-redux'
 
-const Home = () => {
+const MainPage = () => {
   return (
     <Container className="Buttons">
-      <Row className="justify-content-md-center ">
+      <Row className="justify-content-center">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
 
@@ -61,4 +61,4 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(Home)
+export default connect(mapState)(MainPage)

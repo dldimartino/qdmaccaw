@@ -5,16 +5,15 @@ import PropTypes from 'prop-types'
 import {
   Login,
   Signup,
-  Home,
-  Main,
+  UserHome,
+  MainPage,
   Lobby,
-  Create,
+  CreateLobby,
   FindRoom,
   Instruction,
   Artist,
   Guesser,
-  Game,
-  UserHome,
+  GameRouter,
 } from './components'
 import {me} from './store'
 import {fetchWord} from './store/word'
@@ -36,14 +35,12 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/create" component={Create} />
-        <Route exact path="/" component={Home} />
+        <Route path="/create" component={CreateLobby} />
+        <Route exact path="/" component={MainPage} />
         <Route path="/lobby/:roomId" component={Lobby} />
         <Route path="/FindRoom" component={FindRoom} />
-        <Route path="/artist" component={Artist} />
-        <Route path="/guesser" component={Guesser} />
-        <Route path="/game" component={Game} />
-        <Route path="/main" component={Main} />
+        <Route path="/game" component={GameRouter} />
+        <Route path="/home" component={UserHome} />
         <Route path="/instruction" component={Instruction} />
 
         {isLoggedIn && (

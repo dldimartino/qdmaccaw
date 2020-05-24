@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchUsers} from '../../store/allUsers'
-import {usersInRoom, roomDeleteUser, roomAddUser} from '../../store/allRoom'
-import {fetchWord} from '../../store/word'
-import {me} from '../../store/user'
+import {fetchUsers} from '../store/allUsers'
+import {usersInRoom, roomDeleteUser, roomAddUser} from '../store/allRoom'
+import {fetchWord} from '../store/word'
+import {me} from '../store/user'
 import io from 'socket.io-client'
-import Chatroom from '../chatroom'
+import Chatroom from './Chatroom'
 import Axios from 'axios'
 const socket = io.connect(window.location.origin)
 
@@ -65,8 +65,6 @@ export class Lobby extends Component {
         this.state.currentArtist
       )
     })
-    //LISTEN FOR BRUSH PASS
-    // socket.on('passed_brush',() )
 
     if (this.props.user.isArtist) {
       this.wordGenerator()
@@ -93,6 +91,7 @@ export class Lobby extends Component {
   }
 
   async handlePass() {
+    console.log('CLICKED')
     function getRandomIntInclusive(min, max) {
       min = Math.ceil(min)
       max = Math.floor(max)
@@ -102,10 +101,7 @@ export class Lobby extends Component {
     // Math.floor(Math.random() * (this.props.inRoom.length - 1)) +1
     if (this.props.inRoom.length > 1) {
       while (this.props.inRoom[randomNum].id === this.state.currentArtist.id) {
-        console.log('INSIDE WHILE LOOP ------->>>>>>>')
-        console.log('RANDOM NUMBER BEFORE --------->>>>>>>>', randomNum)
         randomNum = getRandomIntInclusive(0, this.props.inRoom.length - 1)
-        console.log('RANDOM NUMBER AFTER --------->>>>>>>>', randomNum)
       }
     } else {
       randomNum = 0
@@ -133,6 +129,7 @@ export class Lobby extends Component {
               pathname: '/game',
               room: this.state.room,
               word: this.state.gameWord,
+              currentArtist: this.state.currentArtist,
               socket,
             }}
           />

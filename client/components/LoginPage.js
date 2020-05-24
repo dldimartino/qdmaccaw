@@ -6,10 +6,7 @@ import {auth} from '../store'
 import {Button, Row, Container, Form, Col} from 'react-bootstrap'
 import classNames from 'classnames'
 
-/**
- * COMPONENT
- */
-const AuthForm = (props) => {
+const LoginPage = (props) => {
   const {name, displayName, handleSubmit, error} = props
   const displayPg = classNames('authPg')
 
@@ -45,8 +42,8 @@ const AuthForm = (props) => {
 
         <Row className="justify-content-md-center">
           <Col xs={5} sm={5} lg={4}>
-            <Button type="submit" z variant="success" block>
-              Submit
+            <Button type="submit" size="lg" variant="success" block>
+              {displayName}
             </Button>
           </Col>
         </Row>
@@ -58,7 +55,7 @@ const AuthForm = (props) => {
         <Row className="justify-content-md-center">
           {/* <Link to="/" block> */}
           <Col xs={5} sm={5} lg={4}>
-            <Button href="/" variant="danger" block>
+            <Button href="/" variant="danger" size="lg" block>
               Back
             </Button>
           </Col>
@@ -107,13 +104,13 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = connect(mapLogin, mapDispatch)(LoginPage)
+export const Signup = connect(mapSignup, mapDispatch)(LoginPage)
 
 /**
  * PROP TYPES
  */
-AuthForm.propTypes = {
+LoginPage.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,

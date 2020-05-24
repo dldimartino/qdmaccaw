@@ -4,7 +4,7 @@ import Guesser from './Guesser'
 import Artist from './Artist'
 import {connect} from 'react-redux'
 
-class Game extends Component {
+class GameRouter extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,6 +22,7 @@ class Game extends Component {
   componentDidMount() {}
 
   render() {
+    console.log('GAME PROPS --->', this.props)
     if (this.state.isTimeUp) {
       this.props.history.push({
         pathname: `/lobby/${this.state.room.id}`,
@@ -30,7 +31,7 @@ class Game extends Component {
     }
     return (
       <div>
-        {this.props.user.isArtist ? (
+        {this.props.user.name === this.props.location.currentArtist.name ? (
           <Artist
             room={this.state.room}
             word={this.state.word}
@@ -53,4 +54,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 })
 
-export default connect(mapStateToProps)(Game)
+export default connect(mapStateToProps)(GameRouter)

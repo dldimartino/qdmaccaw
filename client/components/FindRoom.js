@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 // import {Link} from 'react-router-dom'
 import {AllRooms} from './AllRooms'
-import {fetchRoom, filterRoom, roomAddUser} from '../../store/allRoom'
+import {fetchRoom, filterRoom, roomAddUser} from '../store/allRoom'
 import {Button, Row, Container, Col, Form} from 'react-bootstrap'
 
 export class FindRoom extends Component {
@@ -51,9 +51,8 @@ export class FindRoom extends Component {
         <form>
           <Row className="justify-content-md-center mb-3">
             <Col xs={5} sm={5} lg={4}>
-              {/* <Link to="/main"> */}
               <Button
-                href="/main"
+                href="/home"
                 variant="danger"
                 size="lg"
                 className="shadow-lg"
