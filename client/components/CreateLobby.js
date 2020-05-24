@@ -4,7 +4,7 @@ import {Link, Redirect} from 'react-router-dom'
 import {me} from '../store/user'
 import {connect} from 'react-redux'
 import {Button, Row, Container} from 'react-bootstrap'
-import {newRoom} from '../store/allRoom'
+import {newRoom, roomAddUser} from '../store/allRoom'
 import Axios from 'axios'
 
 export class CreateLobby extends Component {

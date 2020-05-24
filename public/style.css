@@ -98,9 +98,8 @@ form div {
   }
 }
 
-#Buttons {
+.Buttons {
   font-family: 'Righteous';
-  justify-content: center;
 }
 
 body {
