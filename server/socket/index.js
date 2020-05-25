@@ -52,7 +52,7 @@ module.exports = (io) => {
 
     //Artist notification
     socket.on('guess', (guess, room) => {
-      io.to(room).emit('got_guess', guess)
+      socket.to(room).emit('got_guess', guess)
     })
   })
 }
