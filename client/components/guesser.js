@@ -72,6 +72,17 @@ class Guesser extends Component {
     } else {
       this.props.notifyIncorrect()
     }
+    //EMITTING A GUESS
+    this.props.socket.emit(
+      'guess',
+      {
+        user: this.props.user.name,
+        guessStatus: this.state.guessStatus,
+        guess: this.state.guess,
+      },
+      this.props.room.name
+    )
+
     this.setState({guess: ''})
   }
 
@@ -132,6 +143,7 @@ class Guesser extends Component {
 
 const mapStateToProps = (state) => ({
   allWords: state.word,
+  user: state.user,
 })
 
 const mapDispatchToProps = (dispatch) => ({

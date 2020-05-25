@@ -9,6 +9,10 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router'
 const canvas = createRef()
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 function Artist(props) {
   const [color, setColor] = useState('#404040')
@@ -32,7 +36,6 @@ function Artist(props) {
     setInterval(() => {
       time--
       if (time === 0) {
-        // window.alert('Round Over!')
         history.push({
           pathname: `/lobby/${props.room.id}`,
           state: {lobby: props.room},
@@ -41,6 +44,15 @@ function Artist(props) {
         setTimer(time)
       }
     }, 1000)
+
+    //LISTENS FOR A GUESS
+    props.socket.on('got_guess', (guess) => {
+      if (guess.guess.toLowerCase() === props.word) {
+        props.notifyCorrect()
+      } else {
+        props.notifyIncorrect()
+      }
+    })
   }, [])
 
   return (
@@ -173,4 +185,26 @@ const mapStateToProps = (state) => ({
   allWords: state.word,
 })
 
-export default connect(mapStateToProps)(Artist)
+const mapDispatchToProps = () => ({
+  notifyCorrect: () =>
+    toast.success('A user has guessed correctly!', {
+      position: 'top-center',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    }),
+  notifyIncorrect: () =>
+    toast.error('A user has guessed incorrectly!', {
+      position: 'top-center',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    }),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Artist)
