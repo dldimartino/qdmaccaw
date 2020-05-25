@@ -1,6 +1,6 @@
 # DRAWBIT
 
-Drawbit is a multiplayer progressive web application where your best drawing and detective skills are put to the test! Race against your friends and the clock to either draw the word from the prompt given or guess the word being drawn.
+Drawbit is a multiplayer progressive web application where your best drawing and detective skills are put to the test! Race against the clock to either draw a word or guess the word being drawn.
 
 ## Getting Started
 
@@ -10,12 +10,13 @@ Drawbit is a multiplayer progressive web application where your best drawing and
 
 ## Built With
 
-- [React](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-- [React-Canvas-Draw](https://maven.apache.org/) - Dependency Management
-- [Socket.io](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-- [Express]
-- [Sequelize]
-- [Redux]
+- [Socket.io](https://socket.io/docs/) - Used for all real-time data being transferred between users in our app. This is highlighted in the chatroom of the Lobby and in the Canvas being rendered in real time between artists and guessers.
+- [React-Canvas-Draw](https://github.com/embiem/react-canvas-draw) - A Canvas drawing component built on top of React, which was used for our game components.
+- [Redux](https://redux.js.org/) - Used in conjunction with Socket.io to keep data transfer between all users real-time.
+- [React](https://reactjs.org/) - Our front-end framework.
+- [React-Bootstrap](https://react-bootstrap.github.io/) - Styling used in conjunction with CSS.
+- [Sequelize](https://sequelize.org/) - Used to build our data models.
+- [Express](https://expressjs.com/) - Used to serve up our data.
 
 ## Authors
 
