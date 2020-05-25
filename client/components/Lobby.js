@@ -101,6 +101,7 @@ export class Lobby extends Component {
     ) {
       await Axios.put(`/api/users/setAsArtist/${this.props.user.id}/false`)
       await Axios.delete(`/api/room/${this.state.room.id}/destroy`)
+      socket.emit('room_killed')
       // this.props.usersInRoom(this.state.room.id)
     }
     setTimeout(() => {
