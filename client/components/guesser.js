@@ -80,9 +80,10 @@ class Guesser extends Component {
       <div>
         <Container className="whiteboard">
           <Row className="justify-content-center">
-            <h1 className="draw-word">
-              Guess What Word The Artist is Drawing!
-            </h1>
+            <h1 className="timer"> Time: {this.state.timer} </h1>
+          </Row>
+          <Row className="justify-content-center">
+            <h1 className="draw-word">Guess The Word!</h1>
           </Row>
           {this.state.guessStatus ? (
             <Container>
@@ -99,23 +100,22 @@ class Guesser extends Component {
               </Row>
             </Container>
           ) : (
-            <div>
-              <br />
-              <br />
+            <Row className="justify-content-center">
               <form onSubmit={this.handleSubmit}>
                 <input
+                  className="guess-input"
                   type="text"
                   name="guess"
+                  placeholder="Enter Your Guess!"
                   value={this.state.guess}
                   onChange={this.handleChange}
                 />
-                <Button type="submit">Submit Guess</Button>
+                <Button type="submit" className="guess-button">
+                  Submit Guess
+                </Button>
               </form>
-            </div>
+            </Row>
           )}
-          <Row>
-            <h1 className="timer"> Time: {this.state.timer} </h1>
-          </Row>
           <Row id="canvas" className="justify-content-center">
             <CanvasDraw
               ref={canvas}
