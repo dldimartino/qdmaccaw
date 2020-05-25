@@ -12,25 +12,25 @@ const LoginPage = (props) => {
 
   return (
     <Container className="Buttons">
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         <h2 className={displayPg}>{displayName}</h2>
       </Row>
 
       <form
         onSubmit={handleSubmit}
         name={name}
-        className="justify-content-md-center"
+        className="justify-content-center"
       >
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-center">
           <Col xs={5} sm={5} lg={4}>
             <Form.Control name="dataName" type="text" placeholder="Name" />
           </Col>
         </Row>
 
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-center">
           <Col xs={5} sm={5} lg={4}>
             <Form.Control
               name="password"
@@ -40,7 +40,7 @@ const LoginPage = (props) => {
           </Col>
         </Row>
 
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-center">
           <Col xs={5} sm={5} lg={4}>
             <Button type="submit" size="lg" variant="success" block>
               {displayName}
@@ -49,10 +49,10 @@ const LoginPage = (props) => {
         </Row>
 
         {error && error.response && (
-          <Row className="justify-content-md-center">{error.response.data}</Row>
+          <Row className="justify-content-center">{error.response.data}</Row>
         )}
 
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-center">
           {/* <Link to="/" block> */}
           <Col xs={5} sm={5} lg={4}>
             <Button href="/" variant="danger" size="lg" block>

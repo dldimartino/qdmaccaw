@@ -10,7 +10,7 @@ const MainPage = () => {
         <h1 className="Welcome">DrawBit</h1>
       </Row>
 
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         {/* <Link to="/login"> */}
         <Col xs={5} sm={5} lg={4}>
           <Button
@@ -26,7 +26,7 @@ const MainPage = () => {
         {/* </Link> */}
       </Row>
 
-      <Row className="justify-content-md-center mt-5">
+      <Row className="justify-content-center mt-5">
         {/* <Link to="/signup"> */}
         <Col xs={5} sm={5} lg={4}>
           <Button
@@ -42,7 +42,7 @@ const MainPage = () => {
         {/* </Link> */}
       </Row>
 
-      <Row className="justify-content-md-center mt-5">
+      <Row className="justify-content-center mt-5">
         <a href="https://github.com/Metallic-Bees/Capstone">
           <img
             id="github_logo"
