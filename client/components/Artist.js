@@ -52,7 +52,7 @@ function Artist(props) {
       </Row>
       <Row>
         <h1 className="draw-word">Your Word Is: {props.word}</h1>
-        <Col className="draw-buttons" md={4}>
+        <Col className="draw-buttons" md={5}>
           <div>
             <Button
               className="btn-dark"
@@ -155,7 +155,6 @@ function Artist(props) {
       <Row>
         <CanvasDraw
           id="canvas"
-          className="justify-content-center"
           ref={canvas}
           onChange={handleChange}
           hideInterface={true}
@@ -163,6 +162,8 @@ function Artist(props) {
           brushColor={color}
           brushRadius={radius}
           lazyRadius={0}
+          canvasHeight={window.screen.availHeight / 1.25}
+          canvasWidth={window.screen.availWidth}
         />
       </Row>
     </Container>

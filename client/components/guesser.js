@@ -80,7 +80,9 @@ class Guesser extends Component {
       <div>
         <Container className="whiteboard">
           <Row className="justify-content-center">
-            <h1 className="drawWord">Guess What Word The Artist is Drawing!</h1>
+            <h1 className="draw-word">
+              Guess What Word The Artist is Drawing!
+            </h1>
           </Row>
           {this.state.guessStatus ? (
             <Container>
@@ -120,7 +122,7 @@ class Guesser extends Component {
               disabled={true}
               hideInterface={true}
               hideGrid={true}
-              canvasHeight={window.screen.availHeight}
+              canvasHeight={window.screen.availHeight / 1.25}
               canvasWidth={window.screen.availWidth}
             />
           </Row>
