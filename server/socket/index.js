@@ -10,8 +10,8 @@ module.exports = (io) => {
       socket.join(room)
       socket.to(room).emit('join_lobby_late', user)
     })
-    socket.on('room_killed', () => {
-      io.emit('room_destroyed')
+    socket.on('room_update', () => {
+      io.emit('regenerate_rooms')
     })
 
     socket.on('leave_lobby', (room, user) => {

@@ -41,7 +41,7 @@ export class FindRoom extends Component {
 
   componentDidMount() {
     this.props.fetchRoom()
-    socket.on('room_destroyed', () => {
+    socket.on('regenerate_rooms', () => {
       this.props.fetchRoom()
     })
   }
