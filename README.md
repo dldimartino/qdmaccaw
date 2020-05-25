@@ -21,9 +21,9 @@ DrawBit is a multiplayer progressive web application where your best drawing and
 ## Authors
 
 - **Daniel DiMartino** - [GitHub]
-- **Cesar Nina** - [GitHub]
+- **Cesar Nina** - [GitHub](https://github.com/C3sar207)
 - **Daniel Stracquadanio** - [GitHub](github.com/dstracquadanio)
-- **Jared Usher** - [GitHub]
+- **Jared Usher** - [GitHub](https://github.com/Oosh74)
 
 ## License
 
