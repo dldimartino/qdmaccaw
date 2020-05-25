@@ -19,7 +19,7 @@ export const AllRooms = (props) => {
     <div>
       {props.selectedRoom.map((room) => {
         return (
-          <Row className="justify-content-center" key={room.id}>
+          <Row className="justify-content-md-center" key={room.id}>
             <a href="#">
               <h4 className="room-link" onClick={() => navigator(room)}>
                 {room.name}

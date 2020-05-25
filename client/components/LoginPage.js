@@ -8,15 +8,14 @@ import classNames from 'classnames'
 
 const LoginPage = (props) => {
   const {name, displayName, handleSubmit, error} = props
-  const displayPg = classNames('authPg')
 
   return (
     <Container className="Buttons">
       <Row className="justify-content-center">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
-      <Row className="justify-content-center">
-        <h2 className={displayPg}>{displayName}</h2>
+      <Row className="justify-content-md-center">
+        <h2 className="fontColor">{displayName}</h2>
       </Row>
 
       <form
@@ -42,7 +41,13 @@ const LoginPage = (props) => {
 
         <Row className="justify-content-center">
           <Col xs={5} sm={5} lg={4}>
-            <Button type="submit" size="lg" variant="success" block>
+            <Button
+              type="submit"
+              size="lg"
+              variant="success"
+              className="shadow-lg fontColor"
+              block
+            >
               {displayName}
             </Button>
           </Col>
@@ -55,7 +60,13 @@ const LoginPage = (props) => {
         <Row className="justify-content-center">
           {/* <Link to="/" block> */}
           <Col xs={5} sm={5} lg={4}>
-            <Button href="/" variant="danger" size="lg" block>
+            <Button
+              href="/"
+              variant="danger"
+              size="lg"
+              className="shadow-lg fontColor"
+              block
+            >
               Back
             </Button>
           </Col>
