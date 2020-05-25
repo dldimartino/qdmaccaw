@@ -49,5 +49,10 @@ module.exports = (io) => {
       console.log(`This is the SERVER socket to ${room}`, message, room)
       io.to(room).emit('send_message', message)
     })
+
+    //Artist notification
+    socket.on('guess', (guess, room) => {
+      io.to(room).emit('got_guess', guess)
+    })
   })
 }
