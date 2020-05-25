@@ -69,4 +69,20 @@ router.put('/:roomId/:playerId/leave', async (req, res, next) => {
   }
 })
 
+router.delete('/:roomId/destroy', async (req, res, next) => {
+  try {
+    const roomToDelete = await Room.findByPk(req.params.roomId)
+    console.log('ROOMTODELETE ------->>>>>>>', roomToDelete)
+    const deletedRoom = await Room.destroy({
+      where: {
+        name: roomToDelete.name,
+      },
+    })
+    console.log('DELETEDROOM ----->>>>>>>', deletedRoom)
+    res.status(203).json(deletedRoom)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router
