@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {AllRooms} from './AllRooms'
 import {fetchRoom, filterRoom, roomAddUser} from '../store/allRoom'
 import {Button, Row, Container, Col, Form} from 'react-bootstrap'
+import io from 'socket.io-client'
+const socket = io.connect(window.location.origin)
 
 export class FindRoom extends Component {
   constructor() {
@@ -39,6 +41,9 @@ export class FindRoom extends Component {
 
   componentDidMount() {
     this.props.fetchRoom()
+    socket.on('regenerate_rooms', () => {
+      this.props.fetchRoom()
+    })
   }
 
   render() {

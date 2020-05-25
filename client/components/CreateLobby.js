@@ -6,6 +6,8 @@ import {connect} from 'react-redux'
 import {Button, Row, Container, Col, Form} from 'react-bootstrap'
 import {newRoom, roomAddUser} from '../store/allRoom'
 import Axios from 'axios'
+import io from 'socket.io-client'
+const socket = io.connect(window.location.origin)
 
 export class CreateLobby extends Component {
   constructor() {
@@ -36,6 +38,7 @@ export class CreateLobby extends Component {
     }
     if (data) {
       this.setState({name: 'Room Generating!'})
+      socket.emit('room_update')
       setTimeout(toLobby, 800)
     }
   }
