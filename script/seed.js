@@ -3,21 +3,21 @@
 const db = require('../server/db')
 const {User, Word, Room, Game} = require('../server/db/models')
 
-const games = [
-  {isActive: true},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-  {isActive: false},
-]
+// const games = [
+//   {isActive: true},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+//   {isActive: false},
+// ]
 
 const words = [
   {content: 'tiger', category: 'animal'},
@@ -122,18 +122,18 @@ const words = [
   {content: 'las vegas', category: 'place'},
 ]
 
-const rooms = [
-  {name: 'fullstack', isActive: true},
-  {name: 'exterminator', isActive: true},
-  {name: 'life', isActive: false},
-  {name: 'explore', isActive: false},
-  {name: 'metallic bees', isActive: false},
-  {name: 'beatz', isActive: true},
-  {name: 'robots', isActive: true},
-  {name: 'ganster', isActive: false},
-  {name: 'bullseye', isActive: true},
-  {name: 'live love laugh', isActive: true},
-]
+// const rooms = [
+//   {name: 'fullstack', isActive: true},
+//   {name: 'exterminator', isActive: true},
+//   {name: 'life', isActive: false},
+//   {name: 'explore', isActive: false},
+//   {name: 'metallic bees', isActive: false},
+//   {name: 'beatz', isActive: true},
+//   {name: 'robots', isActive: true},
+//   {name: 'ganster', isActive: false},
+//   {name: 'bullseye', isActive: true},
+//   {name: 'live love laugh', isActive: true},
+// ]
 
 const users = [
   {
@@ -430,35 +430,35 @@ async function seed() {
     await Word.create(words[i])
   }
 
-  for (let i = 0; i < rooms.length; i++) {
-    await Room.create(rooms[i])
-  }
+  // for (let i = 0; i < rooms.length; i++) {
+  //   await Room.create(rooms[i])
+  // }
 
-  for (let i = 0; i < users.length; i++) {
-    await User.create(users[i])
-  }
+  // for (let i = 0; i < users.length; i++) {
+  //   await User.create(users[i])
+  // }
 
-  await User.create({
-    name: 'Picasso',
-    email: 'picasso.com',
-    password: 'picasso',
-    isGuest: false,
-    imageUrl:
-      'https://www.onthisday.com/images/people/pablo-picasso-medium.jpg',
-    wins: 56,
-    gamesPlayed: 62,
-    munnyPoints: 172,
-    isArtist: true,
-  })
+  // await User.create({
+  //   name: 'Picasso',
+  //   email: 'picasso.com',
+  //   password: 'picasso',
+  //   isGuest: false,
+  //   imageUrl:
+  //     'https://www.onthisday.com/images/people/pablo-picasso-medium.jpg',
+  //   wins: 56,
+  //   gamesPlayed: 62,
+  //   munnyPoints: 172,
+  //   isArtist: true,
+  // })
 
-  for (let i = 0; i < games.length; i++) {
-    await Game.create(games[i])
-  }
+  // for (let i = 0; i < games.length; i++) {
+  //   await Game.create(games[i])
+  // }
   // await Game.reload()
   // console.log('GAME AT 00000000000000', Game[0])
   // await Game[0].addUser(User[0])
   // await User[0].addGame(Game[0])
-  console.log(`seeded ${users.length} users`)
+  // console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
 
