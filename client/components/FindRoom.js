@@ -49,12 +49,12 @@ export class FindRoom extends Component {
   render() {
     return (
       <Container className="Buttons">
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-center">
           <h1 className="Welcome">DrawBit</h1>
         </Row>
 
         <form>
-          <Row className="justify-content-md-center mb-3">
+          <Row className="justify-content-center mb-3">
             <Col xs={5} sm={5} lg={4}>
               <Button
                 href="/home"
@@ -69,7 +69,7 @@ export class FindRoom extends Component {
             </Col>
           </Row>
 
-          <Row className="justify-content-md-center">
+          <Row className="justify-content-center">
             <Col xs={5} sm={5} lg={4}>
               {/* <label htmlFor="search">Search Room:</label> */}
               <Form.Control
@@ -83,7 +83,7 @@ export class FindRoom extends Component {
             </Col>
           </Row>
         </form>
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-center">
           <AllRooms
             selectedRoom={this.props.selectedRoom}
             addUserToRoom={this.addUserToRoom}

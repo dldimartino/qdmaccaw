@@ -79,18 +79,18 @@ class Guesser extends Component {
     return (
       <div>
         <Container className="whiteboard">
-          <Row className="justify-content-md-center">
+          <Row className="justify-content-center">
             <h1 className="drawWord">Guess What Word The Artist is Drawing!</h1>
           </Row>
           {this.state.guessStatus ? (
             <Container>
-              <Row className="justify-content-md-center">
+              <Row className="justify-content-center">
                 <h3 className="roundEnd">Good Job!</h3>
               </Row>
-              <Row className="justify-content-md-center">
+              <Row className="justify-content-center">
                 <h3 className="roundEnd">Waiting For Round To End...</h3>
               </Row>
-              <Row className="justify-content-md-center">
+              <Row className="justify-content-center">
                 <h3 className="roundEnd">
                   <Spinner animation="border" variant="primary" />
                 </h3>
@@ -114,7 +114,7 @@ class Guesser extends Component {
           <Row>
             <h1 className="timer"> Time: {this.state.timer} </h1>
           </Row>
-          <Row id="canvas" className="justify-content-md-center">
+          <Row id="canvas" className="justify-content-center">
             <CanvasDraw
               ref={canvas}
               disabled={true}

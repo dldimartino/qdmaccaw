@@ -45,14 +45,14 @@ function Artist(props) {
 
   return (
     <Container>
-      <Row className="justify-content-md-center">
-        <h1 className="drawWord">Your Word Is: {props.word}</h1>
-      </Row>
-      <Row>
+      <Row className="justify-content-center">
         <Col md={4}>
           <h1 className="timer"> Time: {timer} </h1>
         </Col>
-        <Col md={4}>
+      </Row>
+      <Row>
+        <h1 className="draw-word">Your Word Is: {props.word}</h1>
+        <Col className="draw-buttons" md={4}>
           <div>
             <Button
               className="btn-dark"
@@ -152,16 +152,16 @@ function Artist(props) {
           </div>
         </Col>
       </Row>
-      <Row className="justify-content-md-center">
+      <Row>
         <CanvasDraw
+          id="canvas"
+          className="justify-content-center"
           ref={canvas}
           onChange={handleChange}
           hideInterface={true}
           hideGrid={true}
           brushColor={color}
           brushRadius={radius}
-          canvasHeight={window.screen.availHeight}
-          canvasWidth={window.screen.availWidth}
           lazyRadius={0}
         />
       </Row>

@@ -52,12 +52,12 @@ export class CreateLobby extends Component {
   render() {
     return (
       <Container className="Buttons">
-        <Row className="justify-content-md-center ">
+        <Row className="justify-content-center">
           <h1 className="Welcome">DrawBit</h1>
         </Row>
 
         <form onSubmit={this.handleSubmit}>
-          <Row className="justify-content-md-center mb-4">
+          <Row className="justify-content-center mb-4">
             <Col xs={6} sm={5} lg={4}>
               <Link to="/home">
                 <Button variant="danger" size="lg" className="shadow-lg" block>
@@ -67,7 +67,7 @@ export class CreateLobby extends Component {
             </Col>
           </Row>
 
-          <Row className="justify-content-md-center ">
+          <Row className="justify-content-center">
             <Col xs={6} sm={5} lg={4}>
               {/* <label htmlFor="name">Name:</label> */}
               <Form.Control
@@ -79,7 +79,7 @@ export class CreateLobby extends Component {
               />
             </Col>
           </Row>
-          <Row className="justify-content-md-center ">
+          <Row className="justify-content-center">
             <Col xs={6} sm={5} lg={4}>
               <Button
                 type="submit"
