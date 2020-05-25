@@ -14,7 +14,7 @@ const LoginPage = (props) => {
       <Row className="justify-content-center">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         <h2 className="fontColor">{displayName}</h2>
       </Row>
 

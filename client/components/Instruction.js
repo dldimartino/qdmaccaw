@@ -5,10 +5,10 @@ import {Button, Row, Container, Col} from 'react-bootstrap'
 const Instruction = () => {
   return (
     <Container className="Buttons">
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
-      <Row className="justify-content-md-center mb-4">
+      <Row className="justify-content-center mb-4">
         {/* <Link to="/home"> */}
         <Col xs={6} sm={5} lg={4}>
           <Button
@@ -23,7 +23,7 @@ const Instruction = () => {
         </Col>
         {/* </Link> */}
       </Row>
-      <Row className="justify-content-md-center ">
+      <Row className="justify-content-center ">
         <div>
           <h4>
             <u>Instructions</u>
