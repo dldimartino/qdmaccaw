@@ -60,7 +60,7 @@ export class FindRoom extends Component {
                 href="/home"
                 variant="danger"
                 size="lg"
-                className="shadow-lg"
+                className="shadow-lg fontColor"
                 block
               >
                 Back
