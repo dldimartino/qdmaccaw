@@ -1,7 +1,7 @@
 import React from 'react'
 // import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router'
-import {Row} from 'react-bootstrap'
+import {Row, Spinner} from 'react-bootstrap'
 
 export const AllRooms = (props) => {
   const history = useHistory()
@@ -32,7 +32,7 @@ export const AllRooms = (props) => {
   ) : (
     <div>
       <Row className="justify-content-center">
-        <h1>There Is No Room Available!</h1>
+        <Spinner animation="border" variant="primary" />
       </Row>
     </div>
   )

@@ -48,7 +48,14 @@ Drawbit header
 
 .roundEnd {
   font-family: 'Bungee';
-  color: white;
+  color: #1729bd;
+  text-shadow: rgb(255, 255, 255) 1px 0px 0px,
+    rgb(255, 255, 255) 0.540302px 0.841471px 0px,
+    rgb(255, 255, 255) -0.416147px 0.909297px 0px,
+    rgb(255, 255, 255) -0.989992px 0.14112px 0px,
+    rgb(255, 255, 255) -0.653644px -0.756802px 0px,
+    rgb(255, 255, 255) 0.283662px -0.958924px 0px,
+    rgb(255, 255, 255) 0.96017px -0.279415px 0px;
 }
 
 .Welcome {
@@ -70,76 +77,108 @@ Drawbit header
 @media (min-width: 300px) {
   .Welcome {
     font-size: 6em;
-    padding: 30px 0px;
+    padding: 20px 0px 0px 0px;
+  }
+  .room-link {
+    color: white;
+    font-size: 1em;
   }
   #canvas {
     padding: 10px 10px 10px 10px;
-    height: 500px;
-    width: 375px;
   }
   .draw-word {
-    margin: 10px 10px;
     font-family: 'Bungee';
-    font-size: 2em;
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     text-align: center;
   }
   .timer {
     font-family: 'Russo One';
-    font-size: 2em;
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
   }
 }
 
 @media (min-width: 500px) {
   .Welcome {
     font-size: 7em;
-    padding: 20px 0px;
+    padding: 20px 0px 0px 0px;
+  }
+  .room-link {
+    color: white;
+    font-size: 2em;
   }
   #canvas {
     padding: 10px 10px 10px 10px;
-    height: 300px;
-    width: 400px;
   }
   .draw-word {
-    margin: 10px 10px;
     font-family: 'Bungee';
     font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     text-align: center;
+  }
+  .timer {
+    font-family: 'Russo One';
+    font-size: 2em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
   }
 }
 
 @media (min-width: 700px) {
   .Welcome {
     font-size: 10em;
-    padding: 10px 0px;
+    padding: 10px 0px 0px 0px;
+  }
+  .room-link {
+    color: white;
+    font-size: 2em;
   }
   #canvas {
     padding: 10px 10px 10px 10px;
-    height: 800px;
-    width: 100px;
   }
   .draw-word {
-    margin: 10px 10px;
     font-family: 'Bungee';
     font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     text-align: center;
+  }
+  .timer {
+    font-family: 'Russo One';
+    font-size: 2.5em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
   }
 }
 
 @media (min-width: 1200px) {
   .Welcome {
     font-size: 12em;
-    padding: 10px 0px;
+    padding: 10px 0px 0px 0px;
+  }
+  .room-link {
+    color: white;
+    font-size: 2em;
   }
   #canvas {
     padding: 10px 10px 10px 10px;
-    height: 1000px;
-    width: 1000px;
   }
   .draw-word {
-    margin: 10px 10px;
     font-family: 'Bungee';
-    font-size: 5em;
+    font-size: 4em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     text-align: center;
+  }
+  .timer {
+    font-family: 'Russo One';
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
   }
 }
 /******************
@@ -212,6 +251,17 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.guess-input {
+  margin: 10px 10px;
+  padding: 10px 10px;
+  border: none;
+  border-bottom: 2px solid #1729bd;
+}
+
+.guess-button {
+  padding: 10px 10px;
 }
 
 /*----------- CHATROOM CSS -----------*/
@@ -329,8 +379,4 @@ body {
 .start-game {
   font-size: 30px;
   font-family: 'Bungee';
-}
-
-.room-link {
-  color: white;
 }

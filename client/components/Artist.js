@@ -58,116 +58,113 @@ function Artist(props) {
   return (
     <Container>
       <Row className="justify-content-center">
-        <Col md={4}>
-          <h1 className="timer"> Time: {timer} </h1>
-        </Col>
+        <h1 className="timer">Time: {timer}</h1>
       </Row>
-      <Row>
+      <Row className="justify-content-center">
         <h1 className="draw-word">Your Word Is: {props.word}</h1>
-        <Col className="draw-buttons" md={4}>
-          <div>
-            <Button
-              className="btn-dark"
-              onClick={() => {
-                setOpenPalette(!openPalette)
-                if (openRadius) setOpenRadius(!openRadius)
-              }}
-              aria-controls="collapse-palette"
-              aria-expanded={openPalette}
-            >
-              <DropletFill color="#ffffff" size={30} />
-            </Button>
-            <Collapse in={openPalette}>
-              <div id="collapse-palette">
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: '#404040'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                  active
-                />
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: '#ff3333'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                  active
-                />
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: '#3366ff'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                  active
-                />
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: '#ffff33'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                  active
-                />
-                <Button
-                  className="palette"
-                  type="button"
-                  style={{backgroundColor: '#40bf40'}}
-                  onClick={(event) =>
-                    setColor(event.target.style.backgroundColor)
-                  }
-                  active
-                />
-              </div>
-            </Collapse>
-            <Button
-              className="btn-dark"
-              onClick={() => {
-                setOpenRadius(!openRadius)
-                if (openPalette) setOpenPalette(!openPalette)
-              }}
-              aria-controls="collapse-radius"
-              aria-expanded={openRadius}
-            >
-              <InlineIcon icon={contrastIcon} height="2em" width="2em" />
-            </Button>
-            <Collapse in={openRadius}>
-              <div id="collapse-radius">
-                <Button
-                  className="palette"
-                  type="button"
-                  onClick={() => setRadius(radius + 2)}
-                >
-                  <Plus className="icon" size={30} />
-                </Button>
-                <Button
-                  className="palette"
-                  type="button"
-                  onClick={() => setRadius(radius - 2)}
-                >
-                  <Dash className="icon" size={30} />
-                </Button>
-              </div>
-            </Collapse>
-            <Button className="btn-dark" onClick={() => setColor('white')}>
-              <InlineIcon icon={eraserIcon} height="2em" width="2em" />
-            </Button>
-            <Button className="btn-dark" onClick={handleClear}>
-              <XSquare className="icon" size={30} />
-            </Button>
-          </div>
-        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        <div>
+          <Button
+            className="btn-dark"
+            onClick={() => {
+              setOpenPalette(!openPalette)
+              if (openRadius) setOpenRadius(!openRadius)
+            }}
+            aria-controls="collapse-palette"
+            aria-expanded={openPalette}
+          >
+            <DropletFill color="#ffffff" size={30} />
+          </Button>
+          <Collapse in={openPalette}>
+            <div id="collapse-palette">
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: '#404040'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+                active
+              />
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: '#ff3333'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+                active
+              />
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: '#3366ff'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+                active
+              />
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: '#ffff33'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+                active
+              />
+              <Button
+                className="palette"
+                type="button"
+                style={{backgroundColor: '#40bf40'}}
+                onClick={(event) =>
+                  setColor(event.target.style.backgroundColor)
+                }
+                active
+              />
+            </div>
+          </Collapse>
+          <Button
+            className="btn-dark"
+            onClick={() => {
+              setOpenRadius(!openRadius)
+              if (openPalette) setOpenPalette(!openPalette)
+            }}
+            aria-controls="collapse-radius"
+            aria-expanded={openRadius}
+          >
+            <InlineIcon icon={contrastIcon} height="2em" width="2em" />
+          </Button>
+          <Collapse in={openRadius}>
+            <div id="collapse-radius">
+              <Button
+                className="palette"
+                type="button"
+                onClick={() => setRadius(radius + 2)}
+              >
+                <Plus className="icon" size={30} />
+              </Button>
+              <Button
+                className="palette"
+                type="button"
+                onClick={() => setRadius(radius - 2)}
+              >
+                <Dash className="icon" size={30} />
+              </Button>
+            </div>
+          </Collapse>
+          <Button className="btn-dark" onClick={() => setColor('white')}>
+            <InlineIcon icon={eraserIcon} height="2em" width="2em" />
+          </Button>
+          <Button className="btn-dark" onClick={handleClear}>
+            <XSquare className="icon" size={30} />
+          </Button>
+        </div>
       </Row>
       <Row>
         <CanvasDraw
           id="canvas"
-          className="justify-content-center"
           ref={canvas}
           onChange={handleChange}
           hideInterface={true}
@@ -175,6 +172,8 @@ function Artist(props) {
           brushColor={color}
           brushRadius={radius}
           lazyRadius={0}
+          canvasHeight={window.screen.availHeight / 1.25}
+          canvasWidth={window.screen.availWidth}
         />
       </Row>
     </Container>

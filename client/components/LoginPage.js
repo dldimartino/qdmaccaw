@@ -54,7 +54,9 @@ const LoginPage = (props) => {
         </Row>
 
         {error && error.response && (
-          <Row className="justify-content-center">{error.response.data}</Row>
+          <Row className="justify-content-center">
+            <div className="fontColor">{error.response.data}</div>
+          </Row>
         )}
 
         <Row className="justify-content-center">
