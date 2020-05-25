@@ -8,6 +8,7 @@ import {me} from '../store/user'
 import io from 'socket.io-client'
 import Chatroom from './Chatroom'
 import Axios from 'axios'
+const moment = require('moment')
 const socket = io.connect(window.location.origin)
 
 import {AllPlayers} from './AllPlayers'
@@ -36,6 +37,19 @@ export class Lobby extends Component {
     // LISTEN FOR ARTIST WORD GENERATION
     socket.on('send_word', (newWord) => {
       this.setState({gameWord: newWord})
+    })
+
+    socket.on('left_lobby', (room, user) => {
+      this.props.usersInRoom(room.id)
+      socket.emit(
+        'chat_message',
+        ({
+          message: `${user.name} has left the room.`,
+          name: `${user.name}`,
+          timestamp: moment().format('h:mm a'),
+        },
+        this.props.room.name)
+      )
     })
 
     // LISTEN FOR LATE LOBBY JOINING
@@ -71,13 +85,32 @@ export class Lobby extends Component {
     }
   }
 
-  handleClick() {
+  async handleClick() {
     const room = this.props.match.params.roomId
     const user = this.props.user.id
     this.props.roomDeleteUser(room, user)
-
+    if (
+      this.props.user.name === this.state.currentArtist.name &&
+      this.props.inRoom.length > 1
+    ) {
+      this.handlePass()
+    }
+    if (
+      this.props.user.name === this.state.currentArtist.name &&
+      this.props.inRoom.length === 1
+    ) {
+      await Axios.put(`/api/users/setAsArtist/${this.props.user.id}/false`)
+      await Axios.delete(`/api/room/${this.state.room.id}/destroy`)
+      // this.props.usersInRoom(this.state.room.id)
+    }
+    setTimeout(() => {
+      this.props.history.push({
+        pathname: `/FindRoom`,
+        // state: {lobby: room},
+      })
+    }, 0)
     // LEAVE SOCKET LOBBY
-    socket.emit('leave_lobby', this.state.room.name, this.props.user)
+    socket.emit('leave_lobby', this.state.room, this.props.user)
   }
 
   wordGenerator() {

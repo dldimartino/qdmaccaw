@@ -161,15 +161,14 @@ export default class Chatroom extends Component {
           </main>
           <div className="chat-form-container">
             <form id="chat-form" onSubmit={this.handleSubmit}>
-              <Link
-                to="/FindRoom"
-                className="link"
+              <Button
+                type="button"
+                variant="danger"
                 onClick={this.props.handleClick}
+                className="chat-button"
               >
-                <Button type="button" variant="danger" className="chat-button">
-                  Leave Lobby
-                </Button>
-              </Link>
+                Leave Lobby
+              </Button>
               <input
                 name="message"
                 type="text"

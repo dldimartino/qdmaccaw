@@ -12,8 +12,8 @@ module.exports = (io) => {
     })
 
     socket.on('leave_lobby', (room, user) => {
-      socket.to(room).emit('left_lobby', user)
-      socket.leave(room)
+      socket.to(room.name).emit('left_lobby', room, user)
+      socket.leave(room.name)
     })
 
     socket.on('new_artist', (room, nextArtist) => {
