@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Button, Row, Container} from 'react-bootstrap'
+import {Button, Row, Container, Col} from 'react-bootstrap'
 
 const Instruction = () => {
   return (
@@ -8,30 +8,42 @@ const Instruction = () => {
       <Row className="justify-content-md-center">
         <h1 className="Welcome">DrawBit</h1>
       </Row>
-      <Row className="justify-content-md-center ">
-        <Link to="/home">
-          <Button variant="danger" size="lg" className="shadow-lg">
+      <Row className="justify-content-md-center mb-4">
+        {/* <Link to="/home"> */}
+        <Col xs={6} sm={5} lg={4}>
+          <Button
+            href="/home"
+            variant="danger"
+            size="lg"
+            className="fontColor shadow-lg"
+            block
+          >
             Back
           </Button>
-        </Link>
+        </Col>
+        {/* </Link> */}
       </Row>
       <Row className="justify-content-md-center ">
         <div>
           <h4>
             <u>Instruction</u>
           </h4>
-          <h5>Picturist</h5>
+          <h5>Artist</h5>
           <ol>
-            <li>There's 1 Picturist a round</li>
-            <li>You will receive a word to draw</li>
-            <li>You have 30 second to draw it</li>
+            <li>There can only be 1 Artist</li>
+            <li>Will receive a word to draw</li>
+            <li>60 second to draw the word</li>
+            <li>have the ability to pass the brush</li>
+            <li>You have the power to start the game</li>
           </ol>
           <h5>Guesser</h5>
           <ol>
-            <li>You have 30 second to guess</li>
-            <li>You only have 1 try to guess</li>
+            <li>You have to guess the artist's word</li>
+            <li>Have 60 second to guess the word</li>
+            <li>Can guess as much as you want</li>
+            <li>Chance of becoming an artist</li>
           </ol>
-          <h5>Points</h5>
+          {/* <h5>Points</h5>
           <ol>
             <li>The earlier you guess, the more points you receive</li>
             <li>Picturist will receive 1 point for each guess</li>
@@ -40,7 +52,7 @@ const Instruction = () => {
             <li>Second to guess will multiply time left x2.5</li>
             <li>Third to guess will multiply time left x2</li>
             <li>Everyone else will receive points based on time</li>
-          </ol>
+          </ol> */}
         </div>
       </Row>
     </Container>

@@ -18,7 +18,13 @@ export const UserHome = (props) => {
         <Row className="justify-content-md-center mt-4">
           {/* <Link to="/findroom"> */}
           <Col xs={6} sm={5} lg={4}>
-            <Button href="/findroom" variant="success" size="lg" block>
+            <Button
+              href="/findroom"
+              variant="success"
+              size="lg"
+              className="shadow-lg fontColor"
+              block
+            >
               Join Room!
             </Button>
           </Col>
@@ -28,7 +34,13 @@ export const UserHome = (props) => {
         <Row className="justify-content-md-center mt-4">
           {/* <Link to="/create"> */}
           <Col xs={6} sm={5} lg={4}>
-            <Button href="/create" variant="primary" size="lg" block>
+            <Button
+              href="/create"
+              variant="primary"
+              size="lg"
+              className="shadow-lg fontColor"
+              block
+            >
               Create Room!
             </Button>
           </Col>
@@ -38,7 +50,13 @@ export const UserHome = (props) => {
         <Row className="justify-content-md-center mt-4">
           {/* <Link to="/Instruction"> */}
           <Col xs={6} sm={5} lg={4}>
-            <Button href="/Instruction" variant="warning" size="lg" block>
+            <Button
+              href="/Instruction"
+              variant="info"
+              size="lg"
+              className="shadow-lg fontColor"
+              block
+            >
               How to Play!
             </Button>
           </Col>
@@ -47,7 +65,13 @@ export const UserHome = (props) => {
 
         <Row className="justify-content-md-center mt-4">
           <Col xs={6} sm={5} lg={4}>
-            <Button variant="danger" size="lg" onClick={handleClick} block>
+            <Button
+              variant="danger"
+              size="lg"
+              className="shadow-lg fontColor"
+              onClick={handleClick}
+              block
+            >
               Logout
             </Button>
           </Col>

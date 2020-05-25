@@ -16,7 +16,7 @@ const MainPage = () => {
           <Button
             href="/login"
             size="lg"
-            className="shadow-lg"
+            className="shadow-lg fontColor"
             variant="success"
             block
           >
@@ -32,7 +32,7 @@ const MainPage = () => {
           <Button
             href="signup"
             size="lg"
-            className="shadow-lg"
+            className="shadow-lg fontColor"
             variant="primary"
             block
           >

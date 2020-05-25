@@ -20,9 +20,11 @@ export const AllRooms = (props) => {
       {props.selectedRoom.map((room) => {
         return (
           <Row className="justify-content-md-center" key={room.id}>
-            <h4 className="room-link" onClick={() => navigator(room)}>
-              {room.name}
-            </h4>
+            <a href="#">
+              <h4 className="room-link" onClick={() => navigator(room)}>
+                {room.name}
+              </h4>
+            </a>
           </Row>
         )
       })}

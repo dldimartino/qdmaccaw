@@ -56,11 +56,17 @@ export class CreateLobby extends Component {
         <form onSubmit={this.handleSubmit}>
           <Row className="justify-content-md-center mb-4">
             <Col xs={6} sm={5} lg={4}>
-              <Link to="/home">
-                <Button variant="danger" size="lg" className="shadow-lg" block>
-                  Back
-                </Button>
-              </Link>
+              {/* <Link to="/home"> */}
+              <Button
+                href="/home"
+                variant="danger"
+                size="lg"
+                className="shadow-lg fontColor"
+                block
+              >
+                Back
+              </Button>
+              {/* </Link> */}
             </Col>
           </Row>
 
@@ -80,7 +86,7 @@ export class CreateLobby extends Component {
             <Col xs={6} sm={5} lg={4}>
               <Button
                 type="submit"
-                className="mt-2"
+                className="shadow-lg mt-2 fontColor"
                 variant="primary"
                 size="lg"
                 block
