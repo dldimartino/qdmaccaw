@@ -1,10 +1,10 @@
 # DRAWBIT
 
-Drawbit is a multiplayer progressive web application where your best drawing and detective skills are put to the test! Race against the clock to either draw a word or guess the word being drawn.
+DrawBit is a multiplayer progressive web application where your best drawing and detective skills are put to the test! Race against the clock to either draw a word or guess the word being drawn.
 
 ## Getting Started
 
-- [Drawbit](http://drawbit.herokuapp.com) - Our deployed site! Access via any computer or smart device to play against your friends!
+- [DrawBit](http://drawbit.herokuapp.com) - Our deployed site! Access via any computer or smart device to play against your friends.
 
 ### Mobile Setup
 
