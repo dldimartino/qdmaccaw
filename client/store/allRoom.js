@@ -99,7 +99,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         selectedRoom: state.allRoom.filter((word) => {
-          return word.name.includes(action.value)
+          return word.name.toLowerCase().includes(action.value.toLowerCase())
         }),
       }
     }
