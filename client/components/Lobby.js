@@ -30,7 +30,6 @@ export class Lobby extends Component {
 
   componentDidMount() {
     this.props.usersInRoom(this.state.room.id)
-
     // JOIN SOCKET LOBBY
     socket.emit('join_lobby', this.state.room.name, this.props.user)
 
@@ -40,31 +39,48 @@ export class Lobby extends Component {
     })
 
     socket.on('left_lobby', (room, user) => {
+      console.log('LEFT LOBBY LISTENER room, user ----->>>>>', room, user)
       this.props.usersInRoom(room.id)
-      socket.emit(
-        'chat_message',
-        ({
-          message: `${user.name} has left the room.`,
-          name: `${user.name}`,
-          timestamp: moment().format('h:mm a'),
-        },
-        this.props.room.name)
-      )
+      //   socket.emit(
+      //     'chat_message',
+      //     ({
+      //       message: `${user.name} has left the room.`,
+      //       name: `${user.name}`,
+      //       timestamp: moment().format('h:mm a'),
+      //     },
+      //     this.props.room.name)
+      //   )
     })
 
     // LISTEN FOR LATE LOBBY JOINING
-    if (this.props.user.isArtist) {
-      this.setState({currentArtist: this.props.user})
-      socket.on('join_lobby_late', (user) => {
+    this.props.getUser()
+
+    this.setState({currentArtist: this.props.user})
+
+    socket.on('join_lobby_late', (user) => {
+      this.props.getUser()
+      if (this.props.user.isArtist) {
         socket.emit('word_generate', this.state.gameWord, this.state.room.name)
         socket.emit('new_artist', this.state.room.name, this.props.user)
         this.props.usersInRoom(this.state.room.id)
-      })
-    } else {
-      socket.on('join_lobby_late', (user) => {
+      } else {
         this.props.usersInRoom(this.state.room.id)
-      })
-    }
+      }
+    })
+
+    // if (this.props.user.isArtist) {
+    //   this.props.getUser()
+    //   this.setState({currentArtist: this.props.user})
+    //   socket.on('join_lobby_late', (user) => {
+    //     socket.emit('word_generate', this.state.gameWord, this.state.room.name)
+    //     socket.emit('new_artist', this.state.room.name, this.props.user)
+    //     this.props.usersInRoom(this.state.room.id)
+    //   })
+    // } else {
+    //   socket.on('join_lobby_late', (user) => {
+    //     this.props.usersInRoom(this.state.room.id)
+    //   })
+    // }
 
     // LISTEN FOR GAME START
     socket.on('start_game', (room) => {
@@ -73,6 +89,7 @@ export class Lobby extends Component {
 
     // LISTEN FOR UPDATED ARTIST
     socket.on('artist_incoming', (artist) => {
+      this.props.getUser()
       this.setState({currentArtist: artist})
       console.log(
         'THIS>STATE>CURRENTARTIST ------>>>>>>',
@@ -88,12 +105,12 @@ export class Lobby extends Component {
   async handleClick() {
     const room = this.props.match.params.roomId
     const user = this.props.user.id
-    this.props.roomDeleteUser(room, user)
+    await this.props.roomDeleteUser(room, user)
     if (
       this.props.user.name === this.state.currentArtist.name &&
       this.props.inRoom.length > 1
     ) {
-      this.handlePass()
+      await this.handlePass()
     }
     if (
       this.props.user.name === this.state.currentArtist.name &&

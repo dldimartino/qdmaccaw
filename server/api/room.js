@@ -13,16 +13,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/', async (req, res, next) => {
-  try {
-    const allRoom = await Room.findAll({
-      include: [User],
-    })
-    res.json(allRoom)
-  } catch (error) {
-    next(error)
-  }
-})
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const allRoom = await Room.findAll({
+//       include: [User],
+//     })
+//     res.json(allRoom)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 router.post('/', async (req, res, next) => {
   try {
