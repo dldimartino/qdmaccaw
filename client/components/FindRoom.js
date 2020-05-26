@@ -5,6 +5,8 @@ import {AllRooms} from './AllRooms'
 import {fetchRoom, filterRoom, roomAddUser} from '../store/allRoom'
 import {Button, Row, Container, Col, Form} from 'react-bootstrap'
 import io from 'socket.io-client'
+import {me} from '../store/user'
+
 const socket = io.connect(window.location.origin)
 
 export class FindRoom extends Component {
@@ -44,6 +46,7 @@ export class FindRoom extends Component {
     socket.on('regenerate_rooms', () => {
       this.props.fetchRoom()
     })
+    this.props.getUser()
   }
 
   render() {
@@ -110,6 +113,7 @@ const mapDispatch = (dispatch) => ({
   roomAddUser: (roomId, userId) => {
     dispatch(roomAddUser(roomId, userId))
   },
+  getUser: () => dispatch(me()),
 })
 
 export default connect(mapState, mapDispatch)(FindRoom)

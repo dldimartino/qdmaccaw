@@ -15,7 +15,8 @@ module.exports = (io) => {
     })
 
     socket.on('leave_lobby', (room, user) => {
-      socket.to(room.name).emit('left_lobby', room, user)
+      console.log('INSIDE LEAVE LOBBY SOCKET room, user---->>>>', room, user)
+      io.in(room.name).emit('left_lobby', room, user)
       socket.leave(room.name)
     })
 

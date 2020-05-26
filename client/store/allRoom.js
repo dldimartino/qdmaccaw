@@ -5,8 +5,15 @@ const GET_ROOM = 'GET_ROOM'
 const FILTER_ROOM = 'FILTER_ROOM'
 const USER_IN_ROOM = 'USER_IN_ROOM'
 const ADD_USER = 'ADD_USER'
+const REMOVE_USER = 'REMOVE_USER'
 
 /* Action Creators */
+
+const deleteUser = (user) => ({
+  type: REMOVE_USER,
+  user,
+})
+
 const getRoom = (room) => ({
   type: GET_ROOM,
   room,
@@ -58,7 +65,8 @@ export const roomAddUser = (roomId, playerId) => async (dispatch) => {
 
 export const roomDeleteUser = (roomId, playerId) => async (dispatch) => {
   try {
-    await axios.put(`/api/room/${roomId}/${playerId}/leave`)
+    const {data} = await axios.put(`/api/room/${roomId}/${playerId}/leave`)
+    dispatch(deleteUser(data))
   } catch (error) {
     console.error(error)
   }
@@ -99,6 +107,13 @@ export default function (state = initialState, action) {
       return {...state, inRoom: action.users}
     case ADD_USER:
       return {...state, inRoom: [...state.inRoom, action.user]}
+    case REMOVE_USER:
+      return {
+        ...state,
+        inRoom: state.inRoom.filter((user) => {
+          return !user.name.includes(action.user.name)
+        }),
+      }
     default:
       return state
   }
