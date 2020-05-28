@@ -32,6 +32,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-- [Robu Waldorf]() for his amazing game music, which can be found [here].(https://robuwaldorf.bandcamp.com/album/video-game-music)
+- [Robu Waldorf]() for his amazing game music, which can be found [here](https://robuwaldorf.bandcamp.com/album/video-game-music).
 - [Celia McCrae](https://github.com/celiamacrae) and [Jess Bracht](https://github.com/jbracht) for their incredible guidance throughout this whole project.
 - This project was built for [Fullstack Academy](https://github.com/FullstackAcademy)'s Senior Capstone project, and we are eternally grateful for everything the teachers, fellows, and staff have done to aid us on our engineering journey.
