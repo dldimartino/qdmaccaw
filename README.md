@@ -17,10 +17,11 @@ DrawBit is a multiplayer progressive web application where your best drawing and
 - [React-Bootstrap](https://react-bootstrap.github.io/) - Styling used in conjunction with CSS.
 - [Sequelize](https://sequelize.org/) - Used to build our data models.
 - [Express](https://expressjs.com/) - Used to serve up our data.
+- [PostgreSQL](https://www.postgresql.org/) - Our backend database, used to store words, rooms, and users. Allows for us to associate users and rooms to use eagerloading. PostgreSQL is an object-relational database management system (ORDBMS) based on POSTGRES.
 
 ## Authors
 
-- **Daniel DiMartino** - [GitHub](https://github.com/dldimartino)
+- **Daniel DiMartino** - [GitHub]
 - **Cesar Nina** - [GitHub](https://github.com/C3sar207)
 - **Daniel Stracquadanio** - [GitHub](github.com/dstracquadanio)
 - **Jared Usher** - [GitHub](https://github.com/Oosh74)
@@ -32,5 +33,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 - [Robu Waldorf]() for his amazing game music, which can be found [here]()
-- [Celia McCrae](https://github.com/celiamacrae) and [Jess Bracht](https://github.com/jbracht) for their incredible guidance throughout this whole project.
+- [Celia McCrae]() and [Jess]() for their incredible guidance throughout this whole project.
 - This project was built for [Fullstack Academy]()'s Senior Capstone project, and we are eternally grateful for everything the teachers, fellows, and staff have done to aid us on our engineering journey.
