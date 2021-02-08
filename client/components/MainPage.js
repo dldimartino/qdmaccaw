@@ -7,7 +7,8 @@ const MainPage = () => {
   return (
     <Container className="Buttons">
       <Row className="justify-content-center">
-        <h1 className="Welcome">DrawBit</h1>
+        <h1 className="Welcome">Quick-Draw</h1>
+        <h1 className="Welcome">Maccaw</h1>
       </Row>
 
       <Row className="justify-content-center">

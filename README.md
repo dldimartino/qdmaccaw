@@ -1,10 +1,11 @@
-# DRAWBIT
+# Quick-Draw Maccaw
 
-DrawBit is a multiplayer progressive web application where your best drawing and detective skills are put to the test! Race against the clock to either draw a word or guess the word being drawn.
+Quick-Draw Maccaw is a multiplayer progressive web application where your best drawing and detective skills are put to the test!
+Race against the clock to either draw a word or guess the word being drawn.
 
 ## Getting Started
 
-- [DrawBit](http://drawbit.herokuapp.com) - Our deployed site! Access via any computer or smart device to play against your friends.
+- [Quick-Draw Maccaw](http://quick-draw-maccaw.herokuapp.com) - Our deployed site! Access via any computer or smart device to play against your friends.
 
 ### Mobile Setup
 
@@ -33,5 +34,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 - [Robu Waldorf]() for his amazing game music, which can be found [here](https://robuwaldorf.bandcamp.com/album/video-game-music).
-- [Celia McCrae](https://github.com/celiamacrae) and [Jess Bracht](https://github.com/jbracht) for their incredible guidance throughout this whole project.
-- This project was built for [Fullstack Academy](https://github.com/FullstackAcademy)'s Senior Capstone project, and we are eternally grateful for everything the teachers, fellows, and staff have done to aid us on our engineering journey.

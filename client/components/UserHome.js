@@ -9,7 +9,7 @@ export const UserHome = (props) => {
   return (
     <Container className="Buttons">
       <Row className="justify-content-center ">
-        <h1 className="Welcome">DrawBit</h1>
+        <h1 className="Welcome">Quick-Draw Maccaw</h1>
       </Row>
       <Row className="justify-content-center">
         <h2 className="welcomeUser">Welcome, {name}</h2>

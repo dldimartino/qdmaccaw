@@ -1,7 +1,7 @@
 {
-  "name": "drawbit",
+  "name": "quick-draw-maccaw",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Draw A Picture With Friends",
   "engines": {
     "node": "~12.11.1"
   },
@@ -38,7 +38,7 @@
       "git add"
     ]
   },
-  "author": "Fullstack Academy of Code",
+  "author": "Dan DiMartino",
   "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.9.14",
